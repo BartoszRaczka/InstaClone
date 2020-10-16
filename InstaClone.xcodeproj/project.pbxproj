@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4343B33ADFE204F9C0E1D66F /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */; };
-		FA0AE91A252CFDFE001D0E6C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */; };
-		FA0AE91C252CFE42001D0E6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE91B252CFE42001D0E6C /* MainView.swift */; };
-		FA0AE91E252CFE6E001D0E6C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */; };
+		9DF8766A2539D5870052C8B3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF876692539D5870052C8B3 /* AppCoordinator.swift */; };
+		9DF8766D2539D8AE0052C8B3 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF8766C2539D8AD0052C8B3 /* DependencyContainer.swift */; };
+		9DF876702539DE930052C8B3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF8766F2539DE930052C8B3 /* TabBarViewController.swift */; };
+		9DF876722539DF1C0052C8B3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF876712539DF1B0052C8B3 /* TabBarCoordinator.swift */; };
+		9DF876742539E0520052C8B3 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */; };
 		FADC47C6252B4A1600F1498B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC47C5252B4A1600F1498B /* AppDelegate.swift */; };
 		FADC47C8252B4A1600F1498B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC47C7252B4A1600F1498B /* SceneDelegate.swift */; };
-		FADC47CA252B4A1600F1498B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC47C9252B4A1600F1498B /* ViewController.swift */; };
 		FADC47CF252B4A1800F1498B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADC47CE252B4A1800F1498B /* Assets.xcassets */; };
 		FADC47D2252B4A1800F1498B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADC47D0252B4A1800F1498B /* LaunchScreen.storyboard */; };
 		FAE22AB0252B528B00F66E31 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE22AAF252B528B00F66E31 /* Coordinator.swift */; };
@@ -22,14 +23,15 @@
 /* Begin PBXFileReference section */
 		2DCC2DB84B39CB0625D5764F /* Pods-InstaClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.release.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.release.xcconfig"; sourceTree = "<group>"; };
 		58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		FA0AE91B252CFE42001D0E6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9DF876692539D5870052C8B3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9DF8766C2539D8AD0052C8B3 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		9DF8766F2539DE930052C8B3 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		9DF876712539DF1B0052C8B3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		FA73482310D4477DA31BB6BE /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		FADC47C2252B4A1600F1498B /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADC47C5252B4A1600F1498B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADC47C7252B4A1600F1498B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FADC47C9252B4A1600F1498B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FADC47CE252B4A1800F1498B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADC47D1252B4A1800F1498B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADC47D3252B4A1800F1498B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,45 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9DF876682539D57C0052C8B3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FADC47D0252B4A1800F1498B /* LaunchScreen.storyboard */,
+				FADC47D3252B4A1800F1498B /* Info.plist */,
+				FADC47C7252B4A1600F1498B /* SceneDelegate.swift */,
+				FADC47C5252B4A1600F1498B /* AppDelegate.swift */,
+				FAE22AAF252B528B00F66E31 /* Coordinator.swift */,
+				9DF876692539D5870052C8B3 /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9DF8766B2539D89F0052C8B3 /* DependencyManagement */ = {
+			isa = PBXGroup;
+			children = (
+				9DF8766C2539D8AD0052C8B3 /* DependencyContainer.swift */,
+				9DF876752539E1C10052C8B3 /* Factories */,
+			);
+			path = DependencyManagement;
+			sourceTree = "<group>";
+		};
+		9DF8766E2539DE510052C8B3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				9DF8766F2539DE930052C8B3 /* TabBarViewController.swift */,
+				9DF876712539DF1B0052C8B3 /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		9DF876752539E1C10052C8B3 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		FADC47B9252B4A1600F1498B = {
 			isa = PBXGroup;
 			children = (
@@ -86,20 +127,12 @@
 		FADC47C4252B4A1600F1498B /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
-				FADC47D3252B4A1800F1498B /* Info.plist */,
-				FAE22AAB252B51B900F66E31 /* Services */,
+				9DF8766B2539D89F0052C8B3 /* DependencyManagement */,
+				9DF876682539D57C0052C8B3 /* App */,
 				FAE22AAC252B51D300F66E31 /* Assets */,
-				FAE22AAE252B520F00F66E31 /* Common */,
 				FAE22AAD252B51ED00F66E31 /* Modules */,
 			);
 			path = InstaClone;
-			sourceTree = "<group>";
-		};
-		FAE22AAB252B51B900F66E31 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		FAE22AAC252B51D300F66E31 /* Assets */ = {
@@ -113,39 +146,9 @@
 		FAE22AAD252B51ED00F66E31 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				FADC47C9252B4A1600F1498B /* ViewController.swift */,
-				FAE22AB1252B52B800F66E31 /* Views */,
-				FAE22AB2252B52C100F66E31 /* Models */,
+				9DF8766E2539DE510052C8B3 /* TabBar */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		FAE22AAE252B520F00F66E31 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				FADC47C7252B4A1600F1498B /* SceneDelegate.swift */,
-				FADC47C5252B4A1600F1498B /* AppDelegate.swift */,
-				FADC47D0252B4A1800F1498B /* LaunchScreen.storyboard */,
-				FAE22AAF252B528B00F66E31 /* Coordinator.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		FAE22AB1252B52B800F66E31 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */,
-				FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */,
-				FA0AE91B252CFE42001D0E6C /* MainView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		FAE22AB2252B52C100F66E31 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,13 +265,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA0AE91E252CFE6E001D0E6C /* MainViewController.swift in Sources */,
-				FA0AE91A252CFDFE001D0E6C /* MainViewModel.swift in Sources */,
-				FA0AE91C252CFE42001D0E6C /* MainView.swift in Sources */,
+				9DF876702539DE930052C8B3 /* TabBarViewController.swift in Sources */,
 				FAE22AB0252B528B00F66E31 /* Coordinator.swift in Sources */,
-				FADC47CA252B4A1600F1498B /* ViewController.swift in Sources */,
+				9DF8766A2539D5870052C8B3 /* AppCoordinator.swift in Sources */,
+				9DF876722539DF1C0052C8B3 /* TabBarCoordinator.swift in Sources */,
 				FADC47C6252B4A1600F1498B /* AppDelegate.swift in Sources */,
+				9DF8766D2539D8AE0052C8B3 /* DependencyContainer.swift in Sources */,
 				FADC47C8252B4A1600F1498B /* SceneDelegate.swift in Sources */,
+				9DF876742539E0520052C8B3 /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,8 +410,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LWZ7TCP895;
-				INFOPLIST_FILE = InstaClone/Info.plist;
+				DEVELOPMENT_TEAM = AKH6VC33BS;
+				INFOPLIST_FILE = InstaClone/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LWZ7TCP895;
-				INFOPLIST_FILE = InstaClone/Info.plist;
+				INFOPLIST_FILE = InstaClone/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
