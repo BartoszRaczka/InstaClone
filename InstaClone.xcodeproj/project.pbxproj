@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4343B33ADFE204F9C0E1D66F /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */; };
+		D5CE38AA253EF7F6007B4298 /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */; };
+		D5D30404253CCD7300C6A758 /* PhotoPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D30403253CCD7300C6A758 /* PhotoPostView.swift */; };
+		D5D30407253CCD9400C6A758 /* PhotoPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */; };
+		D5D30409253CCDCD00C6A758 /* PhotoPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D30408253CCDCD00C6A758 /* PhotoPostCoordinator.swift */; };
 		FA0AE91A252CFDFE001D0E6C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */; };
 		FA0AE91C252CFE42001D0E6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE91B252CFE42001D0E6C /* MainView.swift */; };
 		FA0AE91E252CFE6E001D0E6C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */; };
@@ -22,6 +26,10 @@
 /* Begin PBXFileReference section */
 		2DCC2DB84B39CB0625D5764F /* Pods-InstaClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.release.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.release.xcconfig"; sourceTree = "<group>"; };
 		58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCell.swift; sourceTree = "<group>"; };
+		D5D30403253CCD7300C6A758 /* PhotoPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostView.swift; sourceTree = "<group>"; };
+		D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostViewModel.swift; sourceTree = "<group>"; };
+		D5D30408253CCDCD00C6A758 /* PhotoPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostCoordinator.swift; sourceTree = "<group>"; };
 		FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FA0AE91B252CFE42001D0E6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +71,17 @@
 				2DCC2DB84B39CB0625D5764F /* Pods-InstaClone.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D5D30405253CCD7A00C6A758 /* PhotoPost */ = {
+			isa = PBXGroup;
+			children = (
+				D5D30408253CCDCD00C6A758 /* PhotoPostCoordinator.swift */,
+				D5D30403253CCD7300C6A758 /* PhotoPostView.swift */,
+				D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */,
+				D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */,
+			);
+			path = PhotoPost;
 			sourceTree = "<group>";
 		};
 		FADC47B9252B4A1600F1498B = {
@@ -137,6 +156,7 @@
 				FA0AE919252CFDFE001D0E6C /* MainViewModel.swift */,
 				FA0AE91D252CFE6E001D0E6C /* MainViewController.swift */,
 				FA0AE91B252CFE42001D0E6C /* MainView.swift */,
+				D5D30405253CCD7A00C6A758 /* PhotoPost */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,12 +283,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA0AE91E252CFE6E001D0E6C /* MainViewController.swift in Sources */,
+				D5D30404253CCD7300C6A758 /* PhotoPostView.swift in Sources */,
 				FA0AE91A252CFDFE001D0E6C /* MainViewModel.swift in Sources */,
 				FA0AE91C252CFE42001D0E6C /* MainView.swift in Sources */,
 				FAE22AB0252B528B00F66E31 /* Coordinator.swift in Sources */,
 				FADC47CA252B4A1600F1498B /* ViewController.swift in Sources */,
+				D5CE38AA253EF7F6007B4298 /* PhotoPostTableViewCell.swift in Sources */,
 				FADC47C6252B4A1600F1498B /* AppDelegate.swift in Sources */,
+				D5D30409253CCDCD00C6A758 /* PhotoPostCoordinator.swift in Sources */,
 				FADC47C8252B4A1600F1498B /* SceneDelegate.swift in Sources */,
+				D5D30407253CCD9400C6A758 /* PhotoPostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

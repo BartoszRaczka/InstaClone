@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+class PhotoPostView: UIView {
+    
+    var viewModel: PhotoPostViewModel
+    
+    
+    
+}
