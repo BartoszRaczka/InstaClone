@@ -1,0 +1,92 @@
+//
+//  HomeFeedView.swift
+//  InstaClone
+//
+//  Created by MacBook on 20/10/2020.
+//  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
+//
+
+import Foundation
+import SnapKit
+
+final class HomeFeedView: UIView {
+    
+    var viewModel: HomeFeedViewModel
+    
+    var topContainer: UIView!
+    var bottomContainer: UIView!
+    
+    var photoButton: UIButton!
+    var dmButton: UIButton!
+    var instaCloneImage: UIImageView!
+    
+    var homeButton: UIButton!
+    var searchButton: UIButton!
+    var addButton: UIButton!
+    var activityButton: UIButton!
+    var profileButton: UIButton!
+    
+    init(with viewModel: HomeFeedViewModel){
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+        
+    }
+    
+     required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+// MARK: -Top Container
+    private func setupTopContainer() {
+        topContainer = UIView()
+        addSubview(topContainer)
+        
+        topContainer.snp.makeConstraints { (make) -> Void in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(32)
+        }
+    }
+
+    private func setupPhotoButton() {
+        photoButton = UIButton()
+        addSubview(photoButton)
+        
+        photoButton.snp.makeConstraints { (make) in
+            make.top.left.bottom.equalTo(topContainer)
+            make.width.equalTo(32) // musimy tu zrobić kwadrat
+            
+        }
+    }
+    
+    private func setupDMButton() {
+        dmButton = UIButton()
+        addSubview(dmButton)
+        
+        dmButton.snp.makeConstraints { (make) in
+            make.top.right.bottom.equalTo(topContainer)
+            make.width.equalTo(32)
+        }
+    }
+    
+    private func setupInstaCloneImage() {
+        
+    }
+// MARK: -Bottom Container
+    
+    private func setupBottomContainer() {
+        
+    }
+// MARK: -Button Targets
+    
+    private func setupView() {
+        photoButton.addTarget(self, action: #selector(didTapPhotoButton), for: .touchUpInside)
+        dmButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
+    }
+    
+    @objc func didTapPhotoButton() {
+// TODO: zrobić logikę funkcji - widok mówi do modelu a model do coordinatora
+    }
+    
+    @objc func didTapDMButton() {
+// TODO: j.w.
+    }
+}
