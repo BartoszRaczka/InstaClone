@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+protocol StoriesServiceProtocol {
+    
+}
+
+final class StoriesService: StoriesServiceProtocol {
+    
+}

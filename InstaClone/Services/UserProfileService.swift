@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+protocol UserProfileServiceProtocol {
+    
+}
+
+final class UserProfileService: UserProfileServiceProtocol {
+    
+}
