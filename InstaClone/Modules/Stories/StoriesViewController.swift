@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
-class StoriesViewController {
+final class StoriesViewController: UIViewController {
     
 }

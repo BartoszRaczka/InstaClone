@@ -6,8 +6,8 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class StoriesView {
+final class StoriesView: UIView {
     
 }
