@@ -8,8 +8,40 @@
 
 import Foundation
 
-class PhotoPostCoordinator {
- 
+//protocol Coordinator {
+//
+//}
+
+final class PhotoPostCoordinator {
     
+    
+    //coordinator still doesn't know in which cell were this icons tapped. TODO: add indexPath(?) in functions parameters
+    func didTapPosterNameButton() {
+        //TODO
+    }
+    
+    func didTapMoreOptionsButton() {
+        //TODO
+    }
+    
+    func didTapLikeButton() {
+        //TODO
+    }
+    
+    func didTapCommentButton() {
+        //TODO
+    }
+    
+    func didTapDMButton() {
+        //TODO
+    }
+    
+    func didTapSaveButton() {
+        //TODO
+    }
+    
+    func didTapNumberOfLikesButton() {
+        //TODO
+    }
     
 }

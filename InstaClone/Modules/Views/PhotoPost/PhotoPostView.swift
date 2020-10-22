@@ -59,6 +59,7 @@ extension PhotoPostView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostTableViewCell", for: indexPath)
+        (cell as? PhotoPostTableViewCell)?.viewModel.delegate = self.viewModel
         //TODO: add logic to display proper data for each post
         return cell
     }

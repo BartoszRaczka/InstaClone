@@ -8,34 +8,48 @@
 
 import Foundation
 
+protocol PhotoPostTableViewCellViewModelDelegate: AnyObject {
+    
+    func didTapPosterNameButton()
+    func didTapMoreOptionsButton()
+    func didTapLikeButton()
+    func didTapCommentButton()
+    func didTapDMButton()
+    func didTapSaveButton()
+    func didTapNumberOfLikesButton()
+    
+}
+
 class PhotoPostTableViewCellViewModel {
     
+    var delegate: PhotoPostTableViewCellViewModelDelegate?
+    
     func didTapPosterNameButton() {
-        //TODO
+        delegate?.didTapPosterNameButton()
     }
     
     func didTapMoreOptionsButton() {
-        //TODO
+        delegate?.didTapMoreOptionsButton()
     }
     
     func didTapLikeButton() {
-        //TODO
+        delegate?.didTapLikeButton()
     }
     
     func didTapCommentButton() {
-        //TODO
+        delegate?.didTapCommentButton()
     }
     
     func didTapDMButton() {
-        //TODO
+        delegate?.didTapDMButton()
     }
     
     func didTapSaveButton() {
-        //TODO
+        delegate?.didTapSaveButton()
     }
     
     func didTapNumberOfLikesButton() {
-        //TODO
+        delegate?.didTapNumberOfLikesButton()
     }
     
 }
