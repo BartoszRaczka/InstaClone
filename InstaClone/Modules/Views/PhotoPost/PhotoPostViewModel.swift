@@ -9,5 +9,5 @@
 import Foundation
 
 class PhotoPostViewModel {
-    
+    let numberOfPosts = ["uno", "due", "tre"] //I don't know how to make infinity scroll system so for now I add only this array to let tableView show anything
 }

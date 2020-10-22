@@ -9,10 +9,57 @@
 import Foundation
 import UIKit
 
-class PhotoPostView: UIView {
+class PhotoPostView: UIView, UITableViewDelegate {
     
-    var viewModel: PhotoPostViewModel
+    private let tableView = UITableView()
+    let viewModel: PhotoPostViewModel
     
+    init(viewModel: PhotoPostViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+        
+        setupTableView()
+        setupView()
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
+    private func setupTableView() {
+        addSubview(tableView)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PhotoPostTableViewCell.self, forCellReuseIdentifier: "PhotoPostTableViewCell")
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    
+    private func setupView() {
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+    }
+}
+
+extension PhotoPostView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostTableViewCell", for: indexPath)
+        //TODO: add logic to display proper data for each post
+        return cell
+    }
 }
