@@ -11,13 +11,13 @@ import UIKit
 
 final class StoriesCoordinator: Coordinator {
     
-//   MARK: - Properties
+    //   MARK: - Properties
     
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private var coordinators = [Coordinator]()
 
-//    MARK: - Life Cycle
+    //    MARK: - Life Cycle
     
     init(
         with navigationController: UINavigationController,
@@ -27,7 +27,8 @@ final class StoriesCoordinator: Coordinator {
         self.dependencyContainer = dependencyContainer
     }
     
-//  MARK: - Public Methods
+    //  MARK: - Public methods
+    
     func start() {
         
     }
