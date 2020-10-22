@@ -8,6 +8,6 @@
 
 final class DependencyContainer {
     
-    
+    lazy var storiesService: StoriesServiceProtocol = StoriesService()
     
 }
