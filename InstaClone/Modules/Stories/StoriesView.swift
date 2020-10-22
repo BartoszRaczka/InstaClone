@@ -10,4 +10,11 @@ import UIKit
 
 final class StoriesView: UIView {
     
+    init(with viewModel: StoriesViewModel) {
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
