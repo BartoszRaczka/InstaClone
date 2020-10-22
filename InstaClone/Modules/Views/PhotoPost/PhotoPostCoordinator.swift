@@ -7,13 +7,32 @@
 //
 
 import Foundation
+import UIKit
 
-//protocol Coordinator {
-//
-//}
-
-final class PhotoPostCoordinator {
+final class PhotoPostCoordinator: Coordinator {
     
+    // MARK: - Properties
+    
+    private let navigationController: UINavigationController
+    private let dependencyContainer: DependencyContainer
+    private let coordinators = [Coordinator]()
+    
+    
+    // MARK: - LifeCycle
+    
+    init(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) {
+        self.navigationController = navigationController
+        self.dependencyContainer = dependencyContainer
+    }
+    
+    // MARK: - Public methods
+    
+    func start() {
+        
+    }
     
     //coordinator still doesn't know in which cell were this icons tapped. TODO: add indexPath(?) in functions parameters
     func didTapPosterNameButton() {
@@ -43,5 +62,4 @@ final class PhotoPostCoordinator {
     func didTapNumberOfLikesButton() {
         //TODO
     }
-    
 }

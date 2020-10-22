@@ -46,6 +46,4 @@ extension PhotoPostViewModel: PhotoPostTableViewCellViewModelDelegate {
     func didTapNumberOfLikesButton() {
         coordinator?.didTapNumberOfLikesButton()
     }
-    
-    
 }
