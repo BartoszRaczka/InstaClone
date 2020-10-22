@@ -160,15 +160,15 @@ final class HomeFeedView: UIView {
     
     }
     
-    @objc func  {
+    @objc func  didTapAddButton() {
     
     }
     
-    @objc func {
+    @objc func didTapActivityButton() {
     
     }
     
-    @objc func {
+    @objc func didTapProfileButton() {
     
     }
 }
