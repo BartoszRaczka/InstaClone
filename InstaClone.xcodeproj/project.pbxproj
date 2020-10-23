@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4343B33ADFE204F9C0E1D66F /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */; };
 		D50064472541E435006B022E /* PhotoPostTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50064462541E435006B022E /* PhotoPostTableViewCellViewModel.swift */; };
+		D5006449254251BB006B022E /* PhotoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5006448254251BB006B022E /* PhotoPostViewController.swift */; };
 		D5CE38AA253EF7F6007B4298 /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */; };
 		D5D30404253CCD7300C6A758 /* PhotoPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D30403253CCD7300C6A758 /* PhotoPostView.swift */; };
 		D5D30407253CCD9400C6A758 /* PhotoPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */; };
@@ -28,6 +29,7 @@
 		2DCC2DB84B39CB0625D5764F /* Pods-InstaClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.release.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.release.xcconfig"; sourceTree = "<group>"; };
 		58CDF39BB81E148475094CA9 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50064462541E435006B022E /* PhotoPostTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		D5006448254251BB006B022E /* PhotoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostViewController.swift; sourceTree = "<group>"; };
 		D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCell.swift; sourceTree = "<group>"; };
 		D5D30403253CCD7300C6A758 /* PhotoPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostView.swift; sourceTree = "<group>"; };
 		D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostViewModel.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				D5D30408253CCDCD00C6A758 /* PhotoPostCoordinator.swift */,
+				D5006448254251BB006B022E /* PhotoPostViewController.swift */,
 				D5D30403253CCD7300C6A758 /* PhotoPostView.swift */,
 				D5D30406253CCD9400C6A758 /* PhotoPostViewModel.swift */,
 				D5CE38A9253EF7F6007B4298 /* PhotoPostTableViewCell.swift */,
@@ -288,6 +291,7 @@
 				FA0AE91E252CFE6E001D0E6C /* MainViewController.swift in Sources */,
 				D5D30404253CCD7300C6A758 /* PhotoPostView.swift in Sources */,
 				FA0AE91A252CFDFE001D0E6C /* MainViewModel.swift in Sources */,
+				D5006449254251BB006B022E /* PhotoPostViewController.swift in Sources */,
 				FA0AE91C252CFE42001D0E6C /* MainView.swift in Sources */,
 				FAE22AB0252B528B00F66E31 /* Coordinator.swift in Sources */,
 				FADC47CA252B4A1600F1498B /* ViewController.swift in Sources */,
