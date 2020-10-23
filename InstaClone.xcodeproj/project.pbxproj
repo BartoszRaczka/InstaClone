@@ -16,6 +16,7 @@
 		FA2136DA2541A9C9003E7999 /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2136D92541A9C9003E7999 /* StoriesViewModel.swift */; };
 		FA2136DD2541A9D6003E7999 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2136DC2541A9D6003E7999 /* StoriesView.swift */; };
 		FA2136E02541A9E8003E7999 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2136DF2541A9E8003E7999 /* StoriesViewController.swift */; };
+		FA25B03D2542DF7D00F91963 /* StoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25B03C2542DF7D00F91963 /* StoriesCollectionViewCell.swift */; };
 		FA2C5D01253F5C4E00680545 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C5D00253F5C4E00680545 /* UserProfileService.swift */; };
 		FA2C5D05253F5C7200680545 /* StoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C5D04253F5C7200680545 /* StoriesService.swift */; };
 		FA9C681C253F7E4B0093F8D9 /* StoriesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C681B253F7E4B0093F8D9 /* StoriesCoordinator.swift */; };
@@ -37,6 +38,7 @@
 		FA2136D92541A9C9003E7999 /* StoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
 		FA2136DC2541A9D6003E7999 /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		FA2136DF2541A9E8003E7999 /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		FA25B03C2542DF7D00F91963 /* StoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA2C5D00253F5C4E00680545 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		FA2C5D04253F5C7200680545 /* StoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesService.swift; sourceTree = "<group>"; };
 		FA73482310D4477DA31BB6BE /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				FA9C681B253F7E4B0093F8D9 /* StoriesCoordinator.swift */,
 				FA2136D92541A9C9003E7999 /* StoriesViewModel.swift */,
 				FA2136DC2541A9D6003E7999 /* StoriesView.swift */,
+				FA25B03C2542DF7D00F91963 /* StoriesCollectionViewCell.swift */,
 				FA2136DF2541A9E8003E7999 /* StoriesViewController.swift */,
 			);
 			path = Stories;
@@ -302,6 +305,7 @@
 				9DF876702539DE930052C8B3 /* TabBarViewController.swift in Sources */,
 				FAE22AB0252B528B00F66E31 /* Coordinator.swift in Sources */,
 				9DF8766A2539D5870052C8B3 /* AppCoordinator.swift in Sources */,
+				FA25B03D2542DF7D00F91963 /* StoriesCollectionViewCell.swift in Sources */,
 				FA2136DD2541A9D6003E7999 /* StoriesView.swift in Sources */,
 				FA2136E02541A9E8003E7999 /* StoriesViewController.swift in Sources */,
 				FA2C5D05253F5C7200680545 /* StoriesService.swift in Sources */,
