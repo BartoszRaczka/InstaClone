@@ -8,6 +8,26 @@
 
 import Foundation
 
-class HomeFeedViewModel {
+protocol HomeFeedViewModelDelegate: AnyObject {
     
+    func selectedButton()
+    
+}
+
+final class HomeFeedViewModel {
+//    MARK: - Properties
+    
+    private weak var delegate: HomeFeedViewModelDelegate?
+    
+//    MARK: - Life Cycle
+    
+    init(delegate: HomeFeedViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+//    MARK: - Public methods
+    
+    func selectedButton(at indexPath: IndexPath) {
+        delegate?.selectedButton()
+    }
 }

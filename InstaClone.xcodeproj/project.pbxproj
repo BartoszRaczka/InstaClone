@@ -13,6 +13,8 @@
 		9DF876702539DE930052C8B3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF8766F2539DE930052C8B3 /* TabBarViewController.swift */; };
 		9DF876722539DF1C0052C8B3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF876712539DF1B0052C8B3 /* TabBarCoordinator.swift */; };
 		9DF876742539E0520052C8B3 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */; };
+		FA25B0342542D64500F91963 /* HomeFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25B0332542D64500F91963 /* HomeFeedViewController.swift */; };
+		FA25B0372542D9FA00F91963 /* HomeFeedViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25B0362542D9FA00F91963 /* HomeFeedViewModelFactory.swift */; };
 		FA2C5CEB253F186100680545 /* HomeFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C5CEA253F186100680545 /* HomeFeedCoordinator.swift */; };
 		FA2C5CF1253F1C5000680545 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C5CF0253F1C5000680545 /* HomeFeedView.swift */; };
 		FA2C5CF5253F1C9600680545 /* HomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C5CF4253F1C9600680545 /* HomeFeedViewModel.swift */; };
@@ -31,6 +33,8 @@
 		9DF8766F2539DE930052C8B3 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9DF876712539DF1B0052C8B3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		FA25B0332542D64500F91963 /* HomeFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewController.swift; sourceTree = "<group>"; };
+		FA25B0362542D9FA00F91963 /* HomeFeedViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewModelFactory.swift; sourceTree = "<group>"; };
 		FA2C5CEA253F186100680545 /* HomeFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCoordinator.swift; sourceTree = "<group>"; };
 		FA2C5CF0253F1C5000680545 /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		FA2C5CF4253F1C9600680545 /* HomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewModel.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				9DF876732539E0520052C8B3 /* CoordinatorFactory.swift */,
+				FA25B0362542D9FA00F91963 /* HomeFeedViewModelFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				FA2C5CEA253F186100680545 /* HomeFeedCoordinator.swift */,
 				FA2C5CF0253F1C5000680545 /* HomeFeedView.swift */,
 				FA2C5CF4253F1C9600680545 /* HomeFeedViewModel.swift */,
+				FA25B0332542D64500F91963 /* HomeFeedViewController.swift */,
 			);
 			path = HomeFeed;
 			sourceTree = "<group>";
@@ -291,8 +297,10 @@
 				9DF8766D2539D8AE0052C8B3 /* DependencyContainer.swift in Sources */,
 				FADC47C8252B4A1600F1498B /* SceneDelegate.swift in Sources */,
 				FA2C5CF5253F1C9600680545 /* HomeFeedViewModel.swift in Sources */,
+				FA25B0372542D9FA00F91963 /* HomeFeedViewModelFactory.swift in Sources */,
 				9DF876742539E0520052C8B3 /* CoordinatorFactory.swift in Sources */,
 				FA2C5CEB253F186100680545 /* HomeFeedCoordinator.swift in Sources */,
+				FA25B0342542D64500F91963 /* HomeFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
