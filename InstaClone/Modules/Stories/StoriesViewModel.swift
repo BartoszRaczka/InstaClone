@@ -16,13 +16,13 @@ protocol StoriesViewModelDelegate: AnyObject {
 
 final class StoriesViewModel {
         
-//    MARK: - Properties
+    // MARK: - Properties
     private let userProfileService: UserProfileServiceProtocol
     private let storiesService: StoriesServiceProtocol
         
     private weak var delegate: StoriesViewModelDelegate?
         
-//    MARK: - Life cycle
+    // MARK: - Life cycle
         
     init(
         with userProfileService: UserProfileServiceProtocol,
@@ -34,7 +34,7 @@ final class StoriesViewModel {
         self.delegate = delegate
     }
     
-//    MARK: - Public Methods
+    // MARK: - Public Methods
     
     func selectedUser(at indexPath: IndexPath) {
         delegate?.selectedUser()
