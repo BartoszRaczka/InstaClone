@@ -35,7 +35,7 @@ final class HomeFeedView: UIView {
      required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-// MARK: -Top Container
+    // MARK: -Top Container
     private func setupTopContainer() {
         topContainer = UIView()
         addSubview(topContainer)
@@ -52,7 +52,7 @@ final class HomeFeedView: UIView {
         
         photoButton.snp.makeConstraints { (make) in
             make.top.left.bottom.equalTo(topContainer)
-            make.width.equalTo(32) // musimy tu zrobić kwadrat
+            make.width.equalTo(32) // it must be square
             
         }
     }
@@ -68,9 +68,9 @@ final class HomeFeedView: UIView {
     }
     
     private func setupInstaCloneImage() {
-//        TODO: Przygotować logo
+        // TODO: Przygotować logo
     }
-// MARK: -Bottom Container
+    // MARK: -Bottom Container
     
     private func setupBottomContainer() {
         bottomContainer = UIView()
@@ -131,7 +131,7 @@ final class HomeFeedView: UIView {
             make.right.equalTo(bottomContainer)
         }
     }
-// MARK: -Button Targets
+    // MARK: -Button Targets
     
     private func setupView() {
         photoButton.addTarget(self, action: #selector(didTapPhotoButton), for: .touchUpInside)
@@ -145,11 +145,11 @@ final class HomeFeedView: UIView {
     
     
     @objc func didTapPhotoButton() {
-// TODO: zrobić logikę funkcji - widok mówi do modelu a model do coordinatora
+        // TODO: make a method - view communicate with a model and then to the coordinator
     }
     
     @objc func didTapDMButton() {
-// TODO: j.w.
+    
     }
     
     @objc func didTapHomeButton() {
