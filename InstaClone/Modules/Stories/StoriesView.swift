@@ -25,7 +25,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
     }
     
     private func setupCollectionView() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: 80, height: 80)
@@ -50,12 +50,12 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
 
 extension StoriesView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 //liczba będzie brana z viewModel
+        return 10 //Amount will be taken from viewModel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoriesCollectionViewCell", for: indexPath)
-        (cell as? StoriesCollectionViewCell)?.update(with: UIImage()) // konkretny UIImage będzie brany z tablicy viewmodel.images[indexPath.row]
+        (cell as? StoriesCollectionViewCell)?.update(with: UIImage()) // UIImage will be taken from set viewmodel.images[indexPath.row]
         return cell
     }
 

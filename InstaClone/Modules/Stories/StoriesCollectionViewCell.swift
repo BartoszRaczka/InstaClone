@@ -6,17 +6,15 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import Foundation
 import SnapKit
 
-class StoriesCollectionViewCell: UICollectionViewCell {
+final class StoriesCollectionViewCell: UICollectionViewCell {
     
-    var image: UIImageView!
+    private var image: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupImage()
-        setupView()
     }
 
     required init?(coder: NSCoder) {
@@ -33,10 +31,8 @@ class StoriesCollectionViewCell: UICollectionViewCell {
         
         image.snp.makeConstraints{ (make) in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+            image.layer.cornerRadius = image.bounds.size.height / 2
         }
     }
     
-    private func setupView() {
-        image.layer.cornerRadius = image.bounds.size.height / 2
-    }
 }
