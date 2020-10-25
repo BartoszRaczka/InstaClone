@@ -19,7 +19,6 @@ class PhotoPostView: UIView, UITableViewDelegate {
         super.init(frame: .zero)
         
         setupTableView()
-        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +27,9 @@ class PhotoPostView: UIView, UITableViewDelegate {
     
     private func setupTableView() {
         addSubview(tableView)
+        
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -40,11 +42,6 @@ class PhotoPostView: UIView, UITableViewDelegate {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-    }
-    
-    private func setupView() {
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
     }
 }
 
