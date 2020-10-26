@@ -18,7 +18,7 @@ protocol CoordinatorFactory {
     func makeHomeFeedCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
-        ) -> HomeFeedCoordinator
+    ) -> HomeFeedCoordinator
     
 }
 

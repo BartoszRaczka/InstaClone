@@ -6,9 +6,7 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import Foundation
 import UIKit
-
 
 final class HomeFeedCoordinator: Coordinator {
     
@@ -29,6 +27,7 @@ final class HomeFeedCoordinator: Coordinator {
     }
     
     // MARK: - Public Methods
+    
     func start() {
         
     }
