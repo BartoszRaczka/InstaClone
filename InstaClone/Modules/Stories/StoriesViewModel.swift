@@ -18,6 +18,7 @@ final class StoriesViewModel {
         
     // MARK: - Properties
     
+    
     private let userProfileService: UserProfileServiceProtocol
     private let storiesService: StoriesServiceProtocol
         
