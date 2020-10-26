@@ -6,7 +6,6 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import UIKit
 import SnapKit
 
 final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
@@ -49,6 +48,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
 }
 
 extension StoriesView: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10 //Amount will be taken from viewModel
     }
