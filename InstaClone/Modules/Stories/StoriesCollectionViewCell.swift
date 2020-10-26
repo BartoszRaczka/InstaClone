@@ -30,7 +30,7 @@ final class StoriesCollectionViewCell: UICollectionViewCell {
         image.layer.cornerRadius = image.bounds.size.height / 2
         addSubview(image)
         
-        image.snp.makeConstraints{ make in
+        image.snp.makeConstraints { make in
             make.edges.equalToSuperview().offset(5)
         }
     }

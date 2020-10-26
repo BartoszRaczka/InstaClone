@@ -10,8 +10,8 @@ import SnapKit
 
 final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
     
-    var viewModel: StoriesViewModel
-    var collectionView: UICollectionView!
+    private let viewModel: StoriesViewModel
+    private var collectionView: UICollectionView!
     
     init(with viewModel: StoriesViewModel) {
         self.viewModel = viewModel
