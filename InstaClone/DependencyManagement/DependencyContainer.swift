@@ -9,5 +9,6 @@
 final class DependencyContainer {
     
     lazy var storiesService: StoriesServiceProtocol = StoriesService()
-    
+    lazy var userProfileService: UserProfileServiceProtocol = UserProfileService()
+
 }

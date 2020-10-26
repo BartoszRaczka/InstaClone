@@ -1,0 +1,14 @@
+name: InstaClone
+
+options:
+  deploymentTarget: 
+    iOS: "13.0"
+
+targets:
+  InstaClone:
+    platform: iOS
+    type: application
+    sources:
+      - InstaClone
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: "Bartosz-Raczka-Development.InstaClone"
