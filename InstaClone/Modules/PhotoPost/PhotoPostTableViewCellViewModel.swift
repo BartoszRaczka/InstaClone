@@ -20,7 +20,7 @@ protocol PhotoPostTableViewCellViewModelDelegate: AnyObject {
     
 }
 
-class PhotoPostTableViewCellViewModel {
+final class PhotoPostTableViewCellViewModel {
     
     var delegate: PhotoPostTableViewCellViewModelDelegate?
     
@@ -53,4 +53,3 @@ class PhotoPostTableViewCellViewModel {
     }
     
 }
-

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoPostTableViewCell: UITableViewCell {
+final class PhotoPostTableViewCell: UITableViewCell {
     
     var viewModel: PhotoPostTableViewCellViewModel!
     
@@ -54,7 +54,7 @@ class PhotoPostTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
 //  MARK: - Objective C functions for buttons

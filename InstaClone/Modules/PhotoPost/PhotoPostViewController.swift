@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PhotoPostViewController: UIViewController {
+final class PhotoPostViewController: UIViewController {
     
 }
 
