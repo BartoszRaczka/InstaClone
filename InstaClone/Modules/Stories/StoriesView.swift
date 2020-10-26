@@ -41,7 +41,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
         collectionView.delegate = self
                 
         addSubview(collectionView)
-        collectionView.snp.makeConstraints{ (make) in
+        collectionView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
         }
     }

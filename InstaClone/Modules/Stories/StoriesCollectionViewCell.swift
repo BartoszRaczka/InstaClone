@@ -18,7 +18,7 @@ final class StoriesCollectionViewCell: UICollectionViewCell {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     func update(with image: UIImage) {
@@ -27,11 +27,11 @@ final class StoriesCollectionViewCell: UICollectionViewCell {
     
     private func setupImage() {
         image = UIImageView()
+        image.layer.cornerRadius = image.bounds.size.height / 2
         addSubview(image)
         
-        image.snp.makeConstraints{ (make) in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
-            image.layer.cornerRadius = image.bounds.size.height / 2
+        image.snp.makeConstraints{ make in
+            make.edges.equalToSuperview().offset(5)
         }
     }
     
