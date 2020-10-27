@@ -14,7 +14,7 @@ final class HomeFeedViewController: UIViewController {
     
     private let viewModel: HomeFeedViewModel
     
-//    MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     init(with viewModel: HomeFeedViewModel) {
         self.viewModel = viewModel
@@ -22,11 +22,11 @@ final class HomeFeedViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     override func loadView() {
         view = HomeFeedView(with: viewModel)
-        }
+    }
     
 }
