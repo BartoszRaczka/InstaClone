@@ -27,7 +27,7 @@ final class HomeFeedView: UIView {
         setupBottomContainer()
     }
     
-     required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         nil
     }
     
