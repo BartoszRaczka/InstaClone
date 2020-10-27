@@ -20,7 +20,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     private func setupCollectionView() {

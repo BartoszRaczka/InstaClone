@@ -8,6 +8,37 @@
 
 import Foundation
 
-final class StoriesViewModel {
+protocol StoriesViewModelDelegate: AnyObject {
     
+    func selectedUser()
+    
+}
+
+final class StoriesViewModel {
+        
+    // MARK: - Properties
+    
+    
+    private let userProfileService: UserProfileServiceProtocol
+    private let storiesService: StoriesServiceProtocol
+        
+    private weak var delegate: StoriesViewModelDelegate?
+        
+    // MARK: - Life cycle
+        
+    init(
+        with userProfileService: UserProfileServiceProtocol,
+        storiesService: StoriesServiceProtocol,
+        delegate: StoriesViewModelDelegate
+    ) {
+        self.userProfileService = userProfileService
+        self.storiesService = storiesService
+        self.delegate = delegate
+    }
+    
+    // MARK: - Public Methods
+    
+    func selectedUser(at indexPath: IndexPath) {
+        delegate?.selectedUser()
+    }
 }
