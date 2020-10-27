@@ -15,19 +15,21 @@ protocol HomeFeedViewModelDelegate: AnyObject {
 }
 
 final class HomeFeedViewModel {
-//    MARK: - Properties
+
+    //    MARK: - Properties
     
     private weak var delegate: HomeFeedViewModelDelegate?
     
-//    MARK: - Life Cycle
+    //    MARK: - Life Cycle
     
     init(delegate: HomeFeedViewModelDelegate) {
         self.delegate = delegate
     }
     
-//    MARK: - Public methods
+    //    MARK: - Public methods
     
     func selectedButton(at indexPath: IndexPath) {
         delegate?.selectedButton()
     }
+    
 }

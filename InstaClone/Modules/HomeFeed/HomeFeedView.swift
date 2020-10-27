@@ -6,7 +6,6 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import Foundation
 import SnapKit
 
 final class HomeFeedView: UIView {

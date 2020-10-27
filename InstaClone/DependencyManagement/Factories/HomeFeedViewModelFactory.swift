@@ -19,4 +19,5 @@ extension DependencyContainer: HomeFeedViewModelFactory {
     func makeHomeFeedViewModel(delegate: HomeFeedViewModelDelegate) -> HomeFeedViewModel {
         HomeFeedViewModel(delegate: delegate)
     }
+    
 }
