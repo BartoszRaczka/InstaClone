@@ -70,21 +70,8 @@ fastlane/test_output
 ## Other
 
 ### Xcode Patch ###
-<<<<<<< HEAD
 *.xcodeproj
 *.xcworkspace
-=======
-<<<<<<< HEAD
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-!*.xcworkspace/xcuserdata/*
-=======
-*.xcodeproj
-*.xcworkspace
->>>>>>> develop
->>>>>>> feature/StoriesModule
 /*.gcno
 
 # End of https://www.gitignore.io/api/swift,xcode
