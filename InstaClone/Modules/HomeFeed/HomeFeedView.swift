@@ -23,6 +23,8 @@ final class HomeFeedView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
+        setupTopContainer()
+        setupBottomContainer()
     }
     
      required init?(coder: NSCoder) {
@@ -38,6 +40,10 @@ final class HomeFeedView: UIView {
         topContainer.snp.makeConstraints { (make) -> Void in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(32)
+            
+            setupPhotoButton()
+            setupDMButton()
+            setupInstaCloneImage()
         }
     }
 
