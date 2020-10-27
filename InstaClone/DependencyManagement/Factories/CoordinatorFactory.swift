@@ -15,15 +15,30 @@ protocol CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> TabBarCoordinator
     
+    func makeHomeFeedCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> HomeFeedCoordinator
+    
 }
 
 extension DependencyContainer: CoordinatorFactory {
-    
+   
     func makeTabBarCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
     ) -> TabBarCoordinator {
         TabBarCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+   
+    func makeHomeFeedCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> HomeFeedCoordinator {
+        HomeFeedCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer
         )
