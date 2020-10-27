@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 
 final class PhotoPostTableViewCell: UITableViewCell {
     
@@ -94,13 +94,10 @@ private extension PhotoPostTableViewCell {
         headContainer = UIView()
         addSubview(headContainer)
         
-        headContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            headContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            headContainer.topAnchor.constraint(equalTo: topAnchor),
-            headContainer.heightAnchor.constraint(equalToConstant: 32.0),
-            headContainer.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        headContainer.snp.makeConstraints { (make) -> Void in
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(32.0)
+        }
     }
     
     func setupPosterPhoto() {
@@ -108,26 +105,20 @@ private extension PhotoPostTableViewCell {
         posterPhoto = UIImageView(image: image)
         addSubview(posterPhoto)
         
-        posterPhoto.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            posterPhoto.leadingAnchor.constraint(equalTo: headContainer.leadingAnchor),
-            posterPhoto.topAnchor.constraint(equalTo: headContainer.topAnchor),
-            posterPhoto.bottomAnchor.constraint(equalTo: headContainer.bottomAnchor),
-            posterPhoto.widthAnchor.constraint(equalTo: headContainer.heightAnchor)
-        ])
+        posterPhoto.snp.makeConstraints { (make) -> Void in
+            make.left.top.bottom.equalTo(headContainer)
+            make.width.equalTo(headContainer.snp.height)
+        }
     }
         
     func setupMoreOptionsButton() {
         moreOptionsButton = UIButton()
         addSubview(moreOptionsButton)
             
-        moreOptionsButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            moreOptionsButton.widthAnchor.constraint(equalTo: headContainer.heightAnchor),
-            moreOptionsButton.topAnchor.constraint(equalTo: headContainer.topAnchor),
-            moreOptionsButton.bottomAnchor.constraint(equalTo: headContainer.bottomAnchor),
-            moreOptionsButton.trailingAnchor.constraint(equalTo: headContainer.trailingAnchor)
-        ])
+        moreOptionsButton.snp.makeConstraints { (make) -> Void in
+            make.top.bottom.trailing.equalTo(headContainer)
+            make.width.equalTo(headContainer.snp.height)
+        }
     }
         
     func setupPosterName() {
@@ -135,13 +126,11 @@ private extension PhotoPostTableViewCell {
         addSubview(posterNameButton)
         posterNameButton.titleLabel?.text = "Poster Name"
             
-        posterNameButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            posterNameButton.leadingAnchor.constraint(equalTo: posterPhoto.trailingAnchor),
-            posterNameButton.topAnchor.constraint(equalTo: headContainer.topAnchor),
-            posterNameButton.bottomAnchor.constraint(equalTo: headContainer.bottomAnchor),
-            posterNameButton.trailingAnchor.constraint(equalTo: moreOptionsButton.leadingAnchor)
-        ])
+        posterNameButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(posterPhoto.snp.right)
+            make.top.bottom.equalTo(headContainer)
+            make.right.equalTo(moreOptionsButton.snp.left)
+        }
     }
         
 // MARK: - postedPhoto
@@ -150,13 +139,10 @@ private extension PhotoPostTableViewCell {
         postedPhoto = UIImageView(image: image)
         addSubview(postedPhoto)
             
-        postedPhoto.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            postedPhoto.leadingAnchor.constraint(equalTo: leadingAnchor),
-            postedPhoto.topAnchor.constraint(equalTo: headContainer.bottomAnchor),
-            postedPhoto.trailingAnchor.constraint(equalTo: trailingAnchor)
-            // bottom zdefiniowane przez rozmiary wrzuconego zdjecia
-        ])
+        postedPhoto.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(headContainer.snp.bottom)
+        }
     }
 
 // MARK: - feetContainer
@@ -164,13 +150,10 @@ private extension PhotoPostTableViewCell {
         feetContainer = UIView()
         addSubview(feetContainer)
             
-        feetContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            feetContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            feetContainer.topAnchor.constraint(equalTo: postedPhoto.bottomAnchor),
-            feetContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            //bottom zdefiniowane przez zawartosc containera
-        ])
+        feetContainer.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(postedPhoto.snp.bottom)
+        }
     }
         
 //  MARK: feetIconsContainer
@@ -178,65 +161,52 @@ private extension PhotoPostTableViewCell {
         feetIconsContainer = UIView()
         addSubview(feetIconsContainer)
         
-        feetIconsContainer.translatesAutoresizingMaskIntoConstraints  = false
-        NSLayoutConstraint.activate([
-            feetIconsContainer.leadingAnchor.constraint(equalTo: feetContainer.leadingAnchor),
-            feetIconsContainer.topAnchor.constraint(equalTo: feetContainer.topAnchor),
-            feetIconsContainer.trailingAnchor.constraint(equalTo: feetContainer.trailingAnchor),
-            feetIconsContainer.heightAnchor.constraint(equalToConstant: 32.0)
-        ])
+        feetIconsContainer.snp.makeConstraints { (make) -> Void in
+            make.left.top.right.equalTo(feetContainer)
+            make.height.equalTo(32.0)
+        }
     }
         
     func setupLikeIcon() {
         likeIconButton = UIButton()
         addSubview(likeIconButton)
         
-        likeIconButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            likeIconButton.leadingAnchor.constraint(equalTo: feetIconsContainer.leadingAnchor),
-            likeIconButton.topAnchor.constraint(equalTo: feetIconsContainer.topAnchor),
-            likeIconButton.bottomAnchor.constraint(equalTo: feetIconsContainer.bottomAnchor),
-            likeIconButton.widthAnchor.constraint(equalTo: likeIconButton.heightAnchor)
-        ])
+        likeIconButton.snp.makeConstraints { (make) -> Void in
+            make.left.top.bottom.equalTo(feetIconsContainer)
+            make.width.equalTo(likeIconButton.snp.height)
+        }
     }
         
     func setupCommentIcon() {
         commentIconButton = UIButton()
         addSubview(commentIconButton)
             
-        commentIconButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            commentIconButton.leadingAnchor.constraint(equalTo: likeIconButton.trailingAnchor),
-            commentIconButton.topAnchor.constraint(equalTo: feetIconsContainer.topAnchor),
-            commentIconButton.bottomAnchor.constraint(equalTo: feetIconsContainer.bottomAnchor),
-            commentIconButton.widthAnchor.constraint(equalTo: commentIconButton.heightAnchor)
-        ])
+        commentIconButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(likeIconButton.snp.right)
+            make.top.bottom.equalTo(feetIconsContainer)
+            make.width.equalTo(commentIconButton.snp.height)
+        }
     }
         
     func setupDMIcon() {
         dmIconButton = UIButton()
         addSubview(dmIconButton)
             
-        dmIconButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dmIconButton.leadingAnchor.constraint(equalTo: commentIconButton.trailingAnchor),
-            dmIconButton.topAnchor.constraint(equalTo: feetIconsContainer.topAnchor),
-            dmIconButton.bottomAnchor.constraint(equalTo: feetIconsContainer.bottomAnchor),
-            dmIconButton.widthAnchor.constraint(equalTo: dmIconButton.heightAnchor)
-        ])
+        dmIconButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(commentIconButton.snp.right)
+            make.top.bottom.equalTo(feetIconsContainer)
+            make.width.equalTo(dmIconButton.snp.height)
+        }
     }
         
     func setupSaveIcon() {
         saveIconButton = UIButton()
         addSubview(saveIconButton)
-            
-        saveIconButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            saveIconButton.topAnchor.constraint(equalTo: feetIconsContainer.topAnchor),
-            saveIconButton.bottomAnchor.constraint(equalTo: feetIconsContainer.bottomAnchor),
-            saveIconButton.trailingAnchor.constraint(equalTo: feetIconsContainer.trailingAnchor),
-            saveIconButton.widthAnchor.constraint(equalTo: saveIconButton.heightAnchor)
-        ])
+        
+        saveIconButton.snp.makeConstraints { (make) -> Void in
+            make.top.bottom.trailing.equalTo(feetIconsContainer)
+            make.width.equalTo(saveIconButton.snp.height)
+        }
     }
 
 //  MARK: rest of feetContainer stuff
@@ -244,37 +214,30 @@ private extension PhotoPostTableViewCell {
         numberOfLikesButton = UIButton()
         addSubview(numberOfLikesButton)
             
-        numberOfLikesButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            numberOfLikesButton.leadingAnchor.constraint(equalTo: feetContainer.leadingAnchor),
-            numberOfLikesButton.topAnchor.constraint(equalTo: feetIconsContainer.bottomAnchor),
-            numberOfLikesButton.trailingAnchor.constraint(equalTo: feetContainer.trailingAnchor)
-        ])
+        numberOfLikesButton.snp.makeConstraints { (make) in
+            make.left.right.equalTo(feetContainer)
+            make.top.equalTo(feetIconsContainer.snp.bottom)
+        }
     }
         
     func setupPostDescription() {
         postDescription = UILabel()
         addSubview(postDescription)
             
-        postDescription.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            postDescription.leadingAnchor.constraint(equalTo: feetContainer.leadingAnchor),
-            postDescription.topAnchor.constraint(equalTo: numberOfLikesButton.bottomAnchor),
-            postDescription.trailingAnchor.constraint(equalTo: feetContainer.trailingAnchor)
-        ])
+        postDescription.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(feetContainer)
+            make.top.equalTo(numberOfLikesButton.snp.bottom)
+        }
     }
         
     func setupTimeWhenPosted() {
         timeWhenPosted = UILabel()
         addSubview(timeWhenPosted)
             
-        timeWhenPosted.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            timeWhenPosted.leadingAnchor.constraint(equalTo: feetContainer.leadingAnchor),
-            timeWhenPosted.topAnchor.constraint(equalTo: postDescription.bottomAnchor),
-            timeWhenPosted.bottomAnchor.constraint(equalTo: feetContainer.bottomAnchor),
-            timeWhenPosted.trailingAnchor.constraint(equalTo: feetContainer.trailingAnchor)
-        ])
+        timeWhenPosted.snp.makeConstraints { (make) -> Void in
+            make.left.bottom.right.equalTo(feetContainer)
+            make.top.equalTo(postDescription.snp.bottom)
+        }
     }
 
 // MARK: - setupView

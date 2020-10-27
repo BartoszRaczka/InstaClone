@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+import SnapKit
 
 class PhotoPostView: UIView, UITableViewDelegate {
     
@@ -35,13 +35,9 @@ class PhotoPostView: UIView, UITableViewDelegate {
         tableView.delegate = self
         tableView.register(PhotoPostTableViewCell.self, forCellReuseIdentifier: "PhotoPostTableViewCell")
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
