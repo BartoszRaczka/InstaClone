@@ -16,9 +16,9 @@ final class HomeFeedView: UIView {
     var topContainer: UIView!
     var bottomContainer: UIView!
     
-    var photoButton: UIButton!
-    var dmButton: UIButton!
-    var instaCloneImage: UIImageView!
+    private var photoButton: UIButton!
+    private var dmButton: UIButton!
+    private var instaCloneImage: UIImageView!
     
     init(with viewModel: HomeFeedViewModel){
         self.viewModel = viewModel
