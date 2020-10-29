@@ -19,6 +19,12 @@ protocol CoordinatorFactory {
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
         ) -> StoriesCoordinator
+
+    func makeHomeFeedCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> HomeFeedCoordinator
+    
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -38,11 +44,15 @@ extension DependencyContainer: CoordinatorFactory {
         dependencyContainer: DependencyContainer
         ) -> StoriesCoordinator {
         StoriesCoordinator(
+
+    func makeHomeFeedCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> HomeFeedCoordinator {
+        HomeFeedCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer
         )
     }
-    
-    
-    
+
 }
