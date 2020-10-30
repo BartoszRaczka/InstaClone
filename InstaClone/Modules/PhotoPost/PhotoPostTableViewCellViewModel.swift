@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PhotoPostTableViewCellViewModelDelegate: AnyObject {
+protocol PhotoPostCellViewModelDelegate: AnyObject {
     
     func didTapPosterNameButton()
     func didTapMoreOptionsButton()
@@ -20,9 +20,9 @@ protocol PhotoPostTableViewCellViewModelDelegate: AnyObject {
     
 }
 
-final class PhotoPostTableViewCellViewModel {
+final class PhotoPostCellViewModel {
     
-    var delegate: PhotoPostTableViewCellViewModelDelegate?
+    var delegate: PhotoPostCellViewModelDelegate?
     
     func didTapPosterNameButton() {
         delegate?.didTapPosterNameButton()

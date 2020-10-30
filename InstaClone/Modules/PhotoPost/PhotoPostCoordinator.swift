@@ -6,7 +6,6 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 final class PhotoPostCoordinator: Coordinator {
@@ -31,10 +30,13 @@ final class PhotoPostCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        
+        let photoPostViewModel = PhotoPostViewModel(delegate: self)
+        let photoPostViewController = PhotoPostViewController(with: photoPostViewModel)
     }
     
-    //coordinator still doesn't know in which cell were this icons tapped. TODO: add indexPath(?) in functions parameters
+}
+
+extension PhotoPostCoordinator: PhotoPostViewModelDelegate { //coordinator still doesn't know in which cell were this icons tapped. TODO: add indexPath(?) in functions parameters
     func didTapPosterNameButton() {
         //TODO
     }

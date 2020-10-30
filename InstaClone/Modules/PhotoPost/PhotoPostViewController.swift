@@ -11,32 +11,19 @@ import UIKit
 
 final class PhotoPostViewController: UIViewController {
     
+    private let viewModel: PhotoPostViewModel!
+    
+    init(with viewModel: PhotoPostViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = PhotoPostView(viewModel: self.viewModel)
+    }
 }
-
-////Method I wanted to add in CoordinatorFactory
-//    func makePhotoPostCoordinator(
-//        with navigationController: UINavigationController,
-//        dependencyContainer: DependencyContainer
-//    ) -> {
-//        PhotoPostCoordinator(
-//            with: navigationController,
-//            dependencyContainer: dependencyContainer
-//        )
-//    }
-
-
-////Method I wanted to add in AppCoordinator
-//private func startFromPhotoPost() {
-//    let navigationController = UINavigationController() //I think this line is unnesessary because navi-contr have been created in startFromTabBar method and maybe we should make one navi-contr for every method?
-//    let coordinator = dependencyContainer.makePhotoPostCoordinator(
-//        with: navigationController,
-//        dependencyContainer: dependencyContainer
-//    )
-//    coordinators.append(coordinator)
-//    coordinator.start()
-//
-//    window.rootViewController = navigationController //I think this line is unnecessary too
-//}
-
-////call this method in func start with this line:
-//startFromPhotoPost()

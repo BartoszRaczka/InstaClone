@@ -28,5 +28,15 @@ extension DependencyContainer: CoordinatorFactory {
             dependencyContainer: dependencyContainer
         )
     }
+
+    func makePhotoPostCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> PhotoPostCoordinator {
+        PhotoPostCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
     
 }

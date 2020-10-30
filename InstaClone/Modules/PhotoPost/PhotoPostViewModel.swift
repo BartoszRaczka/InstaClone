@@ -8,42 +8,54 @@
 
 import Foundation
 
+protocol PhotoPostViewModelDelegate {
+    
+    func didTapPosterNameButton()
+    func didTapMoreOptionsButton()
+    func didTapLikeButton()
+    func didTapCommentButton()
+    func didTapDMButton()
+    func didTapSaveButton()
+    func didTapNumberOfLikesButton()
+    
+}
+
 class PhotoPostViewModel {
     
     let numberOfPosts = ["uno", "due", "tre"] //I don't know how to make infinity scroll system so for now I add only this array to let tableView show anything
-    let coordinator: PhotoPostCoordinator?
+    let delegate: PhotoPostViewModelDelegate?
     
-    init(coordinator: PhotoPostCoordinator) {
-        self.coordinator = coordinator
+    init(delegate: PhotoPostViewModelDelegate) {
+        self.delegate = delegate
     }
 }
 
-extension PhotoPostViewModel: PhotoPostTableViewCellViewModelDelegate {
+extension PhotoPostViewModel: PhotoPostCellViewModelDelegate {
     func didTapPosterNameButton() {
-        coordinator?.didTapPosterNameButton()
+        delegate?.didTapPosterNameButton()
     }
     
     func didTapMoreOptionsButton() {
-        coordinator?.didTapMoreOptionsButton()
+        delegate?.didTapMoreOptionsButton()
     }
     
     func didTapLikeButton() {
-        coordinator?.didTapLikeButton()
+        delegate?.didTapLikeButton()
     }
     
     func didTapCommentButton() {
-        coordinator?.didTapCommentButton()
+        delegate?.didTapCommentButton()
     }
     
     func didTapDMButton() {
-        coordinator?.didTapDMButton()
+        delegate?.didTapDMButton()
     }
     
     func didTapSaveButton() {
-        coordinator?.didTapSaveButton()
+        delegate?.didTapSaveButton()
     }
     
     func didTapNumberOfLikesButton() {
-        coordinator?.didTapNumberOfLikesButton()
+        delegate?.didTapNumberOfLikesButton()
     }
 }

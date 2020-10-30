@@ -9,10 +9,10 @@
 import Foundation
 import SnapKit
 
-class PhotoPostView: UIView, UITableViewDelegate {
+final class PhotoPostView: UIView, UITableViewDelegate {
     
     private let tableView = UITableView()
-    let viewModel: PhotoPostViewModel
+    private let viewModel: PhotoPostViewModel
     
     init(viewModel: PhotoPostViewModel) {
         self.viewModel = viewModel
@@ -22,7 +22,7 @@ class PhotoPostView: UIView, UITableViewDelegate {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     private func setupTableView() {
@@ -33,9 +33,9 @@ class PhotoPostView: UIView, UITableViewDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PhotoPostTableViewCell.self, forCellReuseIdentifier: "PhotoPostTableViewCell")
+        tableView.register(PhotoPostCell.self, forCellReuseIdentifier: "PhotoPostCell")
         
-        tableView.snp.makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -52,8 +52,8 @@ extension PhotoPostView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostTableViewCell", for: indexPath)
-        (cell as? PhotoPostTableViewCell)?.viewModel.delegate = self.viewModel
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostCell", for: indexPath)
+        (cell as? PhotoPostCell)?.viewModel.delegate = self.viewModel
         //TODO: add logic to display proper data for each post
         return cell
     }

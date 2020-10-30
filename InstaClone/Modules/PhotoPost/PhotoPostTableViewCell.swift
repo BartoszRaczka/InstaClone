@@ -8,29 +8,28 @@
 
 import SnapKit
 
-final class PhotoPostTableViewCell: UITableViewCell {
+final class PhotoPostCell: UITableViewCell {
     
-    var viewModel: PhotoPostTableViewCellViewModel!
+    var viewModel: PhotoPostCellViewModel!
     
-    var headContainer: UIView!
-    var posterPhoto: UIImageView!
-    var posterNameButton: UIButton!
-    var moreOptionsButton: UIButton!
-    var postedPhoto: UIImageView!
-    var feetContainer: UIView!
-    var feetIconsContainer: UIView!
-    var likeIconButton: UIButton!
-    var commentIconButton: UIButton!
-    var dmIconButton: UIButton!
-    var saveIconButton: UIButton!
-    var numberOfLikesButton: UIButton!
-    var postDescription: UILabel!
-    var timeWhenPosted: UILabel!
+    private var headContainer: UIView!
+    private var posterPhoto: UIImageView!
+    private var posterNameButton: UIButton!
+    private var moreOptionsButton: UIButton!
+    private var postedPhoto: UIImageView!
+    private var feetContainer: UIView!
+    private var feetIconsContainer: UIView!
+    private var likeIconButton: UIButton!
+    private var commentIconButton: UIButton!
+    private var dmIconButton: UIButton!
+    private var saveIconButton: UIButton!
+    private var numberOfLikesButton: UIButton!
+    private var postDescription: UILabel!
+    private var timeWhenPosted: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.viewModel = PhotoPostTableViewCellViewModel()
+        self.viewModel = PhotoPostCellViewModel()
         
         setupHeadContainer()
         setupPosterPhoto()
@@ -49,15 +48,13 @@ final class PhotoPostTableViewCell: UITableViewCell {
         setupNumberOfLikes()
         setupPostDescription()
         setupTimeWhenPosted()
-        
-        setupView()
     }
     
     required init?(coder: NSCoder) {
         nil
     }
     
-//  MARK: - Objective C functions for buttons
+    //  MARK: - Objective C functions for buttons
     @objc func didTapPosterNameButton() {
         viewModel.didTapPosterNameButton()
     }
@@ -87,15 +84,15 @@ final class PhotoPostTableViewCell: UITableViewCell {
     }
 
 }
+//MARK: - View setup
+private extension PhotoPostCell {
 
-private extension PhotoPostTableViewCell {
-// MARK: - View setup
     func setupHeadContainer() {
         headContainer = UIView()
         addSubview(headContainer)
         
-        headContainer.snp.makeConstraints { (make) -> Void in
-            make.left.top.right.equalToSuperview()
+        headContainer.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
             make.height.equalTo(32.0)
         }
     }
@@ -105,8 +102,8 @@ private extension PhotoPostTableViewCell {
         posterPhoto = UIImageView(image: image)
         addSubview(posterPhoto)
         
-        posterPhoto.snp.makeConstraints { (make) -> Void in
-            make.left.top.bottom.equalTo(headContainer)
+        posterPhoto.snp.makeConstraints { make in
+            make.leading.top.bottom.equalTo(headContainer)
             make.width.equalTo(headContainer.snp.height)
         }
     }
@@ -114,8 +111,10 @@ private extension PhotoPostTableViewCell {
     func setupMoreOptionsButton() {
         moreOptionsButton = UIButton()
         addSubview(moreOptionsButton)
+        moreOptionsButton.setImage(UIImage(named: "moreOptions"), for: .normal)
+        moreOptionsButton.addTarget(self, action: #selector(didTapMoreOptionsButton), for: .touchUpInside)
             
-        moreOptionsButton.snp.makeConstraints { (make) -> Void in
+        moreOptionsButton.snp.makeConstraints { make in
             make.top.bottom.trailing.equalTo(headContainer)
             make.width.equalTo(headContainer.snp.height)
         }
@@ -124,45 +123,46 @@ private extension PhotoPostTableViewCell {
     func setupPosterName() {
         posterNameButton = UIButton()
         addSubview(posterNameButton)
-        posterNameButton.titleLabel?.text = "Poster Name"
+        posterNameButton.setTitle("poster name", for: .normal)
+        posterNameButton.addTarget(self, action: #selector(didTapPosterNameButton), for: .touchUpInside)
             
-        posterNameButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(posterPhoto.snp.right)
+        posterNameButton.snp.makeConstraints { make in
+            make.leading.equalTo(posterPhoto.snp.trailing)
             make.top.bottom.equalTo(headContainer)
-            make.right.equalTo(moreOptionsButton.snp.left)
+            make.trailing.equalTo(moreOptionsButton.snp.leading)
         }
     }
         
-// MARK: - postedPhoto
+    //MARK: - postedPhoto
     func setupPostedPhoto() {
         let image = UIImage(named: "defaultPhoto")
         postedPhoto = UIImageView(image: image)
         addSubview(postedPhoto)
             
-        postedPhoto.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+        postedPhoto.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(headContainer.snp.bottom)
         }
     }
 
-// MARK: - feetContainer
+    //MARK: - feetContainer
     func setupFeetContainer() {
         feetContainer = UIView()
         addSubview(feetContainer)
             
-        feetContainer.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+        feetContainer.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(postedPhoto.snp.bottom)
         }
     }
         
-//  MARK: feetIconsContainer
+    //MARK: feetIconsContainer
     func setupFeetIconsContainer() {
         feetIconsContainer = UIView()
         addSubview(feetIconsContainer)
         
-        feetIconsContainer.snp.makeConstraints { (make) -> Void in
-            make.left.top.right.equalTo(feetContainer)
+        feetIconsContainer.snp.makeConstraints { make in
+            make.leading.top.trailing.equalTo(feetContainer)
             make.height.equalTo(32.0)
         }
     }
@@ -170,9 +170,11 @@ private extension PhotoPostTableViewCell {
     func setupLikeIcon() {
         likeIconButton = UIButton()
         addSubview(likeIconButton)
+        likeIconButton.setImage(UIImage(named: "like"), for: .normal)
+        likeIconButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
         
-        likeIconButton.snp.makeConstraints { (make) -> Void in
-            make.left.top.bottom.equalTo(feetIconsContainer)
+        likeIconButton.snp.makeConstraints { make in
+            make.leading.top.bottom.equalTo(feetIconsContainer)
             make.width.equalTo(likeIconButton.snp.height)
         }
     }
@@ -180,9 +182,11 @@ private extension PhotoPostTableViewCell {
     func setupCommentIcon() {
         commentIconButton = UIButton()
         addSubview(commentIconButton)
+        commentIconButton.setImage(UIImage(named: "comment"), for: .normal)
+        commentIconButton.addTarget(self, action: #selector(didTapCommentButton), for: .touchUpInside)
             
-        commentIconButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(likeIconButton.snp.right)
+        commentIconButton.snp.makeConstraints { make in
+            make.leading.equalTo(likeIconButton.snp.trailing)
             make.top.bottom.equalTo(feetIconsContainer)
             make.width.equalTo(commentIconButton.snp.height)
         }
@@ -191,9 +195,11 @@ private extension PhotoPostTableViewCell {
     func setupDMIcon() {
         dmIconButton = UIButton()
         addSubview(dmIconButton)
+        dmIconButton.setImage(UIImage(named: "dm"), for: .normal)
+        dmIconButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
             
-        dmIconButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(commentIconButton.snp.right)
+        dmIconButton.snp.makeConstraints { make in
+            make.leading.equalTo(commentIconButton.snp.trailing)
             make.top.bottom.equalTo(feetIconsContainer)
             make.width.equalTo(dmIconButton.snp.height)
         }
@@ -202,20 +208,24 @@ private extension PhotoPostTableViewCell {
     func setupSaveIcon() {
         saveIconButton = UIButton()
         addSubview(saveIconButton)
+        saveIconButton.setImage(UIImage(named: "save"), for: .normal)
+        saveIconButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         
-        saveIconButton.snp.makeConstraints { (make) -> Void in
+        saveIconButton.snp.makeConstraints { make in
             make.top.bottom.trailing.equalTo(feetIconsContainer)
             make.width.equalTo(saveIconButton.snp.height)
         }
     }
 
-//  MARK: rest of feetContainer stuff
+    //MARK: rest of feetContainer stuff
     func setupNumberOfLikes() {
         numberOfLikesButton = UIButton()
         addSubview(numberOfLikesButton)
+        numberOfLikesButton.setTitle("number of likes", for: .normal)
+        numberOfLikesButton.addTarget(self, action: #selector(didTapNumberOfLikesButton), for: .touchUpInside)
             
-        numberOfLikesButton.snp.makeConstraints { (make) in
-            make.left.right.equalTo(feetContainer)
+        numberOfLikesButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(feetContainer)
             make.top.equalTo(feetIconsContainer.snp.bottom)
         }
     }
@@ -223,9 +233,10 @@ private extension PhotoPostTableViewCell {
     func setupPostDescription() {
         postDescription = UILabel()
         addSubview(postDescription)
+        postDescription.text = "description"
             
-        postDescription.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(feetContainer)
+        postDescription.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(feetContainer)
             make.top.equalTo(numberOfLikesButton.snp.bottom)
         }
     }
@@ -233,37 +244,11 @@ private extension PhotoPostTableViewCell {
     func setupTimeWhenPosted() {
         timeWhenPosted = UILabel()
         addSubview(timeWhenPosted)
-            
-        timeWhenPosted.snp.makeConstraints { (make) -> Void in
-            make.left.bottom.right.equalTo(feetContainer)
-            make.top.equalTo(postDescription.snp.bottom)
-        }
-    }
-
-// MARK: - setupView
-    func setupView() {
-            
-    //MARK: setting images and text
-        posterNameButton.setTitle("poster name", for: .normal)
-        moreOptionsButton.setImage(UIImage(named: "moreOptions"), for: .normal)
-        
-        likeIconButton.setImage(UIImage(named: "like"), for: .normal)
-        commentIconButton.setImage(UIImage(named: "comment"), for: .normal)
-        dmIconButton.setImage(UIImage(named: "dm"), for: .normal)
-        saveIconButton.setImage(UIImage(named: "save"), for: .normal)
-            
-        numberOfLikesButton.setTitle("number of likes", for: .normal)
-        postDescription.text = "description"
         timeWhenPosted.text = "some time ago"
             
-    //MARK: setting buttons actions
-        posterNameButton.addTarget(self, action: #selector(didTapPosterNameButton), for: .touchUpInside)
-        moreOptionsButton.addTarget(self, action: #selector(didTapMoreOptionsButton), for: .touchUpInside)
-        likeIconButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
-        commentIconButton.addTarget(self, action: #selector(didTapCommentButton), for: .touchUpInside)
-        dmIconButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
-        saveIconButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
-        numberOfLikesButton.addTarget(self, action: #selector(didTapNumberOfLikesButton), for: .touchUpInside)
-        
+        timeWhenPosted.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalTo(feetContainer)
+            make.top.equalTo(postDescription.snp.bottom)
+        }
     }
 }

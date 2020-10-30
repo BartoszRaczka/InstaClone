@@ -26,6 +26,7 @@ final class AppCoordinator: Coordinator {
     
     func start() {
         startFromTabBar()
+        startFromPhotoPost()
         
         window.makeKeyAndVisible()
     }
@@ -42,6 +43,18 @@ final class AppCoordinator: Coordinator {
         coordinator.start()
         
         window.rootViewController = navigationController
+    }
+    
+    private func startFromPhotoPost() {
+        let navigationController = UINavigationController() //I think this line is unnesessary because navigationController have been created in startFromTabBar method and maybe we should make one navigationController for every method?
+        let coordinator = dependencyContainer.makePhotoPostCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
+    
+        window.rootViewController = navigationController //I think this line is unnecessary too
     }
     
 }
