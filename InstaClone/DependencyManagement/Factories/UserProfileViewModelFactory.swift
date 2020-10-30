@@ -7,3 +7,18 @@
 
 import Foundation
 
+protocol UserProfileViewModelFactory {
+    
+    func makeUserProfileViewModel(delegate: UserProfileViewModelDelegate) -> UserProfileViewModel
+    
+}
+
+extension DependencyContainer: UserProfileViewModelFactory {
+    
+    func makeUserProfileViewModel(delegate: UserProfileViewModelDelegate) -> UserProfileViewModel {
+        UserProfileViewModel(delegate: delegate)
+    }
+    
+    
+    
+}

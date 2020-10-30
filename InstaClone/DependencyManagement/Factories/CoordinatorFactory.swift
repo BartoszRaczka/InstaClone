@@ -25,10 +25,14 @@ protocol CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> HomeFeedCoordinator
     
+    func makeUserProfileCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> UserProfileCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
-   
+  
     func makeTabBarCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
@@ -55,4 +59,13 @@ extension DependencyContainer: CoordinatorFactory {
         )
     }
 
+        func makeUserProfileCoordinator(
+            with navigationController: UINavigationController,
+            dependencyContainer: DependencyContainer
+        ) -> UserProfileCoordinator {
+            UserProfileCoordinator(
+                with: navigationController,
+                dependencyContainer: dependencyContainer
+            )
+        }
 }
