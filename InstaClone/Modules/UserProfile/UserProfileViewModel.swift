@@ -15,4 +15,20 @@ protocol UserProfileViewModelDelegate: AnyObject {
 
 final class UserProfileViewModel {
     
+    //    MARK: - Properties
+    
+    private weak var delegate: UserProfileViewModelDelegate?
+    
+    //    MARK: - Life Cycle
+    
+    init(delegate: UserProfileViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+    //    MARK: - Public methods
+    
+    func profileButtonTapped(at indexPath: IndexPath) {
+        delegate?.profileButtonTapped()
+    }
+    
 }
