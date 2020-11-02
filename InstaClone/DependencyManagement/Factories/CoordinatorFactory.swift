@@ -56,3 +56,4 @@ extension DependencyContainer: CoordinatorFactory {
     }
 
 }
+]

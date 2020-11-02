@@ -15,4 +15,27 @@ protocol UserProfileViewModelDelegate: AnyObject {
 
 final class UserProfileViewModel {
     
+    // MARK: - Properties
+
+
+    private let userProfileService: UserProfileServiceProtocol
+    
+    private weak var delegate: UserProfileViewModelDelegate?
+    
+    // MARK: - Life cycle
+    
+    init(
+        with userProfileService: UserProfileServiceProtocol,
+        delegate: UserProfileViewModelDelegate
+    ) {
+        self.userProfileService = userProfileService
+        self.delegate = delegate
+    }
+
+    // MARK: - Public Methods
+
+    func selectedUser(at indexPath: IndexPath) {
+    delegate?.profileButtonTapped()
+    }
+    
 }
