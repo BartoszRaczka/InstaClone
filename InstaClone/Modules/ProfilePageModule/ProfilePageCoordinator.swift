@@ -25,10 +25,9 @@ final class ProfilePageCoordinator: Coordinator {
     
     //MARK: - Public methods
     func start() {
-        let profilePageViewModel = ProfilePageViewModel()
-        let profilePageViewController = ProfilePageViewController(with: profilePageViewModel)
+        let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
         
-        profilePageViewController.delegate = self
+        navigationController.pushViewController(profilePageViewController, animated: true)
     }
     
 }
