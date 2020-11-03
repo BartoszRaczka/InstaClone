@@ -21,7 +21,8 @@ final class ProfilePageViewController: UIViewController {
     }
     
     override func loadView() {
-        view = ProfilePageView(with: viewModel)
+        super.loadView()
+        view = ProfilePageView(with: self.viewModel)
     }
 
 }
