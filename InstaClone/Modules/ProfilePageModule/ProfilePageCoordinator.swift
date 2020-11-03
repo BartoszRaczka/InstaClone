@@ -27,6 +27,8 @@ final class ProfilePageCoordinator: Coordinator {
     func start() {
         let profilePageViewModel = ProfilePageViewModel()
         let profilePageViewController = ProfilePageViewController(with: profilePageViewModel)
+        
+        profilePageViewController.delegate = self
     }
     
 }
