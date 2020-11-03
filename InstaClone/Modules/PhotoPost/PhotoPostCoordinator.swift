@@ -31,6 +31,8 @@ final class PhotoPostCoordinator: Coordinator {
     
     func start() {
         let photoPostViewController = dependencyContainer.makePhotoPostViewController(delegate: self)
+        
+        navigationController.pushViewController(photoPostViewController, animated: true)
     }
     
 }
