@@ -35,6 +35,27 @@ class ProfilePageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Objective-C methods
+    @objc func didTapUserProfilePictureButton() {
+        viewModel.didTapUserProfilePictureButton()
+    }
+    
+    @objc func didTapNumberOfPostsButton() {
+        viewModel.didTapNumberOfPostsButton()
+    }
+    
+    @objc func didTapNumberOfFollowersButton() {
+        viewModel.didTapNumberOfFollowersButton()
+    }
+    
+    @objc func didTapNumberOfFollowingButton() {
+        viewModel.didTapNumberOfFollowingButton()
+    }
+    
+    @objc func didTapEditProfileButton() {
+        viewModel.didTapEditProfileButton()
+    }
+    
 }
 
 //MARK: -View setup
@@ -44,6 +65,8 @@ private extension ProfilePageView {
     func setupUserProfilePictureButton() {
         userProfilePictureButton = UIButton()
         addSubview(userProfilePictureButton)
+        
+        userProfilePictureButton.addTarget(self, action: #selector(didTapUserProfilePictureButton), for: .touchUpInside)
         
         userProfilePictureButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview()
@@ -55,6 +78,8 @@ private extension ProfilePageView {
     func setupNumberOfPostsButton() {
         numberOfPostsButton = UIButton()
         addSubview(numberOfPostsButton)
+        
+        numberOfPostsButton.addTarget(self, action: #selector(didTapNumberOfPostsButton), for: .touchUpInside)
         
         let label = UILabel()
         label.text = "Posts"
@@ -77,6 +102,8 @@ private extension ProfilePageView {
         numberOfFollowersButton = UIButton()
         addSubview(numberOfFollowersButton)
         
+        numberOfFollowersButton.addTarget(self, action: #selector(didTapNumberOfFollowersButton), for: .touchUpInside)
+        
         let label = UILabel()
         label.text = "Followers"
         label.snp.makeConstraints { make in
@@ -97,6 +124,8 @@ private extension ProfilePageView {
     func setupNumberOfFollowingButton() {
         numberOfFollowingButton = UIButton()
         addSubview(numberOfFollowingButton)
+        
+        numberOfFollowingButton.addTarget(self, action: #selector(didTapNumberOfFollowingButton), for: .touchUpInside)
         
         let label = UILabel()
         label.text = "Following"
@@ -150,6 +179,8 @@ private extension ProfilePageView {
     func setupEditProfileButton() {
         editProfileButton = UIButton()
         addSubview(editProfileButton)
+        
+        editProfileButton.addTarget(self, action: #selector(didTapEditProfileButton), for: .touchUpInside)
         
         editProfileButton.setTitle("Edit Profile", for: .normal)
         
