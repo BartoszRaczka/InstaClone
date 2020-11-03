@@ -30,8 +30,7 @@ final class PhotoPostCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        let photoPostViewModel = PhotoPostViewModel(delegate: self)
-        let photoPostViewController = PhotoPostViewController(with: photoPostViewModel)
+        let photoPostViewController = dependencyContainer.makePhotoPostViewController(delegate: self)
     }
     
 }
