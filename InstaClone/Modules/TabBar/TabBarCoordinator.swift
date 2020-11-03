@@ -29,6 +29,7 @@ final class TabBarCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
+        startFromPhotoPost()
         //let homeFeedNavigationController = UINavigationController()
         //let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(with: homeFeedNavigationController)
         //coordinators.append(homeFeedCoordinator)
@@ -36,6 +37,15 @@ final class TabBarCoordinator: Coordinator {
 //        let tabBarViewController = TabBarViewController()
 //        tabBarViewController.viewControllers = [homeFeedNavigationController]
 //        navigationController.pushViewController(tabBarViewController, animated: false)
+    }
+    
+    private func startFromPhotoPost() {
+        let coordinator = dependencyContainer.makePhotoPostCoordinator(
+            with: self.navigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
     }
     
 }
