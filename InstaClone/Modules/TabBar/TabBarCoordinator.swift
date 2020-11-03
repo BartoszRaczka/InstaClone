@@ -29,6 +29,7 @@ final class TabBarCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
+        startFromProfilePage()
         //let homeFeedNavigationController = UINavigationController()
         //let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(with: homeFeedNavigationController)
         //coordinators.append(homeFeedCoordinator)
@@ -36,6 +37,15 @@ final class TabBarCoordinator: Coordinator {
 //        let tabBarViewController = TabBarViewController()
 //        tabBarViewController.viewControllers = [homeFeedNavigationController]
 //        navigationController.pushViewController(tabBarViewController, animated: false)
+    }
+    
+    private func startFromProfilePage() {
+        let coordinator = dependencyContainer.makeProfilePageCoordinator(
+            with: self.navigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
     }
     
 }

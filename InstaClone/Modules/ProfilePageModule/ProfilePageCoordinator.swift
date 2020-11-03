@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfilePageCoordinator {
+final class ProfilePageCoordinator: Coordinator {
     
     //MARK: - Properties
     private let navigationController: UINavigationController
