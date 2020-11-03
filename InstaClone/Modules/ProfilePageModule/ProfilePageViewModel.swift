@@ -7,6 +7,11 @@
 
 import Foundation
 
-class ProfilePageViewModel {
+struct ProfilePageViewModel {
+    
+    var numberOfPosts: Int
+    var numberOfFollowers: Int
+    var numberOfFollowing: Int
+    var descriptionLabelText: String
     
 }
