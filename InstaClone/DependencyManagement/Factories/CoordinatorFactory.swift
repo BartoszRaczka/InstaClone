@@ -39,11 +39,11 @@ extension DependencyContainer: CoordinatorFactory {
         )
     }
    
-    func makeStoriesCoordinator(
-        with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
-        ) -> StoriesCoordinator {
-        StoriesCoordinator(
+//    func makeStoriesCoordinator(
+//        with navigationController: UINavigationController,
+//        dependencyContainer: DependencyContainer
+//        ) -> StoriesCoordinator {
+//        StoriesCoordinator(
 
     func makeHomeFeedCoordinator(
         with navigationController: UINavigationController,
