@@ -28,7 +28,7 @@ protocol CoordinatorFactory {
     func makeUserProfileCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
-        ) -> UserProfileCoordinator
+    ) -> UserProfileCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
