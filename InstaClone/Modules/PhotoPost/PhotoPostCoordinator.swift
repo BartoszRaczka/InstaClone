@@ -16,7 +16,6 @@ final class PhotoPostCoordinator: Coordinator {
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
     
-    
     // MARK: - LifeCycle
     
     init(
@@ -31,7 +30,6 @@ final class PhotoPostCoordinator: Coordinator {
     
     func start() {
         let photoPostViewController = dependencyContainer.makePhotoPostViewController(delegate: self)
-        
         navigationController.pushViewController(photoPostViewController, animated: true)
     }
     
