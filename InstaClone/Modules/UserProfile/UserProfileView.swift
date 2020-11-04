@@ -16,7 +16,7 @@ final class UserProfileView: UIView {
     init(with viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        setupView()
+        setupProfileButton()
     }
     
     required init?(coder: NSCoder) {
@@ -24,16 +24,13 @@ final class UserProfileView: UIView {
     }
     
     private func setupProfileButton() {
-            profileButton = UIButton()
-            addSubview(profileButton)
+        profileButton = UIButton()
+        addSubview(profileButton)
             
-            profileButton.snp.makeConstraints{ make in
-                make.edges.equalToSuperview()
-            }
-    }
-    
-    private func setupView() {
-        setupProfileButton()
+        profileButton.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+        
         profileButton.addTarget(self, action: #selector(didTapProfileButton), for: .touchUpInside)
     }
 
