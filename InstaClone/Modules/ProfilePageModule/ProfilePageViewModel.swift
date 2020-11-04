@@ -17,7 +17,12 @@ protocol ProfilePageViewModelDelegate: AnyObject {
     
 }
 
-class ProfilePageViewModel {
+struct ProfilePageViewModel {
+    
+    var numberOfPosts: Int
+    var numberOfFollowers: Int
+    var numberOfFollowing: Int
+    var descriptionLabelText: String
     
     var delegate: ProfilePageViewModelDelegate?
     
