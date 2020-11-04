@@ -83,12 +83,14 @@ private extension ProfilePageView {
         
         let label = UILabel()
         label.text = "Posts"
+        label.font = UIFont.systemFont(ofSize: 24.0)
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
         
         let number = UILabel()
         number.text = String(viewModel.numberOfPosts)
+        number.font = UIFont.systemFont(ofSize: 16.0)
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
@@ -106,12 +108,14 @@ private extension ProfilePageView {
         
         let label = UILabel()
         label.text = "Followers"
+        label.font = UIFont.systemFont(ofSize: 24.0)
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
         
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowers)
+        number.font = UIFont.systemFont(ofSize: 16.0)
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
@@ -129,12 +133,14 @@ private extension ProfilePageView {
         
         let label = UILabel()
         label.text = "Following"
+        label.font = UIFont.systemFont(ofSize: 24.0)
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
         
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowing)
+        number.font = UIFont.systemFont(ofSize: 16.0)
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
