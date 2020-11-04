@@ -33,3 +33,27 @@ final class ProfilePageCoordinator: Coordinator {
     }
     
 }
+
+extension ProfilePageCoordinator: ProfilePageViewControllerDelegate {
+   
+    func didTapUserProfilePictureButton() {
+        //TODO
+    }
+    
+    func didTapNumberOfPostsButton() {
+        //TODO
+    }
+    
+    func didTapNumberOfFollowersButton() {
+        //TODO
+    }
+    
+    func didTapNumberOfFollowingButton() {
+        //TODO
+    }
+    
+    func didTapEditProfileButton() {
+        //TODO
+    }
+    
+}

@@ -30,6 +30,11 @@ protocol CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> PhotoPostCoordinator
     
+    func makeUserProfileCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> UserProfileCoordinator
+  
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -43,12 +48,32 @@ extension DependencyContainer: CoordinatorFactory {
             dependencyContainer: dependencyContainer
         )
     }
-    
+
     func makeTabBarCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
     ) -> TabBarCoordinator {
         TabBarCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+
+    func makePhotoPostCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> PhotoPostCoordinator {
+        PhotoPostCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+   
+    func makeStoriesCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+        ) -> StoriesCoordinator {
+        StoriesCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer
         )
@@ -63,5 +88,15 @@ extension DependencyContainer: CoordinatorFactory {
             dependencyContainer: dependencyContainer
         )
     }
-
+       
+    func makeUserProfileCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> UserProfileCoordinator {
+        UserProfileCoordinator(
+        with: navigationController,
+        dependencyContainer: dependencyContainer
+        )
+    }
+        
 }

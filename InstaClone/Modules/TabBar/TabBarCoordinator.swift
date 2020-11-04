@@ -30,6 +30,7 @@ final class TabBarCoordinator: Coordinator {
     
     func start() {
         startFromProfilePage()
+        startFromPhotoPost()
         //let homeFeedNavigationController = UINavigationController()
         //let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(with: homeFeedNavigationController)
         //coordinators.append(homeFeedCoordinator)
@@ -41,6 +42,15 @@ final class TabBarCoordinator: Coordinator {
     
     private func startFromProfilePage() {
         let coordinator = dependencyContainer.makeProfilePageCoordinator(
+            with: self.navigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
+    }
+
+    private func startFromPhotoPost() {
+        let coordinator = dependencyContainer.makePhotoPostCoordinator(
             with: self.navigationController,
             dependencyContainer: self.dependencyContainer
         )
