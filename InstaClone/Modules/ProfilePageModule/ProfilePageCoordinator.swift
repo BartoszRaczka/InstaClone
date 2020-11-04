@@ -14,7 +14,7 @@ final class ProfilePageCoordinator: Coordinator {
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
     
-    //MARK: - LifeCycle
+    //MARK: - Life Cycle
     init(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
@@ -26,7 +26,6 @@ final class ProfilePageCoordinator: Coordinator {
     //MARK: - Public methods
     func start() {
         let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
-        
         navigationController.pushViewController(profilePageViewController, animated: true)
     }
     
