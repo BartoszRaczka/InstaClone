@@ -17,7 +17,6 @@ final class UserProfileViewModel {
     
     // MARK: - Properties
 
-
     private let userProfileService: UserProfileServiceProtocol
     
     private weak var delegate: UserProfileViewModelDelegate?
