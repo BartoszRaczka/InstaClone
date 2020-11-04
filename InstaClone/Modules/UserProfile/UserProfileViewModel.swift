@@ -34,7 +34,7 @@ final class UserProfileViewModel {
     // MARK: - Public Methods
 
     func selectedUser(at indexPath: IndexPath) {
-    delegate?.profileButtonTapped()
+        delegate?.profileButtonTapped()
     }
     
 }
