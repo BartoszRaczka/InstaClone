@@ -9,7 +9,7 @@ import SnapKit
 
 class ProfilePageView: UIView {
     
-    let viewModel: ProfilePageViewModel
+    private let viewModel: ProfilePageViewModel
     
     private var userProfilePictureButton: UIButton!
     private var numbersStackView: UIStackView!
@@ -32,36 +32,35 @@ class ProfilePageView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
-    //MARK: - Objective-C methods
-    @objc func didTapUserProfilePictureButton() {
+    // MARK: - Private methods
+    @objc private func didTapUserProfilePictureButton() {
         viewModel.didTapUserProfilePictureButton()
     }
     
-    @objc func didTapNumberOfPostsButton() {
+    @objc private func didTapNumberOfPostsButton() {
         viewModel.didTapNumberOfPostsButton()
     }
     
-    @objc func didTapNumberOfFollowersButton() {
+    @objc private func didTapNumberOfFollowersButton() {
         viewModel.didTapNumberOfFollowersButton()
     }
     
-    @objc func didTapNumberOfFollowingButton() {
+    @objc private func didTapNumberOfFollowingButton() {
         viewModel.didTapNumberOfFollowingButton()
     }
     
-    @objc func didTapEditProfileButton() {
+    @objc private func didTapEditProfileButton() {
         viewModel.didTapEditProfileButton()
     }
     
 }
 
-//MARK: -View setup
+// MARK: - View setup
 private extension ProfilePageView {
     
-    //MARK: User profile picture setup
     func setupUserProfilePictureButton() {
         userProfilePictureButton = UIButton()
         addSubview(userProfilePictureButton)
@@ -74,7 +73,6 @@ private extension ProfilePageView {
         }
     }
     
-    //MARK: NumbersStackView setup
     func setupNumberOfPostsButton() {
         numberOfPostsButton = UIButton()
         addSubview(numberOfPostsButton)
@@ -148,6 +146,7 @@ private extension ProfilePageView {
         numbersStackView = UIStackView()
         addSubview(numbersStackView)
         numbersStackView.distribution = .fillEqually
+        numbersStackView.axis = .horizontal
         
         numbersStackView.snp.makeConstraints { make in
             make.leading.equalTo(userProfilePictureButton.snp.trailing)
@@ -163,7 +162,6 @@ private extension ProfilePageView {
         numbersStackView.addArrangedSubview(numberOfFollowingButton)
     }
     
-    //MARK: Description and edit profile button setup
     func setupDescriptionLabel() {
         descriptionLabel = UILabel()
         addSubview(descriptionLabel)
@@ -183,7 +181,6 @@ private extension ProfilePageView {
         editProfileButton.addTarget(self, action: #selector(didTapEditProfileButton), for: .touchUpInside)
         
         editProfileButton.setTitle("Edit Profile", for: .normal)
-        
         editProfileButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
@@ -191,15 +188,15 @@ private extension ProfilePageView {
     }
 }
 
-//MARK: CollectionView setup
+// MARK: CollectionView setup
 extension ProfilePageView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     private func setupPostedPhotosCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         layout.minimumLineSpacing = 0
-        layout.itemSize = CGSize(width: 100, height: 161.8)
-        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.scrollDirection = .vertical
         
         postedPhotosCollectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         postedPhotosCollectionView.register(PostedPhotoCell.self, forCellWithReuseIdentifier: "PostedPhotoCell")
