@@ -25,6 +25,11 @@ protocol CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> ProfilePageCoordinator
     
+    func makePhotoPostCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> PhotoPostCoordinator
+    
 }
 
 extension DependencyContainer: CoordinatorFactory {
