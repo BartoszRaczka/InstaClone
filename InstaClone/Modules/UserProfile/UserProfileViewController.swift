@@ -23,5 +23,9 @@ final class UserProfileViewController: UIViewController {
     required init?(coder: NSCoder) {
         nil
     }
-   
+    
+    override func loadView() {
+        view = UserProfileView(with: viewModel)
+    }
+    
 }
