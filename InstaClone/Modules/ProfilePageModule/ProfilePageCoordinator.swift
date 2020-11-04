@@ -10,6 +10,7 @@ import UIKit
 final class ProfilePageCoordinator: Coordinator {
     
     //MARK: - Properties
+    
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
@@ -24,6 +25,7 @@ final class ProfilePageCoordinator: Coordinator {
     }
     
     //MARK: - Public methods
+    
     func start() {
         let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
         navigationController.pushViewController(profilePageViewController, animated: true)
