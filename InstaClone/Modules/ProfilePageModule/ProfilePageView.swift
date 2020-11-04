@@ -7,7 +7,7 @@
 
 import SnapKit
 
-class ProfilePageView: UIView {
+final class ProfilePageView: UIView {
     
     private let viewModel: ProfilePageViewModel
     
@@ -36,6 +36,7 @@ class ProfilePageView: UIView {
     }
     
     // MARK: - Private methods
+    
     @objc private func didTapUserProfilePictureButton() {
         viewModel.didTapUserProfilePictureButton()
     }
@@ -59,6 +60,7 @@ class ProfilePageView: UIView {
 }
 
 // MARK: - View setup
+
 private extension ProfilePageView {
     
     func setupUserProfilePictureButton() {
@@ -189,6 +191,7 @@ private extension ProfilePageView {
 }
 
 // MARK: CollectionView setup
+
 extension ProfilePageView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     private func setupPostedPhotosCollectionView() {
