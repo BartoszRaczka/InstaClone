@@ -16,6 +16,7 @@ final class ProfilePageCoordinator: Coordinator {
     private let coordinators = [Coordinator]()
     
     //MARK: - Life Cycle
+    
     init(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
