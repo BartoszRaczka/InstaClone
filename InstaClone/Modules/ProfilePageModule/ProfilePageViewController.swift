@@ -1,13 +1,13 @@
 //
-//  ProfilePageViewModel.swift
+//  ProfilePageViewController.swift
 //  InstaClone
 //
-//  Created by new on 01/11/2020.
+//  Created by new on 03/11/2020.
 //
 
-import Foundation
+import SnapKit
 
-protocol ProfilePageViewModelDelegate: AnyObject {
+protocol ProfilePageViewControllerDelegate: AnyObject {
     
     func didTapUserProfilePictureButton()
     func didTapNumberOfPostsButton()
@@ -17,14 +17,30 @@ protocol ProfilePageViewModelDelegate: AnyObject {
     
 }
 
-struct ProfilePageViewModel {
+final class ProfilePageViewController: UIViewController {
     
-    var numberOfPosts: Int
-    var numberOfFollowers: Int
-    var numberOfFollowing: Int
-    var descriptionLabelText: String
+    private let viewModel: ProfilePageViewModel
+    var delegate: ProfilePageViewControllerDelegate?
     
-    var delegate: ProfilePageViewModelDelegate?
+    init(with viewModel: ProfilePageViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        
+        viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = ProfilePageView(with: self.viewModel)
+    }
+
+}
+
+extension ProfilePageViewController: ProfilePageViewModelDelegate {
     
     func didTapUserProfilePictureButton() {
         delegate?.didTapUserProfilePictureButton()
