@@ -29,6 +29,7 @@ final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     
     func start() {
         let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
+        navigationController.tabBarItem = .init(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 1)
         navigationController.pushViewController(profilePageViewController, animated: true)
     }
     

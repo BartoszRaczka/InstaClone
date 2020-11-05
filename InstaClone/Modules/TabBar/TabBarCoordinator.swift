@@ -35,28 +35,22 @@ final class TabBarCoordinator: Coordinator {
             dependencyContainer: dependencyContainer
         )
         coordinators.append(homeFeedCoordinator)
+        homeFeedCoordinator.start()
+        
+        let profilePageNavigationController = UINavigationController()
+        let profilePageCoordinator = dependencyContainer.makeProfilePageCoordinator(
+            with: profilePageNavigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(profilePageCoordinator)
+        profilePageCoordinator.start()
         
         let tabBarViewController = TabBarViewController()
-        tabBarViewController.viewControllers = [homeFeedNavigationController]
+        tabBarViewController.viewControllers = [
+            homeFeedNavigationController,
+            profilePageNavigationController
+        ]
         navigationController.pushViewController(tabBarViewController, animated: false)
-    }
-    
-    private func startFromProfilePage() {
-        let coordinator = dependencyContainer.makeProfilePageCoordinator(
-            with: self.navigationController,
-            dependencyContainer: self.dependencyContainer
-        )
-        coordinators.append(coordinator)
-        coordinator.start()
-    }
-
-    private func startFromPhotoPost() {
-        let coordinator = dependencyContainer.makePhotoPostCoordinator(
-            with: self.navigationController,
-            dependencyContainer: self.dependencyContainer
-        )
-        coordinators.append(coordinator)
-        coordinator.start()
     }
     
 }
