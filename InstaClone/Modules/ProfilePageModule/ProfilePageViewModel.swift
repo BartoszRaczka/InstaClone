@@ -19,10 +19,10 @@ protocol ProfilePageViewModelDelegate: AnyObject {
 
 struct ProfilePageViewModel {
     
-    var numberOfPosts: Int
-    var numberOfFollowers: Int
-    var numberOfFollowing: Int
-    var descriptionLabelText: String
+    var numberOfPosts: Int = 0
+    var numberOfFollowers: Int = 0
+    var numberOfFollowing: Int = 0
+    var descriptionLabelText: String = ""
     
     var delegate: ProfilePageViewModelDelegate?
     
