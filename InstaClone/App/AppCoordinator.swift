@@ -13,6 +13,7 @@ final class AppCoordinator: Coordinator {
     // MARK: - Properties
     
     private let window: UIWindow
+    private var navigationController = UINavigationController()
     private let dependencyContainer = DependencyContainer()
     private var coordinators = [Coordinator]()
     
@@ -20,28 +21,25 @@ final class AppCoordinator: Coordinator {
     
     init(with window: UIWindow) {
         self.window = window
+        self.window.rootViewController = navigationController
+        self.window.makeKeyAndVisible()
     }
     
     // MARK: - Public methods
     
     func start() {
         startFromTabBar()
-        
-        window.makeKeyAndVisible()
     }
     
     // MARK: - Private methods
     
     private func startFromTabBar() {
-        let navigationController = UINavigationController()
         let coordinator = dependencyContainer.makeTabBarCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer
         )
         coordinators.append(coordinator)
         coordinator.start()
-        
-        window.rootViewController = navigationController
     }
     
 }

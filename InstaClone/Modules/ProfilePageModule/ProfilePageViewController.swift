@@ -25,8 +25,6 @@ final class ProfilePageViewController: UIViewController {
     init(with viewModel: ProfilePageViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
-        viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {

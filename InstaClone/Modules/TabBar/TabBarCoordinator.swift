@@ -29,15 +29,16 @@ final class TabBarCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        startFromProfilePage()
-        startFromPhotoPost()
-        //let homeFeedNavigationController = UINavigationController()
-        //let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(with: homeFeedNavigationController)
-        //coordinators.append(homeFeedCoordinator)
+        let homeFeedNavigationController = UINavigationController()
+        let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(
+            with: homeFeedNavigationController,
+            dependencyContainer: dependencyContainer
+        )
+        coordinators.append(homeFeedCoordinator)
         
-//        let tabBarViewController = TabBarViewController()
-//        tabBarViewController.viewControllers = [homeFeedNavigationController]
-//        navigationController.pushViewController(tabBarViewController, animated: false)
+        let tabBarViewController = TabBarViewController()
+        tabBarViewController.viewControllers = [homeFeedNavigationController]
+        navigationController.pushViewController(tabBarViewController, animated: false)
     }
     
     private func startFromProfilePage() {

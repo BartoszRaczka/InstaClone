@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfilePageCoordinator: Coordinator {
+final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     
     //MARK: - Properties
     
