@@ -5,4 +5,17 @@
 //  Created by new on 06/11/2020.
 //
 
-import Foundation
+protocol StoriesViewControlerFactory {
+    
+    func makeStoriesViewController(delegate: StoriesViewModelDelegate) -> StoriesViewController
+    
+}
+
+extension DependencyContainer: StoriesViewControlerFactory {
+    
+    func makeStoriesViewController(delegate: StoriesViewModelDelegate) -> StoriesViewController {
+        StoriesViewController(with: StoriesViewModel(delegate: delegate))
+    }
+    
+}
+

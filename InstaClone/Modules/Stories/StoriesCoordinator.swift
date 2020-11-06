@@ -30,6 +30,15 @@ final class StoriesCoordinator: Coordinator {
     //  MARK: - Public methods
     
     func start() {
-        
+        let storiesViewController = dependencyContainer.makeStoriesViewController(delegate: self)
+        navigationController.pushViewController(storiesViewController, animated: true)
     }
+}
+
+extension StoriesCoordinator: StoriesViewModelDelegate {
+    
+    func selectedUser() {
+        //TODO
+    }
+    
 }
