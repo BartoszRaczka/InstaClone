@@ -17,11 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        appCoordinator = AppCoordinator(with: window)
-        appCoordinator.start()
-
-        return true
+        true
     }
 
 }
