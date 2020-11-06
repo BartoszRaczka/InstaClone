@@ -23,7 +23,7 @@ final class HomeFeedView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        setupView()
+//        setupView()
     }
     
     required init?(coder: NSCoder) {
