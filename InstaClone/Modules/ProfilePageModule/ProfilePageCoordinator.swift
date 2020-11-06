@@ -35,7 +35,7 @@ final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     
 }
 
-extension ProfilePageCoordinator: ProfilePageViewModelDelegate {
+extension ProfilePageCoordinator: ProfilePageViewControllerDelegate {
    
     func didTapUserProfilePictureButton() {
         //TODO

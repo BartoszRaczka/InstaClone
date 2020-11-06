@@ -7,9 +7,20 @@
 
 import SnapKit
 
+protocol ProfilePageViewControllerDelegate: AnyObject {
+    
+    func didTapUserProfilePictureButton()
+    func didTapNumberOfPostsButton()
+    func didTapNumberOfFollowersButton()
+    func didTapNumberOfFollowingButton()
+    func didTapEditProfileButton()
+    
+}
+
 final class ProfilePageViewController: UIViewController {
     
     private let viewModel: ProfilePageViewModel
+    var delegate: ProfilePageViewControllerDelegate?
     
     init(with viewModel: ProfilePageViewModel) {
         self.viewModel = viewModel
@@ -25,4 +36,28 @@ final class ProfilePageViewController: UIViewController {
         view = ProfilePageView(with: self.viewModel)
     }
 
+}
+
+extension ProfilePageViewController: ProfilePageViewModelDelegate {
+    
+    func didTapUserProfilePictureButton() {
+        delegate?.didTapUserProfilePictureButton()
+    }
+    
+    func didTapNumberOfPostsButton() {
+        delegate?.didTapNumberOfPostsButton()
+    }
+    
+    func didTapNumberOfFollowersButton() {
+        delegate?.didTapNumberOfFollowersButton()
+    }
+    
+    func didTapNumberOfFollowingButton() {
+        delegate?.didTapNumberOfFollowingButton()
+    }
+    
+    func didTapEditProfileButton() {
+        delegate?.didTapEditProfileButton()
+    }
+    
 }
