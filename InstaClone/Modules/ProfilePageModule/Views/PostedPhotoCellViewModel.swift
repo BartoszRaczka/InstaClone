@@ -7,6 +7,6 @@
 
 final class PostedPhotoCellViewModel {
    
-    
+    var imageNames: [String] = ["stonoga"]
     
 }
