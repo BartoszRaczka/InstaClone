@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bartosz Raczka Development. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 
 final class HomeFeedViewController: UIViewController {
 
@@ -41,21 +41,17 @@ extension HomeFeedViewController {
         let dmButton = UIButton()
         dmButton.setBackgroundImage(UIImage(named: "dm"), for: .normal)
         dmButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
-        dmButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dmButton.heightAnchor.constraint(equalToConstant: 28.0),
-            dmButton.widthAnchor.constraint(equalTo: dmButton.heightAnchor)
-        ])
+        dmButton.snp.makeConstraints { make in
+            make.height.width.equalTo(28.0)
+        }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dmButton)
         
         let photoButton = UIButton()
         photoButton.setBackgroundImage(UIImage(named: "defaultPhoto"), for: .normal)
         photoButton.addTarget(self, action: #selector(didTapPhotoButton), for: .touchUpInside)
-        photoButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            photoButton.heightAnchor.constraint(equalToConstant: 28.0),
-            photoButton.widthAnchor.constraint(equalTo: photoButton.heightAnchor)
-        ])
+        photoButton.snp.makeConstraints { make in
+            make.height.width.equalTo(28.0)
+        }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: photoButton)
     }
     

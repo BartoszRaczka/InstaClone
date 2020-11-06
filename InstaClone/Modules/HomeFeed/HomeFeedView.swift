@@ -19,7 +19,7 @@ final class HomeFeedView: UIView {
     private var dmButton: UIButton!
     private var logoImage: UIImageView!
     
-    init(with viewModel: HomeFeedViewModel){
+    init(with viewModel: HomeFeedViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
