@@ -10,10 +10,10 @@ import SnapKit
 
 final class HomeFeedView: UIView {
     
-    var viewModel: HomeFeedViewModel
+    private let viewModel: HomeFeedViewModel
     
-    var topContainer: UIView!
-    var bottomContainer: UIView!
+    private var topContainer: UIView!
+    private var bottomContainer: UIView!
     
     private var photoButton: UIButton!
     private var dmButton: UIButton!
@@ -23,42 +23,49 @@ final class HomeFeedView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        setupTopContainer()
-        setupBottomContainer()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         nil
     }
+  
+}
     
-    // MARK: -Top Container
+// MARK: - View setup
+
+private extension HomeFeedView {
     
-    private func setupTopContainer() {
+    func setupView() {
+        setupTopContainer()
+        setupBottomContainer()
+    }
+    
+    func setupTopContainer() {
         topContainer = UIView()
         addSubview(topContainer)
         
         topContainer.snp.makeConstraints { (make) -> Void in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(32)
-            
-            setupPhotoButton()
-            setupDMButton()
-            setupInstaCloneImage()
         }
+        
+        setupPhotoButton()
+        setupDMButton()
+        setupInstaCloneImage()
     }
 
-    private func setupPhotoButton() {
+    func setupPhotoButton() {
         photoButton = UIButton()
         addSubview(photoButton)
         
         photoButton.snp.makeConstraints { (make) in
             make.top.left.bottom.equalTo(topContainer)
             make.width.equalTo(32) // it must be square
-            
         }
     }
     
-    private func setupDMButton() {
+    func setupDMButton() {
         dmButton = UIButton()
         addSubview(dmButton)
         
@@ -68,13 +75,11 @@ final class HomeFeedView: UIView {
         }
     }
     
-    private func setupInstaCloneImage() {
+    func setupInstaCloneImage() {
         // TODO: Make a logo image
     }
     
-    // MARK: -Bottom Container
-    
-    private func setupBottomContainer() {
+    func setupBottomContainer() {
         bottomContainer = UIView()
         addSubview(bottomContainer)
         
@@ -83,7 +88,5 @@ final class HomeFeedView: UIView {
             make.height.equalTo(32)
         }
     }
-  
-}
     
-   
+}

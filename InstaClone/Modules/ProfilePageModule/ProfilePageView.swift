@@ -84,6 +84,8 @@ private extension ProfilePageView {
         let label = UILabel()
         label.text = "Posts"
         label.font = UIFont.systemFont(ofSize: 24.0)
+        numberOfPostsButton.addSubview(label)
+        
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
@@ -91,13 +93,12 @@ private extension ProfilePageView {
         let number = UILabel()
         number.text = String(viewModel.numberOfPosts)
         number.font = UIFont.systemFont(ofSize: 16.0)
+        numberOfPostsButton.addSubview(number)
+        
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        
-        numberOfPostsButton.addSubview(number)
-        numberOfPostsButton.addSubview(label)
     }
     
     func setupNumberOfFollowersButton() {
@@ -109,6 +110,8 @@ private extension ProfilePageView {
         let label = UILabel()
         label.text = "Followers"
         label.font = UIFont.systemFont(ofSize: 24.0)
+        numberOfFollowersButton.addSubview(label)
+        
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
@@ -116,13 +119,12 @@ private extension ProfilePageView {
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowers)
         number.font = UIFont.systemFont(ofSize: 16.0)
+        numberOfFollowersButton.addSubview(number)
+        
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        
-        numberOfFollowersButton.addSubview(number)
-        numberOfFollowersButton.addSubview(label)
     }
     
     func setupNumberOfFollowingButton() {
@@ -134,6 +136,8 @@ private extension ProfilePageView {
         let label = UILabel()
         label.text = "Following"
         label.font = UIFont.systemFont(ofSize: 24.0)
+        numberOfFollowingButton.addSubview(label)
+        
         label.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
         }
@@ -141,13 +145,12 @@ private extension ProfilePageView {
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowing)
         number.font = UIFont.systemFont(ofSize: 16.0)
+        numberOfFollowingButton.addSubview(number)
+        
         number.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        
-        numberOfFollowingButton.addSubview(number)
-        numberOfFollowingButton.addSubview(label)
     }
     
     func setupNumbersStackView() {

@@ -33,6 +33,19 @@ final class HomeFeedCoordinator: Coordinator {
     // MARK: - Public Methods
     
     func start() {
+        navigationController.pushViewController(
+            dependencyContainer.makeHomeFeedViewController(with: self),
+            animated: false
+        )
+        navigationController.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+    }
+    
+}
+
+extension HomeFeedCoordinator: HomeFeedViewModelDelegate {
+    
+    func selectedButton() {
         
     }
+    
 }

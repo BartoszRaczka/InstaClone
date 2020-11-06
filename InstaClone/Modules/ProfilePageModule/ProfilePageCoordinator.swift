@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfilePageCoordinator: Coordinator {
+final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     
     //MARK: - Properties
     
@@ -29,12 +29,13 @@ final class ProfilePageCoordinator: Coordinator {
     
     func start() {
         let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
+        navigationController.tabBarItem = .init(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 1)
         navigationController.pushViewController(profilePageViewController, animated: true)
     }
     
 }
 
-extension ProfilePageCoordinator: ProfilePageViewModelDelegate {
+extension ProfilePageCoordinator: ProfilePageViewControllerDelegate {
    
     func didTapUserProfilePictureButton() {
         //TODO
