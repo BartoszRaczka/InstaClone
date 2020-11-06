@@ -33,8 +33,15 @@ final class HomeFeedCoordinator: Coordinator {
     // MARK: - Public Methods
     
     func start() {
+        let photoPostCoordinator = dependencyContainer.makePhotoPostCoordinator(
+            with: self.navigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        
         navigationController.pushViewController(
-            dependencyContainer.makeHomeFeedViewController(with: self),
+            dependencyContainer.makeHomeFeedViewController(
+                with: self,
+                childViewControllers: [photoPostCoordinator.rootViewController()]),
             animated: false
         )
         navigationController.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)

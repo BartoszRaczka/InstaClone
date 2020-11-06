@@ -16,7 +16,7 @@ final class HomeFeedViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    init(with viewModel: HomeFeedViewModel) {
+    init(with viewModel: HomeFeedViewModel, childViewControllers: [UIViewController]) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
