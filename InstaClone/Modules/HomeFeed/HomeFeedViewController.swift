@@ -13,11 +13,13 @@ final class HomeFeedViewController: UIViewController {
     //    MARK: - Properties
     
     private let viewModel: HomeFeedViewModel
+    private let childViewControllerers: [UIViewController] //for some reason a can not name this property "childViewControllers" (with an "s" in the end)
     
     // MARK: - Life Cycle
     
     init(with viewModel: HomeFeedViewModel, childViewControllers: [UIViewController]) {
         self.viewModel = viewModel
+        self.childViewControllerers = childViewControllers
         super.init(nibName: nil, bundle: nil)
         
         setupBarButtons()
@@ -30,12 +32,33 @@ final class HomeFeedViewController: UIViewController {
     
     override func loadView() {
         view = HomeFeedView(with: viewModel)
+        
+        setupChildViewControllers()
     }
     
 }
 
+//MARK: Setup childViewControllers
+private extension HomeFeedViewController {
+    func setupChildViewControllers() {
+        for child in 0 ... childViewControllerers.count - 1 {
+            view.addSubview(childViewControllerers[child].view)
+            addChild(childViewControllerers[child])
+            childViewControllerers[child].didMove(toParent: self)
+        }
+        
+        childViewControllerers[0].view.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
+        }
+        childViewControllerers[1].view.snp.makeConstraints { make in
+            make.top.equalTo(childViewControllerers[0].view.snp.bottom)
+            make.leading.bottom.trailing.equalToSuperview()
+        }
+    }
+}
+
 //MARK: Setup Bar Buttons
-extension HomeFeedViewController {
+private extension HomeFeedViewController {
     
     func setupBarButtons() {
         let dmButton = UIButton()

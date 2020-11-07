@@ -49,8 +49,8 @@ final class HomeFeedCoordinator: Coordinator {
             dependencyContainer.makeHomeFeedViewController(
                 with: self,
                 childViewControllers: [
-                    photoPostCoordinator.rootViewController(),
-                    storiesCoordinator.rootViewController()
+                    storiesCoordinator.rootViewController(),
+                    photoPostCoordinator.rootViewController()
                 ]
             ),
             animated: false
