@@ -16,7 +16,7 @@ final class StoriesCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private var coordinators = [Coordinator]()
-
+    private var storiesViewController: UIViewController!
     //    MARK: - Life Cycle
     
     init(
@@ -30,8 +30,12 @@ final class StoriesCoordinator: Coordinator {
     //  MARK: - Public methods
     
     func start() {
-        let storiesViewController = dependencyContainer.makeStoriesViewController(delegate: self)
+        storiesViewController = dependencyContainer.makeStoriesViewController(delegate: self)
         navigationController.pushViewController(storiesViewController, animated: true)
+    }
+    
+    func rootViewController() -> UIViewController {
+        storiesViewController
     }
 }
 

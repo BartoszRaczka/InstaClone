@@ -37,13 +37,24 @@ final class HomeFeedCoordinator: Coordinator {
             with: self.navigationController,
             dependencyContainer: self.dependencyContainer
         )
+        photoPostCoordinator.start()
+        
+        let storiesCoordinator = dependencyContainer.makeStoriesCoordinator(
+            with: self.navigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        storiesCoordinator.start()
         
         navigationController.pushViewController(
             dependencyContainer.makeHomeFeedViewController(
                 with: self,
-                childViewControllers: [photoPostCoordinator.rootViewController()]),
+                childViewControllers: [
+                    photoPostCoordinator.rootViewController(),
+                    storiesCoordinator.rootViewController()
+                ]
+            ),
             animated: false
-        )
+            )
         navigationController.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
     }
     
