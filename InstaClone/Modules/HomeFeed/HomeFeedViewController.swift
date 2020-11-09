@@ -10,20 +10,22 @@ import SnapKit
 
 final class HomeFeedViewController: UIViewController {
 
-    //    MARK: - Properties
+    // MARK: - Properties
     
     private let viewModel: HomeFeedViewModel
-    private let childViewControllerers: [UIViewController] //for some reason a can not name this property "childViewControllers" (with an "s" in the end)
     
     // MARK: - Life Cycle
     
     init(with viewModel: HomeFeedViewModel, childViewControllers: [UIViewController]) {
         self.viewModel = viewModel
-        self.childViewControllerers = childViewControllers
         super.init(nibName: nil, bundle: nil)
         
         setupBarButtons()
         setupAppTitle()
+        
+        childViewControllers.forEach {
+            self.addChild($0)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -32,32 +34,29 @@ final class HomeFeedViewController: UIViewController {
     
     override func loadView() {
         view = HomeFeedView(with: viewModel)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         setupChildViewControllers()
     }
     
-}
-
-//MARK: Setup childViewControllers
-private extension HomeFeedViewController {
-    func setupChildViewControllers() {
-        for child in 0 ... childViewControllerers.count - 1 {
-            view.addSubview(childViewControllerers[child].view)
-            addChild(childViewControllerers[child])
-            childViewControllerers[child].didMove(toParent: self)
-        }
+    // MARK: - Private methods
+    
+    private func setupChildViewControllers() {
+        let views = children.compactMap { $0.view }
+        (self.view as? HomeFeedView)?.setup(with: views)
         
-        childViewControllerers[0].view.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-        }
-        childViewControllerers[1].view.snp.makeConstraints { make in
-            make.top.equalTo(childViewControllerers[0].view.snp.bottom)
-            make.leading.bottom.trailing.equalToSuperview()
+        children.forEach {
+            $0.didMove(toParent: self)
         }
     }
+    
 }
 
 //MARK: Setup Bar Buttons
+
 private extension HomeFeedViewController {
     
     func setupBarButtons() {

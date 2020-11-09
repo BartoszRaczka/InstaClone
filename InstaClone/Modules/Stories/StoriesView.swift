@@ -34,7 +34,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
         collectionView.register(StoriesCollectionViewCell.self, forCellWithReuseIdentifier: "StoriesCollectionViewCell")
         collectionView.allowsSelection = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .none
+        collectionView.alwaysBounceHorizontal = true
                 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -42,6 +42,7 @@ final class StoriesView: UIView, UICollectionViewDelegateFlowLayout {
         addSubview(collectionView)
         collectionView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
+            make.height.equalTo(100)
         }
     }
     

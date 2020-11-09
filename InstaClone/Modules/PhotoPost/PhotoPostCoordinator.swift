@@ -15,7 +15,10 @@ final class PhotoPostCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
-    private var photoPostViewController: UIViewController!
+    
+    lazy var rootViewController: UIViewController = {
+        self.dependencyContainer.makePhotoPostViewController(delegate: self)
+    }()
     
     // MARK: - LifeCycle
     
@@ -30,12 +33,7 @@ final class PhotoPostCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        photoPostViewController = dependencyContainer.makePhotoPostViewController(delegate: self)
-        navigationController.pushViewController(photoPostViewController, animated: true)
-    }
-    
-    func rootViewController() -> UIViewController {
-        photoPostViewController
+        // For now - we don't do nothing here
     }
     
 }
