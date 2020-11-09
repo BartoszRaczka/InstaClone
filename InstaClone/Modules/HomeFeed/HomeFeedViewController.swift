@@ -60,7 +60,7 @@ final class HomeFeedViewController: UIViewController {
 private extension HomeFeedViewController {
     
     func setupBarButtons() {
-        let dmButton = UIButton()
+        let dmButton = UIButton(type: .system)
         dmButton.setBackgroundImage(UIImage(named: "dm"), for: .normal)
         dmButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
         dmButton.snp.makeConstraints { make in
@@ -68,7 +68,7 @@ private extension HomeFeedViewController {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dmButton)
         
-        let photoButton = UIButton()
+        let photoButton = UIButton(type: .system)
         photoButton.setBackgroundImage(UIImage(named: "defaultPhoto"), for: .normal)
         photoButton.addTarget(self, action: #selector(didTapPhotoButton), for: .touchUpInside)
         photoButton.snp.makeConstraints { make in
