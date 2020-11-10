@@ -10,16 +10,17 @@ import SnapKit
 
 final class HomeFeedView: UIView {
     
+    // MARK: - Properties
+    
     private let viewModel: HomeFeedViewModel
     
-    private var topContainer: UIView!
-    private var bottomContainer: UIView!
+    // MARK: - UI Properties
     
-    private var photoButton: UIButton!
-    private var dmButton: UIButton!
-    private var instaCloneImage: UIImageView!
+    private var mainView: UIStackView!
     
-    init(with viewModel: HomeFeedViewModel){
+    // MARK: - Life Cycle
+    
+    init(with viewModel: HomeFeedViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
@@ -29,6 +30,14 @@ final class HomeFeedView: UIView {
     required init?(coder: NSCoder) {
         nil
     }
+    
+    // MARK: - Public methods
+    
+    func setup(with views: [UIView]) {
+        views.forEach { view in
+            self.mainView.addArrangedSubview(view)
+        }
+    }
   
 }
     
@@ -37,55 +46,18 @@ final class HomeFeedView: UIView {
 private extension HomeFeedView {
     
     func setupView() {
-        setupTopContainer()
-        setupBottomContainer()
+        setupMainView()
     }
     
-    func setupTopContainer() {
-        topContainer = UIView()
-        addSubview(topContainer)
+    func setupMainView() {
+        mainView = UIStackView()
+        mainView.axis = .vertical
+        mainView.distribution = .equalSpacing
+        addSubview(mainView)
         
-        topContainer.snp.makeConstraints { (make) -> Void in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(32)
-        }
-        
-        setupPhotoButton()
-        setupDMButton()
-        setupInstaCloneImage()
-    }
-
-    func setupPhotoButton() {
-        photoButton = UIButton()
-        addSubview(photoButton)
-        
-        photoButton.snp.makeConstraints { (make) in
-            make.top.left.bottom.equalTo(topContainer)
-            make.width.equalTo(32) // it must be square
-        }
-    }
-    
-    func setupDMButton() {
-        dmButton = UIButton()
-        addSubview(dmButton)
-        
-        dmButton.snp.makeConstraints { (make) in
-            make.top.right.bottom.equalTo(topContainer)
-            make.width.equalTo(32)
-        }
-    }
-    
-    func setupInstaCloneImage() {
-        // TODO: Make a logo image
-    }
-    
-    func setupBottomContainer() {
-        bottomContainer = UIView()
-        addSubview(bottomContainer)
-        
-        bottomContainer.snp.makeConstraints{ (make) in
-            make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(32)
+        mainView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.bottom.leading.trailing.equalToSuperview()
         }
     }
     

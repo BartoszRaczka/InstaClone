@@ -66,11 +66,13 @@ private extension ProfilePageView {
     func setupUserProfilePictureButton() {
         userProfilePictureButton = UIButton()
         addSubview(userProfilePictureButton)
+        userProfilePictureButton.setImage(UIImage(named: "defaultProfilePicture"), for: .normal)
         
         userProfilePictureButton.addTarget(self, action: #selector(didTapUserProfilePictureButton), for: .touchUpInside)
         
         userProfilePictureButton.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin)
+            make.leading.equalToSuperview()
             make.height.width.equalTo(64.0)
         }
     }
@@ -81,22 +83,24 @@ private extension ProfilePageView {
         
         numberOfPostsButton.addTarget(self, action: #selector(didTapNumberOfPostsButton), for: .touchUpInside)
         
-        let label = UILabel()
-        label.text = "Posts"
-        label.font = UIFont.systemFont(ofSize: 24.0)
-        numberOfPostsButton.addSubview(label)
-        
-        label.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-        }
-        
         let number = UILabel()
         number.text = String(viewModel.numberOfPosts)
-        number.font = UIFont.systemFont(ofSize: 16.0)
+        number.font = UIFont.systemFont(ofSize: 24.0)
+        number.textAlignment = .center
         numberOfPostsButton.addSubview(number)
         
         number.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom)
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        let label = UILabel()
+        label.text = "Posts"
+        label.font = UIFont.systemFont(ofSize: 16.0)
+        label.textAlignment = .center
+        numberOfPostsButton.addSubview(label)
+        
+        label.snp.makeConstraints { make in
+            make.top.equalTo(number.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -107,22 +111,24 @@ private extension ProfilePageView {
         
         numberOfFollowersButton.addTarget(self, action: #selector(didTapNumberOfFollowersButton), for: .touchUpInside)
         
-        let label = UILabel()
-        label.text = "Followers"
-        label.font = UIFont.systemFont(ofSize: 24.0)
-        numberOfFollowersButton.addSubview(label)
-        
-        label.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-        }
-        
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowers)
-        number.font = UIFont.systemFont(ofSize: 16.0)
+        number.font = UIFont.systemFont(ofSize: 24.0)
+        number.textAlignment = .center
         numberOfFollowersButton.addSubview(number)
         
         number.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom)
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        let label = UILabel()
+        label.text = "Followers"
+        label.font = UIFont.systemFont(ofSize: 16.0)
+        label.textAlignment = .center
+        numberOfFollowersButton.addSubview(label)
+        
+        label.snp.makeConstraints { make in
+            make.top.equalTo(number.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -133,22 +139,24 @@ private extension ProfilePageView {
         
         numberOfFollowingButton.addTarget(self, action: #selector(didTapNumberOfFollowingButton), for: .touchUpInside)
         
-        let label = UILabel()
-        label.text = "Following"
-        label.font = UIFont.systemFont(ofSize: 24.0)
-        numberOfFollowingButton.addSubview(label)
-        
-        label.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-        }
-        
         let number = UILabel()
         number.text = String(viewModel.numberOfFollowing)
-        number.font = UIFont.systemFont(ofSize: 16.0)
+        number.font = UIFont.systemFont(ofSize: 24.0)
+        number.textAlignment = .center
         numberOfFollowingButton.addSubview(number)
         
         number.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom)
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        let label = UILabel()
+        label.text = "Following"
+        label.font = UIFont.systemFont(ofSize: 16.0)
+        label.textAlignment = .center
+        numberOfFollowingButton.addSubview(label)
+        
+        label.snp.makeConstraints { make in
+            make.top.equalTo(number.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -161,7 +169,8 @@ private extension ProfilePageView {
         
         numbersStackView.snp.makeConstraints { make in
             make.leading.equalTo(userProfilePictureButton.snp.trailing)
-            make.top.trailing.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin)
+            make.trailing.equalToSuperview()
         }
         
         setupNumberOfPostsButton()
@@ -178,6 +187,7 @@ private extension ProfilePageView {
         addSubview(descriptionLabel)
         
         descriptionLabel.text = viewModel.descriptionLabelText
+        descriptionLabel.textAlignment = .center
         
         descriptionLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -192,6 +202,7 @@ private extension ProfilePageView {
         editProfileButton.addTarget(self, action: #selector(didTapEditProfileButton), for: .touchUpInside)
         
         editProfileButton.setTitle("Edit Profile", for: .normal)
+        editProfileButton.setTitleColor(.black, for: .normal)
         editProfileButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
@@ -222,7 +233,7 @@ extension ProfilePageView: UICollectionViewDelegateFlowLayout, UICollectionViewD
         addSubview(postedPhotosCollectionView)
         
         postedPhotosCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(editProfileButton)
+            make.top.equalTo(editProfileButton.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
@@ -233,6 +244,7 @@ extension ProfilePageView: UICollectionViewDelegateFlowLayout, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = postedPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "PostedPhotoCell", for: indexPath)
+        (cell as? PostedPhotoCell)?.viewModel = PostedPhotoCellViewModel()
         return cell
     }
     

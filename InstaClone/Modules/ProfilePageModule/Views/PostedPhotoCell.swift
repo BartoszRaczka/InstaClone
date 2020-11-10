@@ -10,6 +10,11 @@ import SnapKit
 class PostedPhotoCell: UICollectionViewCell {
     
     var postedPhoto: UIImageView!
+    var viewModel: PostedPhotoCellViewModel! {
+        didSet {
+            updateCellData()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -22,14 +27,17 @@ class PostedPhotoCell: UICollectionViewCell {
     }
     
     private func setupPostedPhoto() {
-        let image = UIImage() //TODO: create right image
-        postedPhoto = UIImageView(image: image)
+        postedPhoto = UIImageView()
         addSubview(postedPhoto)
         
         postedPhoto.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.height.width.equalTo(64)
         }
+    }
+    
+    private func updateCellData() {
+        postedPhoto.image = UIImage(named: viewModel.imageNames.first!)
     }
     
 }
