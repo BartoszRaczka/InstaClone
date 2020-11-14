@@ -5,5 +5,6 @@ use_frameworks!
 target 'InstaClone' do
     pod 'SnapKit', '~> 5.0.0'
     pod 'Firebase/Analytics'
+    pod 'Firebase/Database'
 end
 
