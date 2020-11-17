@@ -17,7 +17,7 @@ final class PhotoPostCell: UITableViewCell {
     private var posterNameButton: UIButton!
     private var moreOptionsButton: UIButton!
     private var postedPhoto: UIImageView!
-    private var feetContainer: UIView!
+    private var feetContainer: UIStackView!
     private var feetIconsContainer: UIView!
     private var iconsStackView: UIStackView!
     private var likeIconButton: UIButton!
@@ -139,8 +139,9 @@ private extension PhotoPostCell {
 
     // MARK: - feetContainer
     func setupFeetContainer() {
-        feetContainer = UIView()
+        feetContainer = UIStackView()
         addSubview(feetContainer)
+        feetContainer.axis = .vertical
             
         feetContainer.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -151,6 +152,11 @@ private extension PhotoPostCell {
         setupNumberOfLikes()
         setupPostDescription()
         setupTimeWhenPosted()
+        
+        feetContainer.addArrangedSubview(feetIconsContainer)
+        feetContainer.addArrangedSubview(numberOfLikesButton)
+        feetContainer.addArrangedSubview(postDescription)
+        feetContainer.addArrangedSubview(timeWhenPosted)
     }
         
     // MARK: feetIconsContainer
@@ -159,7 +165,6 @@ private extension PhotoPostCell {
         addSubview(feetIconsContainer)
         
         feetIconsContainer.snp.makeConstraints { make in
-            make.leading.top.trailing.equalTo(feetContainer)
             make.height.equalTo(32.0)
         }
         
@@ -190,7 +195,7 @@ private extension PhotoPostCell {
         addSubview(likeIconButton)
         likeIconButton.setImage(UIImage(named: "like"), for: .normal)
         likeIconButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
-//
+
         likeIconButton.snp.makeConstraints { make in
             make.width.equalTo(likeIconButton.snp.height)
         }
@@ -237,32 +242,17 @@ private extension PhotoPostCell {
         numberOfLikesButton.setTitle("number of likes", for: .normal)
         numberOfLikesButton.contentHorizontalAlignment = .leading
         numberOfLikesButton.addTarget(self, action: #selector(didTapNumberOfLikesButton), for: .touchUpInside)
-            
-        numberOfLikesButton.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(feetContainer)
-            make.top.equalTo(feetIconsContainer.snp.bottom)
-        }
     }
         
     func setupPostDescription() {
         postDescription = UILabel()
         addSubview(postDescription)
         postDescription.text = "description"
-            
-        postDescription.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(feetContainer)
-            make.top.equalTo(numberOfLikesButton.snp.bottom)
-        }
     }
         
     func setupTimeWhenPosted() {
         timeWhenPosted = UILabel()
         addSubview(timeWhenPosted)
         timeWhenPosted.text = "some time ago"
-            
-        timeWhenPosted.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalTo(feetContainer)
-            make.top.equalTo(postDescription.snp.bottom)
-        }
     }
 }
