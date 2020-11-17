@@ -30,6 +30,7 @@ final class PhotoPostView: UIView, UITableViewDelegate {
         
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.dataSource = self
         tableView.delegate = self
