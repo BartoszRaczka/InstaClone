@@ -79,7 +79,7 @@ private extension PhotoPostCell {
         addSubview(headContainer)
         
         headContainer.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
+            make.leading.top.trailing.equalToSuperview().inset(8.0)
             make.height.equalTo(42.0)
         }
         
@@ -144,7 +144,7 @@ private extension PhotoPostCell {
         feetContainer.axis = .vertical
             
         feetContainer.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview().inset(8.0)
             make.top.equalTo(postedPhoto.snp.bottom)
         }
         
