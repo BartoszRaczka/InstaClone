@@ -73,6 +73,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Analytics
+  - Firebase/Core
   - Firebase/Database
   - SnapKit (~> 5.0.0)
 
@@ -107,6 +108,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: a946c6dff776a1849221ed7d0169e38198bba677
+PODFILE CHECKSUM: 7f13490901878a7ac4de7def8d12242365070feb
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
