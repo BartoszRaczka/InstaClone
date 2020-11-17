@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct UserData: Codable {
+struct UserData: Identifiable, Codable {
     
-    var users: [String: String]
     var id: String
     var username: String
     var followers: [String]
