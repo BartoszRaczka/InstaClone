@@ -11,7 +11,7 @@ struct UserData: Identifiable, Codable {
     
     var id: String
     var username: String
-    var followers: [String]
-    var following: [String]
+    var followers: [String: String]
+    var following: [String: String]
     
 }
