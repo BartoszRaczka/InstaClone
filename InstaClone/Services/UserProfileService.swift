@@ -10,24 +10,31 @@ import Foundation
 import Firebase
 
 protocol UserProfileServiceProtocol {
-    func getData(user: UserData)
+    func getData(user: UserData) -> UserData
     func setData(user: UserData)
 }
 
 final class UserProfileService: UserProfileServiceProtocol {
+    
+    func getData(user: UserData) -> UserData {
         
-    func getData(user: UserData) {
+        var userData = UserData(id: user.id, username: "", followers: [""], following: [""])
+        let reference = Database.database().reference(withPath: "users/\(user.id)")
+        
         reference.child("users/\(user.id)").observeSingleEvent(of: .value) { [weak self] snapshot in
             guard
                 let self = self,
                 JSONSerialization.isValidJSONObject(snapshot.value as Any),
                 let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
-                let user = try? JSONDecoder().decode(User.self, from: data)
+                let user = try? JSONDecoder().decode(UserData.self, from: data)
             else {
                 return
             }
-            // rest of the logic
+            userData.username = user.username
+            userData.followers = user.followers
+            userData.following = user.following
         }
+        return userData
     }
     
     func setData(user: UserData) {
@@ -36,7 +43,7 @@ final class UserProfileService: UserProfileServiceProtocol {
 
         let reference = Database.database().reference(withPath: "users/\(user.id)")
         reference.setValue(userJSON) { error, reference in
-            // rest of the logic
+            // TODO: rest of the logic
         }
     }
     
