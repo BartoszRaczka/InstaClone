@@ -12,3 +12,11 @@ targets:
       - InstaClone
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: "Bartosz-Raczka-Development.InstaClone"
+
+  InstaCloneTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - InstaCloneTests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: "Bartosz-Raczka-Development.InstaClone"

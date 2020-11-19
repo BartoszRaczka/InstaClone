@@ -9,7 +9,7 @@
 final class DependencyContainer {
     
     lazy var storiesService: StoriesServiceProtocol = StoriesService()
-    lazy var userProfileService: UserProfileServiceProtocol = UserProfileService()
+//    lazy var userProfileService: UserProfileServiceProtocol = UserProfileService(factory: <#DatabaseRefereceFactoryProtocol#>)
     lazy var photoFeedService: PhotoFeedServiceProtocol = PhotoFeedService()
 
 }
