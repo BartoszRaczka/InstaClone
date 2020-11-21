@@ -9,4 +9,5 @@ import Foundation
 
 enum ServiceError: Error {
     case failedToFetchUserData
+    case failedToEncodeUserData
 }

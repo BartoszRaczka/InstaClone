@@ -34,9 +34,15 @@ final class UserProfileService: UserProfileServiceProtocol {
     }
     
     func create(user: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
-        let userData = try! JSONEncoder().encode(user) // bez "!"
-        let userJSON = try! JSONSerialization.jsonObject(with: userData, options: [])
-
+        guard
+            let userData = try? JSONEncoder().encode(user),
+            let userJSON = try? JSONSerialization.jsonObject(with: userData, options: [])
+        else {
+            completionHandler(.failure(ServiceError.failedToEncodeUserData))
+            return
+        }
+        completionHandler(.success(()))
+        
         let reference = Database.database().reference(withPath: "users/\(user.id)")
         reference.setValue(userJSON) { error, reference in
             if let error = error {
