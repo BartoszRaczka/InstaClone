@@ -32,6 +32,14 @@ final class OnboardingView: UIView {
         nil
     }
     
+    // MARK: - Private methods
+    @objc private func loginButtonTapped() {
+        //TODO: call viewModel to do something with that
+    }
+    
+    @objc private func registerButtonTapped() {
+        //TODO: call viewModel to do something with that
+    }
 }
 
 // MARK: - View setup
@@ -64,6 +72,7 @@ private extension OnboardingView {
         loginButton = UIButton(type: .system)
         addSubview(loginButton)
         
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         loginButton.setTitle("Log in", for: .normal)
         loginButton.backgroundColor = .systemBlue
         loginButton.titleLabel?.textColor = .white
@@ -105,6 +114,7 @@ private extension OnboardingView {
         registerButton = UIButton(type: .system)
         addSubview(registerButton)
         
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         registerButton.setTitle("Register.", for: .normal)
         registerButton.titleLabel?.textAlignment = .left
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
