@@ -5,8 +5,6 @@
 //  Created by new on 26/11/2020.
 //
 
-import Foundation
-
 protocol OnboardingViewControllerFactory {
     
     func makeOnboardingViewController() -> OnboardingViewController
@@ -16,7 +14,7 @@ protocol OnboardingViewControllerFactory {
 extension DependencyContainer: OnboardingViewControllerFactory {
     
     func makeOnboardingViewController() -> OnboardingViewController {
-        OnboardingViewController()
+        OnboardingViewController(with: makeOnboardingViewModel())
     }
     
 }
