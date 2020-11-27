@@ -5,8 +5,8 @@
 //  Created by new on 25/11/2020.
 //
 
-import Foundation
+import SnapKit
 
-class OnboardingViewController {
+class OnboardingViewController: UIViewController {
     
 }

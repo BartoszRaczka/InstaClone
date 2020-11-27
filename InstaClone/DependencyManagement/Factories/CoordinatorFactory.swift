@@ -34,6 +34,11 @@ protocol CoordinatorFactory {
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
     ) -> UserProfileCoordinator
+    
+    func makeOnboardingCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> OnboardingCoordinator
   
 }
 
@@ -94,8 +99,18 @@ extension DependencyContainer: CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> UserProfileCoordinator {
         UserProfileCoordinator(
-        with: navigationController,
-        dependencyContainer: dependencyContainer
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+    
+    func makeOnboardingCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> OnboardingCoordinator {
+        OnboardingCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
         )
     }
         
