@@ -7,6 +7,9 @@
 
 import Foundation
 
-class OnboardingViewModel {
+struct OnboardingViewModel {
+    
+    var login: String
+    var password: String
     
 }
