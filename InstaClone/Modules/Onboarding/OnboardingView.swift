@@ -40,6 +40,10 @@ final class OnboardingView: UIView {
     @objc private func registerButtonTapped() {
         //TODO: call viewModel to do something with that
     }
+    
+    @objc private func loginTextFieldTextChanged() {
+        //TODO: call viewModel to do something with that
+    }
 }
 
 // MARK: - View setup
@@ -58,7 +62,15 @@ private extension OnboardingView {
         loginTextField = UITextField()
         addSubview(loginTextField)
         
-        loginTextField.text = "Phone number, username or email"
+        loginTextField.placeholder = "Phone number, username or email"
+        loginTextField.borderStyle = .roundedRect
+        loginTextField.autocorrectionType = UITextAutocorrectionType.no
+        loginTextField.keyboardType = UIKeyboardType.emailAddress
+        loginTextField.returnKeyType = UIReturnKeyType.done
+        loginTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        loginTextField.contentVerticalAlignment = .center
+        loginTextField.contentHorizontalAlignment = .leading
+        loginTextField.delegate = self
     }
     
     func setupPasswordTextField() {
@@ -138,4 +150,18 @@ private extension OnboardingView {
         registerStackView.addArrangedSubview(registerButton)
     }
     
+}
+
+extension OnboardingView: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // if implemented, called in place of textFieldDidEndEditing:
+        print("TextField did end editing with reason method called")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //dodać logike która wyśle w tym momencie info do viewModelu że jest nowa wartość
+        return true
+    }
+    //czy jeśli mamy tutaj dwa textfieldy to powinienem zrobić oddzielny plik w którym je tworze a tutaj zrobić jedynie dwie instacje? - przemyśleć i chyba tak zrobić
 }
