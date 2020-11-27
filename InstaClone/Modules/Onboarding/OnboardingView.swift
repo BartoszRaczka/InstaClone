@@ -13,8 +13,8 @@ final class OnboardingView: UIView {
     
     private var loginStackView: UIStackView!
     private var logo: UILabel!
-    private var loginTextField: UITextField!
-    private var passwordTextField: UITextField!
+    private var loginTextField: TextFieldView!
+    private var passwordTextField: TextFieldView!
     private var loginButton: UIButton!
     private var registerStackView: UIStackView!
     private var noAccountQuestionLabel: UILabel!
@@ -54,30 +54,21 @@ private extension OnboardingView {
         addSubview(logo)
         
         logo.text = "InstaClone"
+        logo.textColor = .white
         logo.textAlignment = .center
         logo.font = UIFont(name: "BrushScriptMTItalic", size: 64.0)
     }
     
     func setupLoginTextField() {
-        loginTextField = UITextField()
+        var loginTextFieldViewModel = TextFieldViewModel(placeholderText: "Phone number, username or email")
+        loginTextField = TextFieldView(with: loginTextFieldViewModel)
         addSubview(loginTextField)
-        
-        loginTextField.placeholder = "Phone number, username or email"
-        loginTextField.borderStyle = .roundedRect
-        loginTextField.autocorrectionType = UITextAutocorrectionType.no
-        loginTextField.keyboardType = UIKeyboardType.emailAddress
-        loginTextField.returnKeyType = UIReturnKeyType.done
-        loginTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        loginTextField.contentVerticalAlignment = .center
-        loginTextField.contentHorizontalAlignment = .leading
-        loginTextField.delegate = self
     }
     
     func setupPasswordTextField() {
-        passwordTextField = UITextField()
+        var passwordTextFieldViewModel = TextFieldViewModel(placeholderText: "Password")
+        passwordTextField = TextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
-        
-        passwordTextField.text = "Password"
     }
     
     func setupLoginButton() {
@@ -87,7 +78,8 @@ private extension OnboardingView {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         loginButton.setTitle("Log in", for: .normal)
         loginButton.backgroundColor = .systemBlue
-        loginButton.titleLabel?.textColor = .white
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.layer.cornerRadius = 8.0
     }
     
     func setupLoginStackView() {
@@ -99,7 +91,7 @@ private extension OnboardingView {
         
         loginStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
         setupLogo()
@@ -117,8 +109,9 @@ private extension OnboardingView {
         noAccountQuestionLabel = UILabel()
         addSubview(noAccountQuestionLabel)
         
-        noAccountQuestionLabel.text = "No account? "
-        noAccountQuestionLabel.textAlignment = .right
+        noAccountQuestionLabel.text = "No account?"
+        noAccountQuestionLabel.textAlignment = .right //For some reason I can't use .trailing
+        noAccountQuestionLabel.textColor = .white
         noAccountQuestionLabel.font = UIFont.systemFont(ofSize: 16.0)
     }
     
@@ -127,8 +120,8 @@ private extension OnboardingView {
         addSubview(registerButton)
         
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-        registerButton.setTitle("Register.", for: .normal)
-        registerButton.titleLabel?.textAlignment = .left
+        registerButton.setTitle("  Register.", for: .normal)
+        registerButton.contentHorizontalAlignment = .leading
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
     }
     

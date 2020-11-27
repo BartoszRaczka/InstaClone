@@ -14,7 +14,7 @@ protocol OnboardingViewModelFactory {
 extension DependencyContainer: OnboardingViewModelFactory {
     
     func makeOnboardingViewModel() -> OnboardingViewModel {
-        OnboardingViewModel()
+        OnboardingViewModel(login: "", password: "")
     }
     
 }
