@@ -42,6 +42,8 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
     }
     
     func loginButtonTapped() {
+        loginTextFieldViewModel?.stopEditing()
+        passwordTextFieldViewModel?.stopEditing()
         guard
             self.login != "",
             self.password != ""

@@ -9,7 +9,7 @@ import SnapKit
 
 class TextFieldView: UIView {
     
-    let viewModel: TextFieldViewModel
+    var viewModel: TextFieldViewModel
     
     private var container: UIView!
     private var textField: UITextField!
@@ -17,13 +17,20 @@ class TextFieldView: UIView {
     init(with viewModel: TextFieldViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-    
+        
+        bindActions()
         setupContainer()
         setupTextField()
     }
     
     required init?(coder: NSCoder) {
         nil
+    }
+    
+    func bindActions() {
+        viewModel.onStopEditingAction = { [weak self] in
+            self?.textField.resignFirstResponder()
+        }
     }
     
 }
