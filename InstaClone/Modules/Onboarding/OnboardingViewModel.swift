@@ -32,7 +32,7 @@ class OnboardingViewModel {
 // MARK: - Public methods
 extension OnboardingViewModel: TextFieldViewModelDelegate {
     
-    func textFieldDidEndEditing(in textFieldType: TextFieldType, with typedText: String) {
+    func textFieldDidChange(in textFieldType: TextFieldType, with typedText: String) {
         switch textFieldType {
         case .login:
             self.login = typedText

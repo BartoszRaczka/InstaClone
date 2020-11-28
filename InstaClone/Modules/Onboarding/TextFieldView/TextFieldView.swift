@@ -76,13 +76,13 @@ extension TextFieldView: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         guard
             let typedText = textField.text
         else {
             return
         }
-        viewModel.textFieldDidEndEditing(with: typedText)
+        viewModel.textFieldDidChange(with: typedText)
     }
 
 }

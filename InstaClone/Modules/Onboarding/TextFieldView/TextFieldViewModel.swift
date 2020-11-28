@@ -9,7 +9,7 @@ import UIKit
 
 protocol TextFieldViewModelDelegate: AnyObject {
     
-    func textFieldDidEndEditing(in textFieldType: TextFieldType, with typedText: String)
+    func textFieldDidChange(in textFieldType: TextFieldType, with typedText: String)
     
 }
 
@@ -21,8 +21,8 @@ struct TextFieldViewModel {
     let placeholderText: String
     
     // MARK: - Public methods
-    func textFieldDidEndEditing(with typedText: String) {
-        delegate?.textFieldDidEndEditing(in: self.textFieldType, with: typedText)
+    func textFieldDidChange(with typedText: String) {
+        delegate?.textFieldDidChange(in: self.textFieldType, with: typedText)
     }
     
     func stopEditing() {
