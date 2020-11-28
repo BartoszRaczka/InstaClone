@@ -26,7 +26,7 @@ struct TextFieldViewModel {
     }
     
 //    func stopEditing() {
-//        self.onStopEditingAction
+//        self.onStopEditingAction?()
 //    }
     
 }

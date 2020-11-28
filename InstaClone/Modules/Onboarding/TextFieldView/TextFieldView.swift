@@ -84,5 +84,14 @@ extension TextFieldView: UITextFieldDelegate {
         }
         viewModel.textFieldDidChange(with: typedText)
     }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        guard
+//            let typedText = textField.text
+//        else {
+//            return
+//        }
+//        viewModel.textFieldDidChange(with: typedText)
+//    }
 
 }
