@@ -70,8 +70,8 @@ extension TextFieldView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        guard let typedText = textField.text,
-              typedText != ""
+        guard
+            let typedText = textField.text
         else {
             return
         }

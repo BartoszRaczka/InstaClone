@@ -40,6 +40,12 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
     }
     
     func loginButtonTapped() {
+        guard
+            self.login != "",
+            self.password != ""
+        else {
+            return
+        }
         delegate?.loginButtonTapped(login: self.login, password: self.password)
     }
     
