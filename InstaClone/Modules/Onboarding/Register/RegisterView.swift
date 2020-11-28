@@ -22,6 +22,8 @@ final class RegisterView: UIView {
     init(viewModel: RegisterViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -30,8 +32,13 @@ final class RegisterView: UIView {
     
     // MARK: - Public methods
     
-    func setup() {
+    func setupView() {
         
+        backgroundColor = .black
+        
+        setupTopLabel()
+        setupTextField()
+        setupButton()
     }
     
 }
@@ -68,9 +75,15 @@ private extension RegisterView {
         
         button.snp.makeConstraints { (make) in
             make.top.equalTo(textField)
-            make.bottom.leading.trailing.equalToSuperview() // I need to change bottom constraint
-            
+            make.leading.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
+        
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped() {
+        
     }
     
 }
