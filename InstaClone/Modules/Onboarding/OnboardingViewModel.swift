@@ -19,6 +19,8 @@ class OnboardingViewModel {
     var delegate: OnboardingViewModelDelegate?
     var login: String
     var password: String
+    var passwordTextFieldViewModel: TextFieldViewModel?
+    var loginTextFieldViewModel: TextFieldViewModel?
     
     init(login: String, password: String, delegate: OnboardingViewModelDelegate) {
         self.login = login

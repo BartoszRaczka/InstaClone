@@ -58,13 +58,23 @@ private extension OnboardingView {
     }
     
     func setupLoginTextField() {
-        var loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "Phone number, username or email")
+        viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "Phone number, username or email")
+        guard
+            let loginTextFieldViewModel = viewModel.loginTextFieldViewModel
+        else {
+            return
+        }
         loginTextField = TextFieldView(with: loginTextFieldViewModel)
         addSubview(loginTextField)
     }
     
     func setupPasswordTextField() {
-        var passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
+        viewModel.passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
+        guard
+            let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel
+        else {
+            return
+        }
         passwordTextField = TextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
     }
