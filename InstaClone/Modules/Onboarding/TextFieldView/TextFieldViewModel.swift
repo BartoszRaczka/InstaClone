@@ -25,8 +25,8 @@ struct TextFieldViewModel {
         delegate?.textFieldDidChange(in: self.textFieldType, with: typedText)
     }
     
-    func stopEditing() {
-        self.onStopEditingAction
-    }
+//    func stopEditing() {
+//        self.onStopEditingAction
+//    }
     
 }

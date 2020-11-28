@@ -18,7 +18,7 @@ class TextFieldView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        bindActions()
+//        bindActions()
         setupContainer()
         setupTextField()
     }
@@ -27,11 +27,11 @@ class TextFieldView: UIView {
         nil
     }
     
-    func bindActions() {
-        viewModel.onStopEditingAction = { [weak self] in
-            self?.textField.resignFirstResponder()
-        }
-    }
+//    func bindActions() {
+//        viewModel.onStopEditingAction = { [weak self] in
+//            self?.textField.resignFirstResponder()
+//        }
+//    }
     
 }
 
