@@ -21,7 +21,6 @@ struct TextFieldViewModel {
     
     // MARK: - Public methods
     func textFieldDidEndEditing(with typedText: String) {
-        print(typedText + " \(self.textFieldType)")
         delegate?.textFieldDidEndEditing(in: self.textFieldType, with: typedText)
     }
     

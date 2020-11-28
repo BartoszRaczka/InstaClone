@@ -35,11 +35,11 @@ final class OnboardingView: UIView {
     
     // MARK: - Private methods
     @objc private func loginButtonTapped() {
-        //TODO: call viewModel to do something with that
+        viewModel.loginButtonTapped()
     }
     
     @objc private func registerButtonTapped() {
-        //TODO: call viewModel to do something with that
+        viewModel.registerButtonTapped()
     }
     
 }
@@ -58,13 +58,13 @@ private extension OnboardingView {
     }
     
     func setupLoginTextField() {
-        var loginTextFieldViewModel = TextFieldViewModel(textFieldType: .login, placeholderText: "Phone number, username or email")
+        var loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "Phone number, username or email")
         loginTextField = TextFieldView(with: loginTextFieldViewModel)
         addSubview(loginTextField)
     }
     
     func setupPasswordTextField() {
-        var passwordTextFieldViewModel = TextFieldViewModel(textFieldType: .password, placeholderText: "Password")
+        var passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
         passwordTextField = TextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
     }
