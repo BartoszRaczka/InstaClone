@@ -7,14 +7,23 @@
 
 import Foundation
 
+protocol OnboardingViewModelDelegate {
+    
+    func loginButtonTapped(login: String, password: String)
+    func registerButtonTapped()
+    
+}
+
 class OnboardingViewModel {
     
+    var delegate: OnboardingViewModelDelegate?
     var login: String
     var password: String
     
-    init(login: String, password: String) {
+    init(login: String, password: String, delegate: OnboardingViewModelDelegate) {
         self.login = login
         self.password = password
+        self.delegate = delegate
     }
 }
 
@@ -31,11 +40,11 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
     }
     
     func loginButtonTapped() {
-        print("login button tapped in viewModel")
+        delegate?.loginButtonTapped(login: self.login, password: self.password)
     }
     
     func registerButtonTapped() {
-        print("register button tapped in viewModel")
+        delegate?.registerButtonTapped()
     }
     
 }

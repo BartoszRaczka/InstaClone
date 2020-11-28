@@ -29,7 +29,6 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-//        startFromTabBar() // TODO: this method should be called after user log in
         startFromOnboarding()
     }
     
@@ -47,10 +46,20 @@ final class AppCoordinator: Coordinator {
     func startFromOnboarding() {
         let coordinator = dependencyContainer.makeOnboardingCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            delegate: self
         )
         coordinators.append(coordinator)
         coordinator.start()
     }
     
+}
+
+extension AppCoordinator: OnboardingCoordinatorDelegate {
+    
+    func loginButtonTapped(login: String, password: String) {
+        // TODO: Check user data in firebase. Then, if login and password are correct, log user in.
+        startFromTabBar()
+    }
+        
 }
