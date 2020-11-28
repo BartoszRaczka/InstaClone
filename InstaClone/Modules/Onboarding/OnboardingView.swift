@@ -15,6 +15,7 @@ final class OnboardingView: UIView {
     private var logo: UILabel!
     private var loginTextField: TextFieldView!
     private var passwordTextField: TextFieldView!
+    private var loginButtonContainer: UIView!
     private var loginButton: UIButton!
     private var registerStackView: UIStackView!
     private var noAccountQuestionLabel: UILabel!
@@ -41,9 +42,6 @@ final class OnboardingView: UIView {
         //TODO: call viewModel to do something with that
     }
     
-    @objc private func loginTextFieldTextChanged() {
-        //TODO: call viewModel to do something with that
-    }
 }
 
 // MARK: - View setup
@@ -56,17 +54,17 @@ private extension OnboardingView {
         logo.text = "InstaClone"
         logo.textColor = .white
         logo.textAlignment = .center
-        logo.font = UIFont(name: "BrushScriptMTItalic", size: 64.0)
+        logo.font = UIFont(name: "SnellRoundhand-Bold", size: 44.0)
     }
     
     func setupLoginTextField() {
-        var loginTextFieldViewModel = TextFieldViewModel(placeholderText: "Phone number, username or email")
+        var loginTextFieldViewModel = TextFieldViewModel(textFieldType: .login, placeholderText: "Phone number, username or email")
         loginTextField = TextFieldView(with: loginTextFieldViewModel)
         addSubview(loginTextField)
     }
     
     func setupPasswordTextField() {
-        var passwordTextFieldViewModel = TextFieldViewModel(placeholderText: "Password")
+        var passwordTextFieldViewModel = TextFieldViewModel(textFieldType: .password, placeholderText: "Password")
         passwordTextField = TextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
     }
@@ -79,7 +77,19 @@ private extension OnboardingView {
         loginButton.setTitle("Log in", for: .normal)
         loginButton.backgroundColor = .systemBlue
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.layer.cornerRadius = 8.0
+        loginButton.layer.cornerRadius = 5.0
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.bottom.equalTo(loginButtonContainer).inset(6.0)
+            make.leading.trailing.equalTo(loginButtonContainer).inset(12.0)
+        }
+    }
+    
+    func setupLoginButtonContainer() {
+        loginButtonContainer = UIView()
+        addSubview(loginButtonContainer)
+        
+        setupLoginButton()
     }
     
     func setupLoginStackView() {
@@ -97,12 +107,12 @@ private extension OnboardingView {
         setupLogo()
         setupLoginTextField()
         setupPasswordTextField()
-        setupLoginButton()
+        setupLoginButtonContainer()
         
         loginStackView.addArrangedSubview(logo)
         loginStackView.addArrangedSubview(loginTextField)
         loginStackView.addArrangedSubview(passwordTextField)
-        loginStackView.addArrangedSubview(loginButton)
+        loginStackView.addArrangedSubview(loginButtonContainer)
     }
     
     func setupNoAccountQuestionLabel() {
@@ -143,18 +153,4 @@ private extension OnboardingView {
         registerStackView.addArrangedSubview(registerButton)
     }
     
-}
-
-extension OnboardingView: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // if implemented, called in place of textFieldDidEndEditing:
-        print("TextField did end editing with reason method called")
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //dodać logike która wyśle w tym momencie info do viewModelu że jest nowa wartość
-        return true
-    }
-    //czy jeśli mamy tutaj dwa textfieldy to powinienem zrobić oddzielny plik w którym je tworze a tutaj zrobić jedynie dwie instacje? - przemyśleć i chyba tak zrobić
 }

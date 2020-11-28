@@ -63,5 +63,20 @@ private extension TextFieldView {
 }
 
 extension TextFieldView: UITextFieldDelegate {
-    //TODO
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        guard let typedText = textField.text,
+              typedText != ""
+        else {
+            return
+        }
+        viewModel.textFieldDidEndEditing(with: typedText)
+        print("TextField did end editing with reason method called")
+    }
+
 }
