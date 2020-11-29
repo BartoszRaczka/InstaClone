@@ -29,13 +29,23 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        startFromTabBar()
+//        startFromTabBar() // TODO: this method should be called after user log in
+        startFromOnboarding()
     }
     
     // MARK: - Private methods
     
     private func startFromTabBar() {
         let coordinator = dependencyContainer.makeTabBarCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    func startFromOnboarding() {
+        let coordinator = dependencyContainer.makeOnboardingCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer
         )
