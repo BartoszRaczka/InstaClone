@@ -35,6 +35,11 @@ protocol CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> UserProfileCoordinator
   
+    func makeRegisterCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: RegisterCoordinatorDelegate
+    ) -> RegisterCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -98,5 +103,16 @@ extension DependencyContainer: CoordinatorFactory {
         dependencyContainer: dependencyContainer
         )
     }
-        
+      
+    func makeRegisterCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: RegisterCoordinatorDelegate
+    ) -> RegisterCoordinator {
+        RegisterCoordinator(
+        with: navigationController,
+        dependencyContainer: dependencyContainer,
+        delegate: delegate
+        )
+    }
 }
