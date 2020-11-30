@@ -50,6 +50,7 @@ private extension RegisterView {
     func setupTopLabel() {
         topLabel = UILabel()
         addSubview(topLabel)
+        
         topLabel.text = "Register by your phone number"
         topLabel.font = .systemFont(ofSize: 15, weight: .bold)
         
@@ -61,6 +62,14 @@ private extension RegisterView {
     func setupTextField() {
         textField = UITextField()
         addSubview(textField)
+        
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = .phonePad
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
+        textField.contentVerticalAlignment = .center
+        textField.contentHorizontalAlignment = .leading
         textField.placeholder = "Enter your phone number"
         
         textField.snp.makeConstraints { (make) in
@@ -83,6 +92,8 @@ private extension RegisterView {
     }
     
     @objc func buttonTapped() {
+        
+        viewModel.addPhoneNumber()
         
     }
     

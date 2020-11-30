@@ -36,13 +36,17 @@ final class RegisterCoordinator: Coordinator {
     //MARK: - Public methods
     
     func start() {
-        let registerNavigationController = UINavigationController()
-        let registerCoordinator = dependencyContainer.makeRegisterCoordinator(
-            with: registerNavigationController,
-            dependencyContainer: dependencyContainer,
-            delegate: delegate
-        )
+        let registerViewController = dependencyContainer.makeRegisterViewController(delegate: self)
+        navigationController.pushViewController(registerViewController, animated: true)
+    }
+
+}
+
+extension RegisterCoordinator: RegisterViewModelDelegate {
     
+    func addPhoneNumber() {
+//        let pinInputViewController = dependencyContainer.makePinInputViewController(delegate: self)
+//        navigationController.pushViewController(pinInputViewController, animated: true)
     }
 
 }
