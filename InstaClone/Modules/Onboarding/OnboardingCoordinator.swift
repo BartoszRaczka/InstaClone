@@ -9,7 +9,7 @@ import UIKit
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
     
-    func loginButtonTapped(login: String, password: String) //noone knows
+    func loginButtonTapped(userCredentials: UserCredentials)
     
 }
 
@@ -45,9 +45,8 @@ class OnboardingCoordinator: Coordinator {
 
 extension OnboardingCoordinator: OnboardingViewModelDelegate {
     
-    func loginButtonTapped(login: String, password: String) {
-        delegate?.loginButtonTapped(login: login, password: password)
-        print("coordinator knows about \(login) and \(password)")
+    func loginButtonTapped(userCredentials: UserCredentials) {
+        delegate?.loginButtonTapped(userCredentials: userCredentials)
     }
     
     func registerButtonTapped() {

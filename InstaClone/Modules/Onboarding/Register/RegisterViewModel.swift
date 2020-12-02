@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RegisterViewModelProtocol: AnyObject{
+protocol RegisterViewModelDelegate: AnyObject{
     
     func addPhoneNumber()
     

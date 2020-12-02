@@ -57,7 +57,7 @@ final class AppCoordinator: Coordinator {
 
 extension AppCoordinator: OnboardingCoordinatorDelegate {
     
-    func loginButtonTapped(login: String, password: String) {
+    func loginButtonTapped(userCredentials: UserCredentials) {
         // TODO: Check user data in firebase. Then, if login and password are correct, log user in.
         startFromTabBar()
     }

@@ -18,7 +18,6 @@ class TextFieldView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-//        bindActions()
         setupContainer()
         setupTextField()
     }
@@ -26,12 +25,6 @@ class TextFieldView: UIView {
     required init?(coder: NSCoder) {
         nil
     }
-    
-//    func bindActions() {
-//        viewModel.onStopEditingAction = { [weak self] in
-//            self?.textField.resignFirstResponder()
-//        }
-//    }
     
 }
 
@@ -85,13 +78,4 @@ extension TextFieldView: UITextFieldDelegate {
         viewModel.textFieldDidChange(with: typedText)
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        guard
-//            let typedText = textField.text
-//        else {
-//            return
-//        }
-//        viewModel.textFieldDidChange(with: typedText)
-//    }
-
 }

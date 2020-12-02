@@ -9,7 +9,7 @@ import Foundation
 
 protocol OnboardingViewModelDelegate {
     
-    func loginButtonTapped(login: String, password: String)
+    func loginButtonTapped(userCredentials: UserCredentials)
     func registerButtonTapped()
     
 }
@@ -17,16 +17,15 @@ protocol OnboardingViewModelDelegate {
 class OnboardingViewModel {
     
     var delegate: OnboardingViewModelDelegate?
-    var login: String
-    var password: String
+    var userCredentials: UserCredentials
     var passwordTextFieldViewModel: TextFieldViewModel?
     var loginTextFieldViewModel: TextFieldViewModel?
     
     init(login: String, password: String, delegate: OnboardingViewModelDelegate) {
-        self.login = login
-        self.password = password
         self.delegate = delegate
+        self.userCredentials = UserCredentials(login: login, password: password)
     }
+    
 }
 
 // MARK: - Public methods
@@ -35,22 +34,20 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
     func textFieldDidChange(in textFieldType: TextFieldType, with typedText: String) {
         switch textFieldType {
         case .login:
-            self.login = typedText
+            self.userCredentials.login = typedText
         case .password:
-            self.password = typedText
+            self.userCredentials.password = typedText
         }
     }
     
     func loginButtonTapped() {
-//        loginTextFieldViewModel?.stopEditing()
-//        passwordTextFieldViewModel?.stopEditing()
         guard
-            self.login != "",
-            self.password != ""
+            self.userCredentials.login != "",
+            self.userCredentials.password != ""
         else {
             return
         }
-        delegate?.loginButtonTapped(login: self.login, password: self.password)
+        delegate?.loginButtonTapped(userCredentials: userCredentials)
     }
     
     func registerButtonTapped() {

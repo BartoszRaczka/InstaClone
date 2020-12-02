@@ -7,13 +7,6 @@
 
 import SnapKit
 
-//protocol OnboardingViewControllerDelegate: AnyObject {
-//
-//    func loginButtonTapped(login: String, password: String)
-//    func registerButtonTapped()
-//
-//}
-
 final class OnboardingViewController: UIViewController {
     
     private let viewModel: OnboardingViewModel
