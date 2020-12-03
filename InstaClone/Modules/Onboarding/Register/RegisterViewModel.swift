@@ -9,7 +9,7 @@ import Foundation
 
 protocol RegisterViewModelDelegate: AnyObject{
     
-    func addPhoneNumber(phoneNumber: Int)
+    func addPhoneNumber(phoneNumber: String)
     
 }
 

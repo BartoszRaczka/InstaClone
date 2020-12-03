@@ -33,7 +33,6 @@ final class RegisterView: UIView {
     // MARK: - Public methods
     
     func setupView() {
-        
         backgroundColor = .black
         
         setupTopLabel()
@@ -92,9 +91,7 @@ private extension RegisterView {
     }
     
     @objc func buttonTapped() {
-        
         viewModel.addPhoneNumber()
-        
     }
     
 }

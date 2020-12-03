@@ -10,6 +10,7 @@ import SnapKit
 protocol RegisterViewControllerFactory {
     
     func makeRegisterViewController(delegate: RegisterViewModelDelegate) -> RegisterViewController
+    
 }
 
 extension DependencyContainer: RegisterViewControllerFactory {

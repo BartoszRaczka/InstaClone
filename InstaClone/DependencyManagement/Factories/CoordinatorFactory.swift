@@ -125,9 +125,9 @@ extension DependencyContainer: CoordinatorFactory {
         delegate: RegisterCoordinatorDelegate
     ) -> RegisterCoordinator {
         RegisterCoordinator(
-        with: navigationController,
-        dependencyContainer: dependencyContainer,
-        delegate: delegate
+            with: navigationController,
+            dependencyContainer: dependencyContainer,
+            delegate: delegate
         )
     }
 }
