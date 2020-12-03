@@ -9,7 +9,7 @@ import Foundation
 
 protocol OnboardingViewModelDelegate {
     
-    func loginButtonTapped(userCredentials: UserCredentials)
+    func loginButtonTapped()
     func registerButtonTapped()
     
 }
@@ -20,6 +20,7 @@ class OnboardingViewModel {
     private var userCredentials: UserCredentials
     var passwordTextFieldViewModel: TextFieldViewModel?
     var loginTextFieldViewModel: TextFieldViewModel?
+    private let onboardingService = OnboardingService()
     
     init(delegate: OnboardingViewModelDelegate) {
         self.delegate = delegate
@@ -47,7 +48,14 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
         else {
             return
         }
-        delegate?.loginButtonTapped(userCredentials: userCredentials)
+        onboardingService.login(with: userCredentials, completionHandler: { result in
+            switch result {
+            case .success:
+                self.delegate?.loginButtonTapped()
+            case .failure:
+                print("failed to login")
+            }
+        })
     }
     
     func registerButtonTapped() {

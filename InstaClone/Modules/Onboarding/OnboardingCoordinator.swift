@@ -9,7 +9,7 @@ import UIKit
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
     
-    func loginButtonTapped(userCredentials: UserCredentials)
+    func loginButtonTapped()
     
 }
 
@@ -45,8 +45,8 @@ class OnboardingCoordinator: Coordinator {
 
 extension OnboardingCoordinator: OnboardingViewModelDelegate {
     
-    func loginButtonTapped(userCredentials: UserCredentials) {
-        delegate?.loginButtonTapped(userCredentials: userCredentials)
+    func loginButtonTapped() {
+        delegate?.loginButtonTapped()
     }
     
     func registerButtonTapped() {
