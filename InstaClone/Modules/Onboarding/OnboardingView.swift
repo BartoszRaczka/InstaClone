@@ -24,11 +24,13 @@ final class OnboardingView: UIView {
     private var registerStackView: UIStackView!
     private var noAccountQuestionLabel: UILabel!
     private var registerButton: UIButton!
+    private var errorLabel: UILabel!
     
     init(with viewModel: OnboardingViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
+        bindActions()
         setupLoginStackView()
         setupRegisterStackView()
     }
@@ -38,6 +40,12 @@ final class OnboardingView: UIView {
     }
     
     // MARK: - Private methods
+    
+    private func bindActions() {
+        viewModel.onFailedToLoginAction = {
+            self.setupErrorLabel()
+        }
+    }
     
     @objc private func loginButtonTapped() {
         viewModel.loginButtonTapped()
@@ -163,6 +171,21 @@ private extension OnboardingView {
         
         registerStackView.addArrangedSubview(noAccountQuestionLabel)
         registerStackView.addArrangedSubview(registerButton)
+    }
+    
+    func setupErrorLabel() {
+        errorLabel = UILabel()
+        addSubview(errorLabel)
+        
+        errorLabel.text = "Incorrect login or password"
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginStackView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
     }
     
 }

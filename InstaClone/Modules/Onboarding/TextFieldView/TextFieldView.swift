@@ -47,6 +47,7 @@ private extension TextFieldView {
         textField.placeholder = viewModel.placeholderText
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.autocapitalizationType = .none
         textField.keyboardType = UIKeyboardType.emailAddress
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextField.ViewMode.whileEditing

@@ -21,6 +21,7 @@ class OnboardingViewModel {
     var passwordTextFieldViewModel: TextFieldViewModel?
     var loginTextFieldViewModel: TextFieldViewModel?
     private let onboardingService = OnboardingService()
+    var onFailedToLoginAction: (() -> ())?
     
     init(delegate: OnboardingViewModelDelegate) {
         self.delegate = delegate
@@ -53,6 +54,7 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
             case .success:
                 self.delegate?.loginButtonTapped()
             case .failure:
+                self.onFailedToLoginAction?()
                 print("failed to login")
             }
         })
