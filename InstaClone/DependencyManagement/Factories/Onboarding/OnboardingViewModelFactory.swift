@@ -15,8 +15,6 @@ extension DependencyContainer: OnboardingViewModelFactory {
     
     func makeOnboardingViewModel(delegate: OnboardingViewModelDelegate) -> OnboardingViewModel {
         OnboardingViewModel(
-            login: "",
-            password: "",
             delegate: delegate
         )
     }

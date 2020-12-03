@@ -9,7 +9,11 @@ import SnapKit
 
 final class OnboardingView: UIView {
     
+    // MARK: - Properties
+    
     private let viewModel: OnboardingViewModel
+    
+    // MARK: - UI Properties
     
     private var loginStackView: UIStackView!
     private var logo: UILabel!
@@ -34,6 +38,7 @@ final class OnboardingView: UIView {
     }
     
     // MARK: - Private methods
+    
     @objc private func loginButtonTapped() {
         viewModel.loginButtonTapped()
     }
@@ -45,6 +50,7 @@ final class OnboardingView: UIView {
 }
 
 // MARK: - View setup
+
 private extension OnboardingView {
     
     func setupLogo() {
@@ -59,9 +65,7 @@ private extension OnboardingView {
     
     func setupLoginTextField() {
         viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "Phone number, username or email")
-        guard
-            let loginTextFieldViewModel = viewModel.loginTextFieldViewModel
-        else {
+        guard let loginTextFieldViewModel = viewModel.loginTextFieldViewModel else {
             return
         }
         loginTextField = TextFieldView(with: loginTextFieldViewModel)
@@ -70,9 +74,7 @@ private extension OnboardingView {
     
     func setupPasswordTextField() {
         viewModel.passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
-        guard
-            let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel
-        else {
+        guard let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel else {
             return
         }
         passwordTextField = TextFieldView(with: passwordTextFieldViewModel)

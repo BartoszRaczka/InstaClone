@@ -17,13 +17,13 @@ protocol OnboardingViewModelDelegate {
 class OnboardingViewModel {
     
     var delegate: OnboardingViewModelDelegate?
-    var userCredentials: UserCredentials
+    private var userCredentials: UserCredentials
     var passwordTextFieldViewModel: TextFieldViewModel?
     var loginTextFieldViewModel: TextFieldViewModel?
     
-    init(login: String, password: String, delegate: OnboardingViewModelDelegate) {
+    init(delegate: OnboardingViewModelDelegate) {
         self.delegate = delegate
-        self.userCredentials = UserCredentials(login: login, password: password)
+        self.userCredentials = UserCredentials()
     }
     
 }
