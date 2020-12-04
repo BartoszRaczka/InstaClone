@@ -42,7 +42,7 @@ final class PinInputView: UIView {
         textLabel = UILabel()
         addSubview(textLabel)
         
-        textLabel.text = "You will receive SMS with your pin number and enter it below."
+        textLabel.text = "You will receive SMS with your pin number. Enter it below."
         textLabel.textColor = .white
         textLabel.textAlignment = .center
         
