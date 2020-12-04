@@ -22,6 +22,7 @@ final class PinInputView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -30,11 +31,14 @@ final class PinInputView: UIView {
     
     // MARK: - Public methods
     
-    
+    func setupView() {
+        setupTextLabel()
+        setupTextField()
+    }
     
     // MARK: - View setup
     
-    func setupTextLabel() {
+    private func setupTextLabel() {
         textLabel = UILabel()
         addSubview(textLabel)
         
@@ -47,7 +51,7 @@ final class PinInputView: UIView {
         }
     }
     
-    func setupTextField() {
+    private func setupTextField() {
         textField = UITextField()
         addSubview(textField)
         
