@@ -6,6 +6,28 @@
 //
 
 import Foundation
-class PinInputViewModel {
+
+protocol PinInputViewModelDelegate: AnyObject {
+    
+    func pinEntered()
+    
+}
+
+final class PinInputViewModel {
+
+    //    MARK: - Properties
+    
+    private weak var delegate: PinInputViewModelDelegate?
+    
+    //    MARK: - Life Cycle
+    
+    init(delegate: PinInputViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
+    //    MARK: - Public methods
+    
+    func pinEntered() {
+    }
     
 }
