@@ -25,7 +25,9 @@ final class RegisterViewController: UIViewController {
     }
     
     override func loadView() {
+
         view = RegisterView(viewModel: viewModel)
+
     }
     
 }

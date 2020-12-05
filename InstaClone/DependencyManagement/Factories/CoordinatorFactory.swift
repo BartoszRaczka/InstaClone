@@ -37,7 +37,8 @@ protocol CoordinatorFactory {
     
     func makeOnboardingCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: OnboardingCoordinatorDelegate
     ) -> OnboardingCoordinator
   
     func makeRegisterCoordinator(
@@ -111,11 +112,13 @@ extension DependencyContainer: CoordinatorFactory {
     
     func makeOnboardingCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: OnboardingCoordinatorDelegate
     ) -> OnboardingCoordinator {
         OnboardingCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            delegate: delegate
         )
     }
       
