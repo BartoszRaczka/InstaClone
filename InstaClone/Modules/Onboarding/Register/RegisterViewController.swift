@@ -15,7 +15,7 @@ final class RegisterViewController: UIViewController {
     
     //MARK: - Life cycle
     
-    init(viewModel: RegisterViewModel) {
+    init(with viewModel: RegisterViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,7 +25,7 @@ final class RegisterViewController: UIViewController {
     }
     
     override func loadView() {
-        view = RegisterView(with: viewModel)
+        view = RegisterView(viewModel: viewModel)
     }
     
 }
