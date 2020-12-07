@@ -7,14 +7,16 @@
 
 protocol PinInputViewModelFactory {
     
-    func makePinInputViewModel() -> PinInputViewModel
+    func makePinInputViewModel(delegate: PinInputViewModelDelegate) -> PinInputViewModel
     
 }
 
 extension DependencyContainer: PinInputViewModelFactory {
     
-    func makePinInputViewModel() -> PinInputViewModel {
-        PinInputViewModel()
+    func makePinInputViewModel(delegate: PinInputViewModelDelegate) -> PinInputViewModel {
+        PinInputViewModel(
+            delegate: delegate
+        )
     }
     
 }
