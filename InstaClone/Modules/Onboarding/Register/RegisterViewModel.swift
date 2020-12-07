@@ -19,7 +19,7 @@ final class RegisterViewModel {
     
     private weak var delegate: RegisterViewModelDelegate?
     
-    private var phoneNumber: Int?
+    private var typedText: String?
     
     //    MARK: - Life Cycle
     
@@ -29,7 +29,16 @@ final class RegisterViewModel {
     
     //    MARK: - Public methods
     
-    func addPhoneNumber() {
+    func buttonTapped() {
+        guard let phoneNumber = self.typedText else {
+            return
+        }
+        delegate?.addPhoneNumber(phoneNumber: phoneNumber)
+    }
+    
+    func textFieldDidChange(with typedText: String) {
+        
+        self.typedText = typedText
         
     }
     
