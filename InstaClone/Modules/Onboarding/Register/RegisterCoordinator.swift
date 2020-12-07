@@ -49,7 +49,7 @@ extension RegisterCoordinator: RegisterViewModelDelegate, PinInputViewModelDeleg
         navigationController.pushViewController(pinInputViewController, animated: true)
     }
 
-    func pinEntered() {
+    func pinEntered(pin: String) {
         print("pin entered")
     }
     
