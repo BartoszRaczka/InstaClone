@@ -7,14 +7,14 @@
 
 protocol OnboardingViewControllerFactory {
     
-    func makeOnboardingViewController() -> OnboardingViewController
+    func makeOnboardingViewController(delegate: OnboardingViewModelDelegate) -> OnboardingViewController
     
 }
 
 extension DependencyContainer: OnboardingViewControllerFactory {
     
-    func makeOnboardingViewController() -> OnboardingViewController {
-        OnboardingViewController(with: makeOnboardingViewModel())
+    func makeOnboardingViewController(delegate: OnboardingViewModelDelegate) -> OnboardingViewController {
+        OnboardingViewController(with: makeOnboardingViewModel(delegate: delegate))
     }
     
 }

@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol RegisterViewModelProtocol: AnyObject{
+protocol RegisterViewModelDelegate: AnyObject{
     
-    func addPhoneNumber()
+    func addPhoneNumber(phoneNumber: String)
     
 }
 
@@ -18,6 +18,8 @@ final class RegisterViewModel {
     //    MARK: - Properties
     
     private weak var delegate: RegisterViewModelDelegate?
+    
+    private var phoneNumber: Int?
     
     //    MARK: - Life Cycle
     
