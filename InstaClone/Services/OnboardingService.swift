@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 import FirebaseAuth
 
 protocol OnboardingServiceProtocol {
@@ -30,9 +29,6 @@ final class OnboardingService: OnboardingServiceProtocol {
     
     func login(with userCredentials: UserCredentials, completionHandler: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().signIn(withEmail: userCredentials.login, password: userCredentials.password) { [weak self] authResult, error in
-            guard let strongSelf = self else {
-                return
-            }
             if let error = error {
                 completionHandler(.failure(error))
                 return
