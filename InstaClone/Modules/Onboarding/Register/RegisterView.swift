@@ -109,9 +109,7 @@ extension RegisterView: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard
-            let typedText = textField.text
-        else {
+        guard let typedText = textField.text else {
             return
         }
         viewModel.textFieldDidChange(with: typedText)
