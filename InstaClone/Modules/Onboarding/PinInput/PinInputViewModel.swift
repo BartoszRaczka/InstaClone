@@ -37,9 +37,7 @@ final class PinInputViewModel {
     }
     
     func textFieldDidChange(with typedText: String) {
-        
         self.typedText = typedText
-        
     }
     
 }
