@@ -49,6 +49,7 @@ extension OnboardingViewModel: TextFieldViewModelDelegate {
         else {
             return
         }
+        
         onboardingService.login(with: userCredentials, completionHandler: { result in
             switch result {
             case .success:
