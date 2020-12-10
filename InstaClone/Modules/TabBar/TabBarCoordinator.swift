@@ -56,8 +56,8 @@ final class TabBarCoordinator: Coordinator {
         let tabBarViewController = TabBarViewController()
         tabBarViewController.viewControllers = [
             homeFeedNavigationController,
-            profilePageNavigationController,
-            photoNavigationController
+            photoNavigationController,
+            profilePageNavigationController
         ]
         navigationController.pushViewController(tabBarViewController, animated: false)
     }

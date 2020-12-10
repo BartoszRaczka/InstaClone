@@ -29,7 +29,7 @@ class PhotoCoordinator: Coordinator, PhotoViewModelDelegate {
     
     func start() {
         let photoViewController = dependencyContainer.makePhotoViewController(delegate: self)
-        navigationController.tabBarItem = .init(title: "Photo", image: UIImage(systemName: "person.circle.fill"), tag: 2)
+        navigationController.tabBarItem = .init(title: "Photo", image: UIImage(systemName: "camera"), tag: 1)
         navigationController.pushViewController(photoViewController, animated: true)
     }
     
