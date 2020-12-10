@@ -7,5 +7,6 @@ target 'InstaClone' do
     pod 'Firebase/Analytics'
     pod 'Firebase/Database'
     pod 'Firebase/Core'
+    pod 'Firebase/Auth'
 end
 
