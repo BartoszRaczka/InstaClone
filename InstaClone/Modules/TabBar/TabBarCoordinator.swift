@@ -45,10 +45,19 @@ final class TabBarCoordinator: Coordinator {
         coordinators.append(profilePageCoordinator)
         profilePageCoordinator.start()
         
+        let photoNavigationController = UINavigationController()
+        let photoCoordinator = dependencyContainer.makePhotoCoordinator(
+            with: photoNavigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(photoCoordinator)
+        photoCoordinator.start()
+        
         let tabBarViewController = TabBarViewController()
         tabBarViewController.viewControllers = [
             homeFeedNavigationController,
-            profilePageNavigationController
+            profilePageNavigationController,
+            photoNavigationController
         ]
         navigationController.pushViewController(tabBarViewController, animated: false)
     }

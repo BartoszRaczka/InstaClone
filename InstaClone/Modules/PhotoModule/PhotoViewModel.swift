@@ -7,6 +7,16 @@
 
 import Foundation
 
+protocol PhotoViewModelDelegate {
+    
+}
+
 class PhotoViewModel {
+    
+    let delegate: PhotoViewModelDelegate?
+    
+    init(delegate: PhotoViewModelDelegate) {
+        self.delegate = delegate
+    }
     
 }
