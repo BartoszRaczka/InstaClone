@@ -29,7 +29,7 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        startFromTabBar()
+        startFromOnboarding()
     }
     
     // MARK: - Private methods
@@ -43,4 +43,22 @@ final class AppCoordinator: Coordinator {
         coordinator.start()
     }
     
+    func startFromOnboarding() {
+        let coordinator = dependencyContainer.makeOnboardingCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer,
+            delegate: self
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+}
+
+extension AppCoordinator: OnboardingCoordinatorDelegate {
+    
+    func loginButtonTapped() {
+        startFromTabBar()
+    }
+        
 }
