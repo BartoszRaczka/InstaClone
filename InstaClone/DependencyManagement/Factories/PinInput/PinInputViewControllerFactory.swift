@@ -7,14 +7,15 @@
 
 protocol PinInputViewControllerFactory {
     
-    func makePinInputViewController() -> PinInputViewController
+    func makePinInputViewController(delegate: PinInputViewModelDelegate) -> PinInputViewController
     
 }
 
 extension DependencyContainer: PinInputViewControllerFactory {
     
-    func makePinInputViewController() -> PinInputViewController {
-        PinInputViewController(with: makePinInputViewModel())
+    func makePinInputViewController(delegate: PinInputViewModelDelegate) -> PinInputViewController {
+        PinInputViewController(with: makePinInputViewModel(delegate: delegate))
     }
     
 }
+

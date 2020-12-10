@@ -35,8 +35,8 @@ final class RegisterView: UIView {
     func setupView() {
         backgroundColor = .black
         
-        setupTopLabel()
         setupTextField()
+        setupTopLabel()
         setupButton()
     }
     
@@ -52,9 +52,12 @@ private extension RegisterView {
         
         topLabel.text = "Register by your phone number"
         topLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        topLabel.textColor = .white
+        topLabel.textAlignment = .center
         
         topLabel.snp.makeConstraints { (make) in
-            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(textField.snp.top)
+            make.leading.trailing.equalToSuperview()
         }
     }
     
@@ -70,28 +73,46 @@ private extension RegisterView {
         textField.contentVerticalAlignment = .center
         textField.contentHorizontalAlignment = .leading
         textField.placeholder = "Enter your phone number"
+        textField.delegate = self
         
         textField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(topLabel)
+            make.centerY.equalToSuperview()
         }
     }
     
     func setupButton() {
         button = UIButton()
         addSubview(button)
+        button.backgroundColor = .systemBlue
+        button.setTitle("Next", for: .normal)
         
         button.snp.makeConstraints { (make) in
-            make.top.equalTo(textField)
+            make.top.equalTo(textField.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.centerY.equalToSuperview()
         }
         
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
     @objc func buttonTapped() {
-        viewModel.addPhoneNumber()
+        viewModel.buttonTapped()
+    }
+    
+}
+
+extension RegisterView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let typedText = textField.text else {
+            return
+        }
+        viewModel.textFieldDidChange(with: typedText)
     }
     
 }

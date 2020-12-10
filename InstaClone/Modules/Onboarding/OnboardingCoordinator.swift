@@ -19,7 +19,7 @@ class OnboardingCoordinator: Coordinator {
     
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
-    private let coordinators = [Coordinator]()
+    private var coordinators = [Coordinator]()
     var delegate: OnboardingCoordinatorDelegate?
     
     // MARK: - Life Cycle
@@ -50,8 +50,19 @@ extension OnboardingCoordinator: OnboardingViewModelDelegate {
     }
     
     func registerButtonTapped() {
-//        let registerViewController = dependencyContainer.makeRegisterViewController(delegate: self)
-//        navigationController.pushViewController(registerViewController, animated: true)
+        let coordinator = dependencyContainer.makeRegisterCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer,
+            delegate: self
+        )
+        coordinators.append(coordinator)
+        coordinator.start()
     }
     
 }
+
+extension OnboardingCoordinator: RegisterCoordinatorDelegate {
+    
+}
+
+
