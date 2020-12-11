@@ -34,11 +34,24 @@ protocol CoordinatorFactory {
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
     ) -> UserProfileCoordinator
+    
+    func makeOnboardingCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: OnboardingCoordinatorDelegate
+    ) -> OnboardingCoordinator
   
     func makePhotoCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer
     ) -> PhotoCoordinator
+
+    func makeRegisterCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: RegisterCoordinatorDelegate
+    ) -> RegisterCoordinator
+
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -98,8 +111,32 @@ extension DependencyContainer: CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> UserProfileCoordinator {
         UserProfileCoordinator(
-        with: navigationController,
-        dependencyContainer: dependencyContainer
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+    
+    func makeOnboardingCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: OnboardingCoordinatorDelegate
+    ) -> OnboardingCoordinator {
+        OnboardingCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer,
+            delegate: delegate
+        )
+    }
+      
+    func makeRegisterCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer,
+        delegate: RegisterCoordinatorDelegate
+    ) -> RegisterCoordinator {
+        RegisterCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer,
+            delegate: delegate
         )
     }
     
