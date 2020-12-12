@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class AppCoordinator: Coordinator {
     
@@ -29,7 +30,13 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        startFromOnboarding()
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.startFromTabBar()
+            } else {
+                self.startFromOnboarding()
+            }
+        }
     }
     
     // MARK: - Private methods
@@ -62,3 +69,4 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
     }
         
 }
+
