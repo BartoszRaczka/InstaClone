@@ -11,6 +11,6 @@ protocol ContentServiceProtocol {
     
 }
 
-class ContentService: ContentServiceProtocol {
+final class ContentService: ContentServiceProtocol {
     
 }
