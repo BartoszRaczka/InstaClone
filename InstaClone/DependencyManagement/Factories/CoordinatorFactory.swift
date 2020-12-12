@@ -145,8 +145,8 @@ extension DependencyContainer: CoordinatorFactory {
         dependencyContainer: DependencyContainer
     ) -> PhotoCoordinator {
         PhotoCoordinator(
-        with: navigationController,
-        dependencyContainer: dependencyContainer
+            with: navigationController,
+            dependencyContainer: dependencyContainer
         )
     }
         
