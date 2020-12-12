@@ -41,11 +41,17 @@ protocol CoordinatorFactory {
         delegate: OnboardingCoordinatorDelegate
     ) -> OnboardingCoordinator
   
+    func makePhotoCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> PhotoCoordinator
+
     func makeRegisterCoordinator(
         with navigationController: UINavigationController,
         dependencyContainer: DependencyContainer,
         delegate: RegisterCoordinatorDelegate
     ) -> RegisterCoordinator
+
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -133,4 +139,15 @@ extension DependencyContainer: CoordinatorFactory {
             delegate: delegate
         )
     }
+    
+    func makePhotoCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> PhotoCoordinator {
+        PhotoCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
+        
 }
