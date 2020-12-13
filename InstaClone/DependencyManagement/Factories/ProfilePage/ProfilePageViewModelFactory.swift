@@ -15,10 +15,6 @@ extension DependencyContainer: ProfilePageViewModelFactory {
     
     func makeProfilePageViewModel(delegate: ProfilePageViewModelDelegate) -> ProfilePageViewModel {
         ProfilePageViewModel(
-            numberOfPosts: 1,
-            numberOfFollowers: 0,
-            numberOfFollowing: 0,
-            descriptionLabelText: "Description",
             delegate: delegate
         )
     }

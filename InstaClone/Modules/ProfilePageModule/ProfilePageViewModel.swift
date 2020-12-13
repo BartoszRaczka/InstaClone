@@ -29,17 +29,26 @@ struct ProfilePageViewModel {
     
     var delegate: ProfilePageViewModelDelegate?
     
-    init() {
+    init(delegate: ProfilePageViewModelDelegate) {
+        self.delegate = delegate
         Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard let userID = user?.uid else { return }
-            userProfileService.getUser(withID: userID) { result in
-                switch result {
-                case .success(let userData) :
-//                    numberOfPosts = userData
-                return
-                case .failure:
-                    return
+            if let userID = user?.uid {
+                userProfileService.getUser(withID: userID) { result in
+                    switch result {
+                    case .success(let userData) :
+                        numberOfFollowers = userData.followers.count
+                        numberOfFollowing = userData.following.count
+                        numberOfPosts = 100
+                        descriptionLabelText = "asd"
+                    case .failure:
+                        return
+                    }
                 }
+            } else {
+                numberOfFollowing = 1
+                numberOfFollowers = 2
+                numberOfPosts = 3
+                descriptionLabelText = "description"
             }
         }
     }
