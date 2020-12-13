@@ -30,13 +30,11 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
+        if Auth.auth().currentUser != nil {
                 self.startFromTabBar()
             } else {
                 self.startFromOnboarding()
             }
-        }
     }
     
     // MARK: - Private methods
