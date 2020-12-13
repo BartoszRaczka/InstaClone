@@ -17,10 +17,11 @@ class PhotoViewModel {
     let delegate: PhotoViewModelDelegate?
     private var capturedPhoto: UIImage!
     var onRecapturePhotoAction: (() -> ())?
-    var contentService = ContentService()
+    private let contentService: ContentService
     
-    init(delegate: PhotoViewModelDelegate) {
+    init(delegate: PhotoViewModelDelegate, contentService: ContentService) {
         self.delegate = delegate
+        self.contentService = contentService
     }
     
 }

@@ -11,5 +11,6 @@ final class DependencyContainer {
     lazy var storiesService: StoriesServiceProtocol = StoriesService()
     lazy var userProfileService: UserProfileServiceProtocol = UserProfileService()
     lazy var photoFeedService: PhotoFeedServiceProtocol = PhotoFeedService()
+    lazy var contentService: ContentServiceProtocol = ContentService()
 
 }

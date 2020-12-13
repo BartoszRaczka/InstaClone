@@ -7,14 +7,17 @@
 
 protocol PhotoViewModelFactory {
     
-    func makePhotoViewModel(delegate: PhotoViewModelDelegate) -> PhotoViewModel
+    func makePhotoViewModel(delegate: PhotoViewModelDelegate, contentService: ContentService) -> PhotoViewModel
     
 }
 
 extension DependencyContainer: PhotoViewModelFactory {
     
-    func makePhotoViewModel(delegate: PhotoViewModelDelegate) -> PhotoViewModel {
-        PhotoViewModel(delegate: delegate)
+    func makePhotoViewModel(delegate: PhotoViewModelDelegate, contentService: ContentService) -> PhotoViewModel {
+        PhotoViewModel(
+            delegate: delegate,
+            contentService: contentService
+        )
     }
     
 }
