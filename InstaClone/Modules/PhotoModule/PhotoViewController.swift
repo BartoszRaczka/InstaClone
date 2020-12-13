@@ -5,7 +5,6 @@
 //  Created by new on 10/12/2020.
 //
 
-import Foundation
 import SnapKit
 
 class PhotoViewController: UIViewController {
@@ -18,7 +17,12 @@ class PhotoViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = PhotoView(with: self.viewModel)
     }
     
 }

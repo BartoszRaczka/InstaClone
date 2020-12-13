@@ -10,4 +10,15 @@ import SnapKit
 
 class PhotoView: UIView {
     
+    private let viewModel: PhotoViewModel
+    
+    init(with viewModel: PhotoViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
 }
