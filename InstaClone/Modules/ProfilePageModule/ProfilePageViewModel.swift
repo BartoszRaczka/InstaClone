@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol ProfilePageViewModelDelegate: AnyObject {
     
@@ -19,12 +20,29 @@ protocol ProfilePageViewModelDelegate: AnyObject {
 
 struct ProfilePageViewModel {
     
+    let userProfileService = UserProfileService()
+    
     var numberOfPosts: Int
     var numberOfFollowers: Int
     var numberOfFollowing: Int
     var descriptionLabelText: String
     
     var delegate: ProfilePageViewModelDelegate?
+    
+    init() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let userID = user?.uid else { return }
+            userProfileService.getUser(withID: userID) { result in
+                switch result {
+                case .success(let userData) :
+//                    numberOfPosts = userData
+                return
+                case .failure:
+                    return
+                }
+            }
+        }
+    }
     
     func didTapUserProfilePictureButton() {
         delegate?.didTapUserProfilePictureButton()
