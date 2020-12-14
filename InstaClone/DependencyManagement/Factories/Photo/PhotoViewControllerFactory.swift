@@ -14,7 +14,7 @@ protocol PhotoViewControllerFactory {
 extension DependencyContainer: PhotoViewControllerFactory {
     
     func makePhotoViewController(delegate: PhotoViewModelDelegate) -> PhotoViewController {
-        PhotoViewController(with: makePhotoViewModel(delegate: delegate))
+        PhotoViewController(with: makePhotoViewModel(delegate: delegate, contentService: contentService as! ContentService))
     }
     
 }
