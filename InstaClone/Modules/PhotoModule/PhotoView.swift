@@ -29,6 +29,7 @@ class PhotoView: UIView {
     required init?(coder: NSCoder) {
         nil
     }
+
 }
 
 // MARK: - View setup
