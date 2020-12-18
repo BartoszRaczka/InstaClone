@@ -22,10 +22,10 @@ struct ProfilePageViewModel {
     
     let userProfileService = UserProfileService()
     
-    var numberOfPosts: Int
-    var numberOfFollowers: Int
-    var numberOfFollowing: Int
-    var descriptionLabelText: String
+    var numberOfPosts: Int?
+    var numberOfFollowers: Int?
+    var numberOfFollowing: Int?
+    var descriptionLabelText: String?
     
     var delegate: ProfilePageViewModelDelegate?
     
