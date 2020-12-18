@@ -15,20 +15,14 @@ protocol ContentServiceProtocol {
 final class ContentService: ContentServiceProtocol {
     
     let storage = Storage.storage()
-    
-    func uploadRef() {
-        let randomID = UUID.init().uuidString
-        let uploadRef = storage.reference(withPath: "photos/\(randomID).jpg")
-        guard let imageData = imageView.image?.jpegData(compressionQuality: 0.75) else { return }
-        let uploadMetadata = StorageMetadata.init()
-        uploadMetadata.contentType = "image/jpeg"
+   
+    func uploadData() {
+        let imageID = UUID().uuidString
+        let image = UIImage(named: "\()")
+        let data = image?.pngData()
         
-        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
-            if let error = error {
-                print("error")
-                return
-            }
-            print("\(String(downloadMetadata))")
+        let reference = storage.reference(withPath: "users/\()/photos/\(imageID).png")
+        reference.putData(data, metadata: nil) { metadata, error in
         }
     }
 }
