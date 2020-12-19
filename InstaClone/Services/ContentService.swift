@@ -19,11 +19,11 @@ final class ContentService: ContentServiceProtocol {
     let storage = Storage.storage()
    
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+            let imageID = UUID().uuidString
         guard
-            let imageID = try? UUID().uuidString,
-            let image = try? UIImage(named: "\(image)"),
-            let data = try? image.pngData(),
-            let userID = try? Auth.auth().currentUser?.uid
+            let image = UIImage(named: "\(image)"),
+            let data = image.pngData(),
+            let userID = Auth.auth().currentUser?.uid
         else {
             completionHandler(.failure(ServiceError.failedToUploadPhoto))
             return
