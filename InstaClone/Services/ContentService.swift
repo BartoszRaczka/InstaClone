@@ -12,10 +12,11 @@ import FirebaseStorage
 
 protocol ContentServiceProtocol {
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func downloadData(imageID: String, image: UIImage, data: Data, UserID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class ContentService: ContentServiceProtocol {
-    
+ 
     let storage = Storage.storage()
    
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
@@ -39,4 +40,9 @@ final class ContentService: ContentServiceProtocol {
             }
         }
     }
+    
+    func downloadData(imageID: String, image: UIImage, data: Data, UserID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        
+    }
+
 }
