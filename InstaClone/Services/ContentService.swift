@@ -42,7 +42,25 @@ final class ContentService: ContentServiceProtocol {
     }
     
     func downloadData(imageID: String, image: UIImage, data: Data, UserID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        let imageID = UUID().uuidString
+            guard
+                let image = UIImage(named: "\(image)"),
+                let data = image.pngData(),
+                let userID = Auth.auth().currentUser?.uid
+            else {
+                completionHandler(.failure(ServiceError.failedToUploadPhoto))
+                return
+            }
+        completionHandler(.success(()))
         
+        let reference = storage.reference(withPath: "users/\(userID)/photos/\(imageID).png")
+        reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else {
+                completionHandler(.success(()))
+            }
+        }
     }
 
 }

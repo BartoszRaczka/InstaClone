@@ -12,4 +12,5 @@ enum ServiceError: Error {
     case failedToEncodeUserData
     case failedToLogin
     case failedToUploadPhoto
+    case failedToDownloadPhoto
 }
