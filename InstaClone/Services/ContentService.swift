@@ -12,7 +12,7 @@ import FirebaseStorage
 
 protocol ContentServiceProtocol {
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
-    func downloadData(imageID: String, image: UIImage, data: Data, UserID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func downloadData(imageID: String, UserID: UserData, completionHandler: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class ContentService: ContentServiceProtocol {
@@ -21,14 +21,14 @@ final class ContentService: ContentServiceProtocol {
    
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
         let imageID = UUID().uuidString
-            guard
-                let image = UIImage(named: "\(image)"),
-                let data = image.pngData(),
-                let userID = Auth.auth().currentUser?.uid
-            else {
-                completionHandler(.failure(ServiceError.failedToUploadPhoto))
-                return
-            }
+        guard
+            let image = UIImage(named: "\(image)"),
+            let data = image.pngData(),
+            let userID = Auth.auth().currentUser?.uid
+        else {
+            completionHandler(.failure(ServiceError.failedToUploadPhoto))
+            return
+        }
         completionHandler(.success(()))
         
         let reference = storage.reference(withPath: "users/\(userID)/photos/\(imageID).png")
@@ -41,24 +41,20 @@ final class ContentService: ContentServiceProtocol {
         }
     }
     
-    func downloadData(imageID: String, image: UIImage, data: Data, UserID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+    func downloadData(imageID: String, UserID: UserData, completionHandler: @escaping (Result<Data, Error>) -> Void) {
         let imageID = UUID().uuidString
-            guard
-                let image = UIImage(named: "\(image)"),
-                let data = image.pngData(),
-                let userID = Auth.auth().currentUser?.uid
-            else {
-                completionHandler(.failure(ServiceError.failedToUploadPhoto))
-                return
-            }
-        completionHandler(.success(()))
+        let userID = Auth.auth().currentUser?.uid
         
-        let reference = storage.reference(withPath: "users/\(userID)/photos/\(imageID).png")
+        let reference = storage.reference(withPath: "users/\(String(describing: userID))/photos/\(imageID).png")
+        
         reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            
             if let error = error {
                 completionHandler(.failure(error))
             } else {
-                completionHandler(.success(()))
+                if let data = data {
+                completionHandler(.success(data))
+                } else { return }
             }
         }
     }
