@@ -31,7 +31,7 @@ extension PhotoViewModel {
     
     func capturePhotoButtonTapped(with photo: UIImage) {
         self.capturedPhoto = photo
-        // TODO: Call contentService (when ContentService will be done)
+        print("PhotoViewModel knows about tapping capturePhotoButton")
     }
     
     func recapturePhotoButtonTapped() {

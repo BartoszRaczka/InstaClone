@@ -27,14 +27,19 @@ class PhotoView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
 
-//        setupCameraView()
-//        setupCapturePhotoButton()
-        connectInputsAndOutputsToTheSession()
-        displayACameraPreview()
+        setupCapturePhotoButton()
+//        connectInputsAndOutputsToTheSession()
+//        displayACameraPreview()
     }
     
     required init?(coder: NSCoder) {
         nil
+    }
+    
+    // MARK: - Public Methods
+    
+    @objc func didTapCapturePhotoButton() {
+        viewModel.capturePhotoButtonTapped(with: UIImage())
     }
 
 }
@@ -78,12 +83,21 @@ private extension PhotoView {
 // MARK: - View setup
 private extension PhotoView {
     
-    func setupCameraView() {
-        
-    }
-    
     func setupCapturePhotoButton() {
+        capturePhotoButton = UIButton(type: .system)
+        addSubview(capturePhotoButton)
         
+        capturePhotoButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(4.0)
+            make.height.width.equalTo(64.0)
+        }
+        
+        capturePhotoButton.backgroundColor = UIColor.lightGray
+        capturePhotoButton.layer.cornerRadius = 32.0
+        capturePhotoButton.layer.borderWidth = 1.0
+        capturePhotoButton.layer.borderColor = UIColor.black.cgColor
+        capturePhotoButton.addTarget(self, action: #selector(didTapCapturePhotoButton), for: .touchUpInside)
     }
     
 }
