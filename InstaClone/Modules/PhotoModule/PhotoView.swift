@@ -8,6 +8,7 @@
 import Foundation
 import SnapKit
 import AVKit
+import AVFoundation
 
 class PhotoView: UIView {
     
@@ -22,24 +23,19 @@ class PhotoView: UIView {
     
     // MARK: - AV Properties
     private var captureSession: AVCaptureSession!
+    private var photoOutput: AVCapturePhotoOutput!
     
     init(with viewModel: PhotoViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
 
+        connectInputsAndOutputsToTheSession()
+        displayACameraPreview()
         setupCapturePhotoButton()
-//        connectInputsAndOutputsToTheSession()
-//        displayACameraPreview()
     }
     
     required init?(coder: NSCoder) {
         nil
-    }
-    
-    // MARK: - Public Methods
-    
-    @objc func didTapCapturePhotoButton() {
-        viewModel.capturePhotoButtonTapped(with: UIImage())
     }
 
 }
@@ -61,7 +57,7 @@ private extension PhotoView {
         }
         captureSession.addInput(videoDeviceInput)
         
-        let photoOutput = AVCapturePhotoOutput()
+        photoOutput = AVCapturePhotoOutput()
         guard captureSession.canAddOutput(photoOutput) else { return }
         captureSession.sessionPreset = .photo
         captureSession.addOutput(photoOutput)
@@ -76,6 +72,17 @@ private extension PhotoView {
         previewView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+}
+
+// MARK: - Private methods
+private extension PhotoView {
+    
+    @objc func didTapCapturePhotoButton() {
+        photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        // How to get the captured photo?
+        viewModel.capturePhotoButtonTapped(with: UIImage())
     }
     
 }
@@ -99,5 +106,11 @@ private extension PhotoView {
         capturePhotoButton.layer.borderColor = UIColor.black.cgColor
         capturePhotoButton.addTarget(self, action: #selector(didTapCapturePhotoButton), for: .touchUpInside)
     }
+    
+}
+
+extension PhotoView: AVCapturePhotoCaptureDelegate {
+    
+    //WHat should I add here?
     
 }
