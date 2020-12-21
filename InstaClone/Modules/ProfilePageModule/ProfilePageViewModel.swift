@@ -18,14 +18,14 @@ protocol ProfilePageViewModelDelegate: AnyObject {
     
 }
 
-struct ProfilePageViewModel {
+final class ProfilePageViewModel {
     
     let userProfileService = UserProfileService()
     
-    var numberOfPosts: Int?
-    var numberOfFollowers: Int?
-    var numberOfFollowing: Int?
-    var descriptionLabelText: String?
+    var numberOfPosts: Int = 0
+    var numberOfFollowers: Int = 0
+    var numberOfFollowing: Int = 0
+    var descriptionLabelText: String = " "
     
     var delegate: ProfilePageViewModelDelegate?
     
@@ -59,15 +59,15 @@ struct ProfilePageViewModel {
             userProfileService.getUser(withID: userID) { result in
                 switch result {
                 case .success(let userData):
-                    numberOfFollowers = userData.followers.count
-                    numberOfFollowing = userData.following.count
-                    numberOfPosts = 100
-                    descriptionLabelText = "asd"
+                    self.numberOfFollowers = userData.followers.count
+                    self.numberOfFollowing = userData.following.count
+                    self.numberOfPosts = 100
+                    self.descriptionLabelText = "asd"
                 case .failure:
-                    numberOfFollowing = 6
-                    numberOfFollowers = 5
-                    numberOfPosts = 6
-                    descriptionLabelText = "description failure"
+                    self.numberOfFollowing = 6
+                    self.numberOfFollowers = 5
+                    self.numberOfPosts = 6
+                    self.descriptionLabelText = "description failure"
                     return
                 }
             }
