@@ -77,6 +77,6 @@ final class ProfilePageViewModel {
             numberOfPosts = 3
             descriptionLabelText = "description"
         }
-
     }
+    
 }
