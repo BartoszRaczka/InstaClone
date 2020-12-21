@@ -17,7 +17,7 @@ protocol ContentServiceProtocol {
 
 final class ContentService: ContentServiceProtocol {
  
-    let storage = Storage.storage()
+    private let storage = Storage.storage()
    
     func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
         let imageID = UUID().uuidString
@@ -51,10 +51,9 @@ final class ContentService: ContentServiceProtocol {
             
             if let error = error {
                 completionHandler(.failure(error))
-            } else {
-                if let data = data {
+            } else { if let data = data{
                 completionHandler(.success(data))
-                } else { return }
+                }
             }
         }
     }
