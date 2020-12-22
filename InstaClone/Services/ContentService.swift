@@ -29,7 +29,6 @@ final class ContentService: ContentServiceProtocol {
             completionHandler(.failure(ServiceError.failedToUploadPhoto))
             return
         }
-        completionHandler(.success(()))
         
         let reference = storage.reference(withPath: "users/\(userID)/photos/\(imageID).png")
         reference.putData(data, metadata: nil) { metadata, error in
