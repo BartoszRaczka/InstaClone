@@ -51,9 +51,8 @@ final class ContentService: ContentServiceProtocol {
             
             if let error = error {
                 completionHandler(.failure(error))
-            } else { if let data = data{
+            } else if let data = data {
                 completionHandler(.success(data))
-                }
             }
         }
     }
