@@ -72,10 +72,10 @@ final class ProfilePageViewModel {
                 }
             }
         } else {
-            numberOfFollowing = 1
-            numberOfFollowers = 2
-            numberOfPosts = 3
-            descriptionLabelText = "description"
+            numberOfFollowing = 0
+            numberOfFollowers = 0
+            numberOfPosts = 0
+            descriptionLabelText = "Failed to download user's data."
         }
     }
     
