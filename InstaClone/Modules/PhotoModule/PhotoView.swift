@@ -8,7 +8,6 @@
 import Foundation
 import SnapKit
 import AVKit
-import AVFoundation
 
 class PhotoView: UIView {
     
@@ -81,8 +80,6 @@ private extension PhotoView {
     
     @objc func didTapCapturePhotoButton() {
         photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-        // How to get the captured photo?
-        viewModel.capturePhotoButtonTapped(with: UIImage())
     }
     
 }
@@ -111,6 +108,20 @@ private extension PhotoView {
 
 extension PhotoView: AVCapturePhotoCaptureDelegate {
     
-    //WHat should I add here?
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if error == nil {
+            guard
+                let imageData = photo.fileDataRepresentation(),
+                let uiImage = UIImage(data: imageData)
+            else {
+                print("Something is wrong with creating UIImage from captured photo data")
+                return
+            }
+            viewModel.capturePhotoButtonTapped(with: uiImage)
+        } else {
+            print("Something is wrong with capturing photo")
+            return
+        }
+    }
     
 }

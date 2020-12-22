@@ -16,7 +16,6 @@ class PhotoViewModel {
     
     let delegate: PhotoViewModelDelegate?
     private var capturedPhoto: UIImage!
-    var onRecapturePhotoAction: (() -> ())?
     private let contentService: ContentService
     
     init(delegate: PhotoViewModelDelegate, contentService: ContentService) {
@@ -32,10 +31,6 @@ extension PhotoViewModel {
     func capturePhotoButtonTapped(with photo: UIImage) {
         self.capturedPhoto = photo
         print("PhotoViewModel knows about tapping capturePhotoButton")
-    }
-    
-    func recapturePhotoButtonTapped() {
-        self.onRecapturePhotoAction?() // This line allows PhotoView to recapturing photo
     }
     
 }
