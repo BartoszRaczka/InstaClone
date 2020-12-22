@@ -10,6 +10,8 @@ import UIKit
 
 protocol PhotoViewModelDelegate {
     
+    func capturePhotoButtonTapped()
+    
 }
 
 class PhotoViewModel {
@@ -17,6 +19,7 @@ class PhotoViewModel {
     let delegate: PhotoViewModelDelegate?
     private var capturedPhoto: UIImage!
     private let contentService: ContentService
+    var onPhotoCapturedAction: ((UIImage) -> Void)?
     
     init(delegate: PhotoViewModelDelegate, contentService: ContentService) {
         self.delegate = delegate
@@ -28,9 +31,12 @@ class PhotoViewModel {
 // MARK: - Public methods
 extension PhotoViewModel {
     
-    func capturePhotoButtonTapped(with photo: UIImage) {
-        self.capturedPhoto = photo
-        print("PhotoViewModel knows about tapping capturePhotoButton")
+    func capturePhotoButtonTapped() {
+        delegate?.capturePhotoButtonTapped()
     }
     
+    func photoCaptured(with image: UIImage) {
+        capturedPhoto = image
+        onPhotoCapturedAction?(self.capturedPhoto)
+    }
 }

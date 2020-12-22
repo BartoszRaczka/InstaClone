@@ -7,7 +7,6 @@
 
 import Foundation
 import SnapKit
-import AVKit
 
 class PhotoView: UIView {
     
@@ -16,21 +15,18 @@ class PhotoView: UIView {
     private let viewModel: PhotoViewModel
     
     // MARK: - UI Properties
-    
-    private var previewView: PreviewView!
+
+    var previewView: UIView!
     private var capturePhotoButton: UIButton!
-    
-    // MARK: - AV Properties
-    private var captureSession: AVCaptureSession!
-    private var photoOutput: AVCapturePhotoOutput!
+    private var capturedPhotoView: UIImageView!
     
     init(with viewModel: PhotoViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
 
-        connectInputsAndOutputsToTheSession()
-        displayACameraPreview()
+        setupPreviewView()
         setupCapturePhotoButton()
+        bindActions()
     }
     
     required init?(coder: NSCoder) {
@@ -39,37 +35,16 @@ class PhotoView: UIView {
 
 }
 
-// MARK: - Capture Session Setup
-private extension PhotoView {
+// MARK: - Public methods
+extension PhotoView {
     
-    func connectInputsAndOutputsToTheSession() {
-        captureSession = AVCaptureSession()
+    func setupCapturedPhoto(with image: UIImage) {
+        capturedPhotoView = UIImageView(image: image)
+        addSubview(capturedPhotoView)
         
-        captureSession.beginConfiguration()
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .unspecified)
-        
-        guard
-            let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
-            captureSession.canAddInput(videoDeviceInput)
-        else {
-            return
-        }
-        captureSession.addInput(videoDeviceInput)
-        
-        photoOutput = AVCapturePhotoOutput()
-        guard captureSession.canAddOutput(photoOutput) else { return }
-        captureSession.sessionPreset = .photo
-        captureSession.addOutput(photoOutput)
-        captureSession.commitConfiguration()
-    }
-    
-    func displayACameraPreview() {
-        self.previewView = PreviewView()
-        self.previewView.videoPreviewLayer.session = self.captureSession
-        addSubview(previewView)
-        
-        previewView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        capturedPhotoView.snp.makeConstraints { make in
+            make.leading.bottom.equalTo(safeAreaLayoutGuide).inset(4.0)
+            make.height.width.equalTo(64.0)
         }
     }
     
@@ -79,13 +54,28 @@ private extension PhotoView {
 private extension PhotoView {
     
     @objc func didTapCapturePhotoButton() {
-        photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        viewModel.capturePhotoButtonTapped()
+    }
+    
+    func bindActions() {
+        viewModel.onPhotoCapturedAction = { image in
+            self.setupCapturedPhoto(with: image)
+        }
     }
     
 }
 
 // MARK: - View setup
 private extension PhotoView {
+    
+    func setupPreviewView() {
+        previewView = UIView()
+        addSubview(previewView)
+        
+        previewView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
     
     func setupCapturePhotoButton() {
         capturePhotoButton = UIButton(type: .system)
@@ -102,26 +92,6 @@ private extension PhotoView {
         capturePhotoButton.layer.borderWidth = 1.0
         capturePhotoButton.layer.borderColor = UIColor.black.cgColor
         capturePhotoButton.addTarget(self, action: #selector(didTapCapturePhotoButton), for: .touchUpInside)
-    }
-    
-}
-
-extension PhotoView: AVCapturePhotoCaptureDelegate {
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if error == nil {
-            guard
-                let imageData = photo.fileDataRepresentation(),
-                let uiImage = UIImage(data: imageData)
-            else {
-                print("Something is wrong with creating UIImage from captured photo data")
-                return
-            }
-            viewModel.capturePhotoButtonTapped(with: uiImage)
-        } else {
-            print("Something is wrong with capturing photo")
-            return
-        }
     }
     
 }
