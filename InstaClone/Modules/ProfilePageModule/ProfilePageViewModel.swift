@@ -20,7 +20,7 @@ protocol ProfilePageViewModelDelegate: AnyObject {
 
 final class ProfilePageViewModel {
     
-    let userProfileService = UserProfileService()
+    let userProfileService: UserProfileService
     
     var numberOfPosts: Int = 0
     var numberOfFollowers: Int = 0
@@ -29,8 +29,9 @@ final class ProfilePageViewModel {
     
     var delegate: ProfilePageViewModelDelegate?
     
-    init(delegate: ProfilePageViewModelDelegate) {
+    init(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileService) {
         self.delegate = delegate
+        self.userProfileService = userProfileService
         setupData()
     }
     
@@ -64,18 +65,12 @@ final class ProfilePageViewModel {
                     self.numberOfPosts = 100
                     self.descriptionLabelText = "asd"
                 case .failure:
-                    self.numberOfFollowing = 6
-                    self.numberOfFollowers = 5
-                    self.numberOfPosts = 6
-                    self.descriptionLabelText = "description failure"
+                    print("Failed to fetch user's data")
                     return
                 }
             }
         } else {
-            numberOfFollowing = 0
-            numberOfFollowers = 0
-            numberOfPosts = 0
-            descriptionLabelText = "Failed to download user's data."
+            print("Failed to get user's ID")
         }
     }
     

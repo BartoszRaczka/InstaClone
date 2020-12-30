@@ -14,7 +14,7 @@ protocol ProfilePageViewControlerFactory {
 extension DependencyContainer: ProfilePageViewControlerFactory {
     
     func makeProfilePageViewController(delegate: ProfilePageViewModelDelegate) -> ProfilePageViewController {
-        ProfilePageViewController(with: makeProfilePageViewModel(delegate: delegate))
+        ProfilePageViewController(with: makeProfilePageViewModel(delegate: delegate, userProfileService: userProfileService as! UserProfileService))
     }
     
 }
