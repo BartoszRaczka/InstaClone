@@ -64,15 +64,11 @@ private extension PhotoViewController {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
 
-        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
-            else {
-                print("Unable to access back camera!")
-                return
-        }
-
         guard
+            let backCamera = AVCaptureDevice.default(for: AVMediaType.video),
             let videoDeviceInput = try? AVCaptureDeviceInput(device: backCamera)
         else {
+            print("Unable to access back camera!")
             return
         }
 
@@ -91,12 +87,13 @@ private extension PhotoViewController {
             
         videoPreviewLayer.videoGravity = .resizeAspect
         videoPreviewLayer.connection?.videoOrientation = .portrait
-        (view as! PhotoView).previewView.layer.addSublayer(videoPreviewLayer)
+        (view as? PhotoView)?.previewView.layer.addSublayer(videoPreviewLayer)
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.captureSession.startRunning()
             DispatchQueue.main.async {
-                self.videoPreviewLayer.frame = (self.view as! PhotoView).previewView.bounds
+                guard let bounds = (self.view as? PhotoView)?.previewView.bounds else { return }
+                self.videoPreviewLayer.frame = bounds
             }
         }
     }

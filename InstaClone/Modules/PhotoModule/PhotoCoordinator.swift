@@ -14,7 +14,7 @@ class PhotoCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
-    private var photoViewController: PhotoViewController!
+//    private var photoViewController: PhotoViewController!
     
     //MARK: - Life Cycle
     
@@ -29,9 +29,9 @@ class PhotoCoordinator: Coordinator {
     //MARK: - Public methods
     
     func start() {
-        photoViewController = dependencyContainer.makePhotoViewController(delegate: self)
+//        photoViewController = dependencyContainer.makePhotoViewController(delegate: self)
         navigationController.tabBarItem = .init(title: "Photo", image: UIImage(systemName: "camera"), tag: 1)
-        navigationController.pushViewController(photoViewController, animated: true)
+        navigationController.pushViewController(dependencyContainer.makePhotoViewController(delegate: self), animated: true)
     }
     
 }
