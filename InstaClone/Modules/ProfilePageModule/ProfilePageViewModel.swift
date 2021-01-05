@@ -56,21 +56,20 @@ final class ProfilePageViewModel {
     }
     
     func setupData() {
-        if let userID = Auth.auth().currentUser?.uid {
-            userProfileService.getUser(withID: userID) { result in
-                switch result {
-                case .success(let userData):
-                    self.numberOfFollowers = userData.followers.count
-                    self.numberOfFollowing = userData.following.count
-                    self.numberOfPosts = 100
-                    self.descriptionLabelText = "asd"
-                case .failure:
-                    print("Failed to fetch user's data")
-                    return
-                }
+        guard let userID = Auth.auth().currentUser?.uid else {
+            do { print("Failed to get user's ID") }
+            return
+        }
+        userProfileService.getUser(withID: userID) { result in
+            switch result {
+            case .success(let userData):
+                self.numberOfFollowers = userData.followers.count
+                self.numberOfFollowing = userData.following.count
+                self.numberOfPosts = 100
+                self.descriptionLabelText = "asd"
+            case .failure:
+                print("Failed to fetch user's data")
             }
-        } else {
-            print("Failed to get user's ID")
         }
     }
     
