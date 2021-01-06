@@ -103,19 +103,18 @@ private extension PhotoViewController {
 extension PhotoViewController: AVCapturePhotoCaptureDelegate {
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if error == nil {
-            guard
-                let imageData = photo.fileDataRepresentation(),
-                let uiImage = UIImage(data: imageData)
-            else {
-                print("Something is wrong with creating UIImage from captured photo data")
-                return
-            }
-            viewModel.photoCaptured(with: uiImage)
-        } else {
+        guard error == nil else {
             print("Something is wrong with capturing photo")
             return
         }
+        guard
+            let imageData = photo.fileDataRepresentation(),
+            let uiImage = UIImage(data: imageData)
+        else {
+            print("Something is wrong with creating UIImage from captured photo data")
+            return
+        }
+        viewModel.photoCaptured(with: uiImage)
     }
 
 }

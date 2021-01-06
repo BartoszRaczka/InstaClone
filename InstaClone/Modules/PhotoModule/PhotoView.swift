@@ -16,7 +16,7 @@ class PhotoView: UIView {
     
     // MARK: - UI Properties
 
-    private var previewView: UIView!
+    var previewView: UIView!
     private var capturePhotoButton: UIButton!
     private var capturedPhotoView: UIImageView!
     
