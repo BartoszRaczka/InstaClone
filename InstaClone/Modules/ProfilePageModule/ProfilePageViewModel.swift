@@ -20,7 +20,7 @@ protocol ProfilePageViewModelDelegate: AnyObject {
 
 final class ProfilePageViewModel {
     
-    let userProfileService: UserProfileService
+    let userProfileService: UserProfileServiceProtocol
     
     var numberOfPosts: Int = 0
     var numberOfFollowers: Int = 0
@@ -29,7 +29,7 @@ final class ProfilePageViewModel {
     
     var delegate: ProfilePageViewModelDelegate?
     
-    init(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileService) {
+    init(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileServiceProtocol) {
         self.delegate = delegate
         self.userProfileService = userProfileService
         setupData()
