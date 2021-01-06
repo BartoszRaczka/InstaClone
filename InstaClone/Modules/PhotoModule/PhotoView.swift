@@ -58,8 +58,8 @@ private extension PhotoView {
     }
     
     func bindActions() {
-        viewModel.onPhotoCapturedAction = { image in
-            self.setupCapturedPhoto(with: image)
+        viewModel.onPhotoCapturedAction = { [weak self] image in
+            self?.setupCapturedPhoto(with: image)
         }
     }
     
