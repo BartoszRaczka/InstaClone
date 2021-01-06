@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoCoordinator: Coordinator, PhotoViewModelDelegate {
+class PhotoCoordinator: Coordinator {
     
     //MARK: - Properties
     
@@ -28,9 +28,16 @@ class PhotoCoordinator: Coordinator, PhotoViewModelDelegate {
     //MARK: - Public methods
     
     func start() {
-        let photoViewController = dependencyContainer.makePhotoViewController(delegate: self)
         navigationController.tabBarItem = .init(title: "Photo", image: UIImage(systemName: "camera"), tag: 1)
-        navigationController.pushViewController(photoViewController, animated: true)
+        navigationController.pushViewController(dependencyContainer.makePhotoViewController(delegate: self), animated: true)
+    }
+    
+}
+
+extension PhotoCoordinator: PhotoViewModelDelegate {
+    
+    func capturePhotoButtonTapped() {
+        (navigationController.topViewController as? PhotoViewController)?.capturePhotoButtonTapped()
     }
     
 }
