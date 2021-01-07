@@ -62,7 +62,8 @@ extension DependencyContainer: CoordinatorFactory {
     ) -> ProfilePageCoordinator {
         ProfilePageCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            userProfileService: userProfileService
         )
     }
 
