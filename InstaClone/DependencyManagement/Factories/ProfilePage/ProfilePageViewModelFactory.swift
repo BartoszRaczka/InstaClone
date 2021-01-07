@@ -7,13 +7,13 @@
 
 protocol ProfilePageViewModelFactory {
     
-    func makeProfilePageViewModel(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileService) -> ProfilePageViewModel
+    func makeProfilePageViewModel(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileServiceProtocol) -> ProfilePageViewModel
     
 }
 
 extension DependencyContainer: ProfilePageViewModelFactory {
     
-    func makeProfilePageViewModel(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileService) -> ProfilePageViewModel {
+    func makeProfilePageViewModel(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileServiceProtocol) -> ProfilePageViewModel {
         ProfilePageViewModel(
             delegate: delegate,
             userProfileService: userProfileService
