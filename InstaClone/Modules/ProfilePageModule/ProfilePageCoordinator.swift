@@ -14,22 +14,25 @@ final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
+    private let userProfileService: UserProfileServiceProtocol
     
     //MARK: - Life Cycle
     
     init(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        userProfileService: UserProfileServiceProtocol
     ) {
         self.navigationController = navigationController
         self.dependencyContainer = dependencyContainer
+        self.userProfileService = userProfileService
     }
     
     //MARK: - Public methods
     
     func start() {
-        let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self)
-        navigationController.tabBarItem = .init(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 1)
+        let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self, userProfileService: userProfileService)
+        navigationController.tabBarItem = .init(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
         navigationController.pushViewController(profilePageViewController, animated: true)
     }
     

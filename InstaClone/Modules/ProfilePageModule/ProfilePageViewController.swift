@@ -19,7 +19,7 @@ protocol ProfilePageViewControllerDelegate: AnyObject {
 
 final class ProfilePageViewController: UIViewController {
     
-    private let viewModel: ProfilePageViewModel
+    let viewModel: ProfilePageViewModel
     var delegate: ProfilePageViewControllerDelegate?
     
     init(with viewModel: ProfilePageViewModel) {

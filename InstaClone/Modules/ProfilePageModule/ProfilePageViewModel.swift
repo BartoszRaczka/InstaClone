@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol ProfilePageViewModelDelegate: AnyObject {
     
@@ -17,14 +18,22 @@ protocol ProfilePageViewModelDelegate: AnyObject {
     
 }
 
-struct ProfilePageViewModel {
+final class ProfilePageViewModel {
     
-    var numberOfPosts: Int
-    var numberOfFollowers: Int
-    var numberOfFollowing: Int
-    var descriptionLabelText: String
+    let userProfileService: UserProfileServiceProtocol
+    
+    var numberOfPosts: Int = 0
+    var numberOfFollowers: Int = 0
+    var numberOfFollowing: Int = 0
+    var descriptionLabelText: String = " "
     
     var delegate: ProfilePageViewModelDelegate?
+    
+    init(delegate: ProfilePageViewModelDelegate, userProfileService: UserProfileServiceProtocol) {
+        self.delegate = delegate
+        self.userProfileService = userProfileService
+        setupData()
+    }
     
     func didTapUserProfilePictureButton() {
         delegate?.didTapUserProfilePictureButton()
@@ -44,6 +53,24 @@ struct ProfilePageViewModel {
     
     func didTapEditProfileButton() {
         delegate?.didTapEditProfileButton()
+    }
+    
+    func setupData() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            do { print("Failed to get user's ID") }
+            return
+        }
+        userProfileService.getUser(withID: userID) { result in
+            switch result {
+            case .success(let userData):
+                self.numberOfFollowers = userData.followers.count
+                self.numberOfFollowing = userData.following.count
+                self.numberOfPosts = 100
+                self.descriptionLabelText = "asd"
+            case .failure:
+                print("Failed to fetch user's data")
+            }
+        }
     }
     
 }
