@@ -32,7 +32,8 @@ final class TabBarCoordinator: Coordinator {
         let homeFeedNavigationController = UINavigationController()
         let homeFeedCoordinator = dependencyContainer.makeHomeFeedCoordinator(
             with: homeFeedNavigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            delegate: self
         )
         coordinators.append(homeFeedCoordinator)
         homeFeedCoordinator.start()
@@ -62,4 +63,12 @@ final class TabBarCoordinator: Coordinator {
         navigationController.pushViewController(tabBarViewController, animated: false)
     }
     
+}
+
+extension TabBarCoordinator: HomeFeedCoordinatorDelegate {
+    
+    func photoButtonTapped() {
+        //How to push PhotoViewController?
+    }
+
 }

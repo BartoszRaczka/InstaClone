@@ -83,11 +83,11 @@ private extension HomeFeedViewController {
     }
     
     @objc func didTapPhotoButton() {
-        print("photoButton tapped")
+        viewModel.didTapPhotoButton()
     }
         
     @objc func didTapLogOutButton() {
-        print("logOutButton tapped")
+        viewModel.didTapLogOutButton()
     }
     
 }
