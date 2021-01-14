@@ -37,6 +37,13 @@ extension PhotoViewModel {
     
     func photoCaptured(with image: UIImage) {
         capturedPhoto = image
-        onPhotoCapturedAction?(self.capturedPhoto)
+        contentService.uploadData(image: capturedPhoto) { (result) in
+            switch result {
+            case .success:
+                self.onPhotoCapturedAction?(self.capturedPhoto)
+            case .failure:
+                print("Failed to upload image.")
+            }
+        }
     }
 }

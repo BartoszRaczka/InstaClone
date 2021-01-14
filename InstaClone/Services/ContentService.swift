@@ -22,7 +22,7 @@ final class ContentService: ContentServiceProtocol {
     func uploadData(image: UIImage, completionHandler: @escaping (Result<Void, Error>) -> Void) {
         let imageID = UUID().uuidString
         guard
-            let image = UIImage(named: "\(image)"),
+            let image = image as UIImage?, //UIImage(named: "\(image)"),
             let data = image.pngData(),
             let userID = Auth.auth().currentUser?.uid
         else {
