@@ -11,6 +11,7 @@ import Foundation
 protocol HomeFeedViewModelDelegate: AnyObject {
     
     func photoButtonTapped()
+    func logOutButtonTapped()
     
 }
 
@@ -33,7 +34,7 @@ final class HomeFeedViewModel {
     }
         
     func didTapLogOutButton() {
-        print("logOutButton tapped")
+        delegate?.logOutButtonTapped()
     }
     
 }

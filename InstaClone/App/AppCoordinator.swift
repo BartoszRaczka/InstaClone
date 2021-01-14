@@ -42,13 +42,14 @@ final class AppCoordinator: Coordinator {
     private func startFromTabBar() {
         let coordinator = dependencyContainer.makeTabBarCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            delegate: self
         )
         coordinators.append(coordinator)
         coordinator.start()
     }
     
-    func startFromOnboarding() {
+    private func startFromOnboarding() {
         let coordinator = dependencyContainer.makeOnboardingCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer,
@@ -68,3 +69,15 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
         
 }
 
+extension AppCoordinator: TabBarCoordinatorDelegate {
+    
+    func logOutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            startFromOnboarding()
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError)")
+        }
+    }
+    
+}

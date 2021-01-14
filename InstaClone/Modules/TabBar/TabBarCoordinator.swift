@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol TabBarCoordinatorDelegate {
+
+    func logOutButtonTapped()
+    
+}
+
 final class TabBarCoordinator: Coordinator {
     
     // MARK: - Properties
@@ -15,15 +21,18 @@ final class TabBarCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private var coordinators = [Coordinator]()
+    private var delegate: TabBarCoordinatorDelegate
     
     // MARK: - Life Cycle
     
     init(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: TabBarCoordinatorDelegate
     ) {
         self.navigationController = navigationController
         self.dependencyContainer = dependencyContainer
+        self.delegate = delegate
     }
     
     // MARK: - Public methods
@@ -68,7 +77,16 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: HomeFeedCoordinatorDelegate {
     
     func photoButtonTapped() {
-        //How to push PhotoViewController?
+        let photoNavigationController = UINavigationController()
+        let photoCoordinator = dependencyContainer.makePhotoCoordinator(
+            with: photoNavigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(photoCoordinator)
+        photoCoordinator.start()
     }
 
+    func logOutButtonTapped() {
+        delegate.logOutButtonTapped()
+    }
 }

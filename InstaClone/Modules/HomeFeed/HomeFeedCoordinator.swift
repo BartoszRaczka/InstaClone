@@ -11,6 +11,7 @@ import UIKit
 protocol HomeFeedCoordinatorDelegate {
     
     func photoButtonTapped()
+    func logOutButtonTapped()
     
 }
 
@@ -67,6 +68,10 @@ extension HomeFeedCoordinator: HomeFeedViewModelDelegate {
     
     func photoButtonTapped() {
         delegate?.photoButtonTapped()
+    }
+    
+    func logOutButtonTapped() {
+        delegate?.logOutButtonTapped()
     }
 
 }

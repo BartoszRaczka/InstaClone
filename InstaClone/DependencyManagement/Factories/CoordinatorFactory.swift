@@ -12,7 +12,8 @@ protocol CoordinatorFactory {
     
     func makeTabBarCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: TabBarCoordinatorDelegate
     ) -> TabBarCoordinator
 
     func makeHomeFeedCoordinator(
@@ -70,11 +71,13 @@ extension DependencyContainer: CoordinatorFactory {
 
     func makeTabBarCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: TabBarCoordinatorDelegate
     ) -> TabBarCoordinator {
         TabBarCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer
+            dependencyContainer: dependencyContainer,
+            delegate: delegate
         )
     }
 
