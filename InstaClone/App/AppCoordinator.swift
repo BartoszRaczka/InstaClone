@@ -74,6 +74,7 @@ extension AppCoordinator: TabBarCoordinatorDelegate {
     func logOutButtonTapped() {
         do {
             try Auth.auth().signOut()
+            coordinators.removeAll()
             startFromOnboarding()
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError)")
