@@ -18,7 +18,7 @@ final class OnboardingView: UIView {
     private var loginStackView: UIStackView!
     private var logo: UILabel!
     private var loginTextField: TextFieldView!
-    private var passwordTextField: TextFieldView!
+    private var passwordTextField: PasswordTextFieldView!
     private var loginButtonContainer: UIView!
     private var loginButton: UIButton!
     private var registerStackView: UIStackView!
@@ -85,7 +85,7 @@ private extension OnboardingView {
         guard let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel else {
             return
         }
-        passwordTextField = TextFieldView(with: passwordTextFieldViewModel)
+        passwordTextField = PasswordTextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
     }
     
