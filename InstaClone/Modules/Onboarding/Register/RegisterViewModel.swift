@@ -35,16 +35,16 @@ final class RegisterViewModel {
     //    MARK: - Public methods
     
     func buttonTapped() {
-//        guard let email = self.typedText else {
-//            return
-//        }
-//        delegate?.addEmail(email: email)
+        guard let email = self.typedText else {
+            return
+        }
+        delegate?.addEmail(email: email)
+    
+//    guard
+//        self.userCredentials.email != ""
+//    else {
+//        return
 //    }
-    guard
-        self.userCredentials.email != ""
-    else {
-        return
-    }
         
         registerService.createUser(with: userCredentials, completionHandler: { result in
             switch result {
