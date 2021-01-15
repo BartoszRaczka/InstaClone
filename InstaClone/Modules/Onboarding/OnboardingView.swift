@@ -72,7 +72,7 @@ private extension OnboardingView {
     }
     
     func setupLoginTextField() {
-        viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "Phone number, username or email")
+        viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "username or E-mail")
         guard let loginTextFieldViewModel = viewModel.loginTextFieldViewModel else {
             return
         }

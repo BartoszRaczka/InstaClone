@@ -9,7 +9,7 @@ import Foundation
 
 protocol RegisterViewModelDelegate: AnyObject{
     
-    func addPhoneNumber(phoneNumber: String)
+    func addEmail(email: String)
     
 }
 
@@ -19,21 +19,24 @@ final class RegisterViewModel {
     
     private weak var delegate: RegisterViewModelDelegate?
     
+    let registerService: RegisterServiceProtocol
+    
     private var typedText: String?
     
     //    MARK: - Life Cycle
     
-    init(delegate: RegisterViewModelDelegate) {
+    init(delegate: RegisterViewModelDelegate, registerService: RegisterServiceProtocol) {
         self.delegate = delegate
+        self.registerService = registerService
     }
     
     //    MARK: - Public methods
     
     func buttonTapped() {
-        guard let phoneNumber = self.typedText else {
+        guard let email = self.typedText else {
             return
         }
-        delegate?.addPhoneNumber(phoneNumber: phoneNumber)
+        delegate?.addEmail(email: email)
     }
     
     func textFieldDidChange(with typedText: String) {

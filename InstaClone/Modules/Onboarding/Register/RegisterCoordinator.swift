@@ -44,7 +44,7 @@ final class RegisterCoordinator: Coordinator {
 
 extension RegisterCoordinator: RegisterViewModelDelegate, PinInputViewModelDelegate {
   
-    func addPhoneNumber(phoneNumber: String) {
+    func addEmail(email: String) {
         let pinInputViewController = dependencyContainer.makePinInputViewController(delegate: self)
         navigationController.pushViewController(pinInputViewController, animated: true)
     }

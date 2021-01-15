@@ -50,7 +50,7 @@ private extension RegisterView {
         topLabel = UILabel()
         addSubview(topLabel)
         
-        topLabel.text = "Register by your phone number"
+        topLabel.text = "Register by your E-mail"
         topLabel.font = .systemFont(ofSize: 15, weight: .bold)
         topLabel.textColor = .white
         topLabel.textAlignment = .center
@@ -72,7 +72,7 @@ private extension RegisterView {
         textField.clearButtonMode = .whileEditing
         textField.contentVerticalAlignment = .center
         textField.contentHorizontalAlignment = .leading
-        textField.placeholder = "Enter your phone number"
+        textField.placeholder = "Enter your E-mail"
         textField.delegate = self
         
         textField.snp.makeConstraints { (make) in
