@@ -137,7 +137,8 @@ extension DependencyContainer: CoordinatorFactory {
         RegisterCoordinator(
             with: navigationController,
             dependencyContainer: dependencyContainer,
-            delegate: delegate
+            delegate: delegate,
+            registerService: registerService
         )
     }
     
