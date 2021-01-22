@@ -77,7 +77,7 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: HomeFeedCoordinatorDelegate {
     
     func photoButtonTapped() {
-        let photoNavigationController = UINavigationController()
+        let photoNavigationController = navigationController
         let photoCoordinator = dependencyContainer.makePhotoCoordinator(
             with: photoNavigationController,
             dependencyContainer: self.dependencyContainer
