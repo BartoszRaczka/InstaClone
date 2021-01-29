@@ -39,13 +39,7 @@ final class RegisterViewModel {
             return
         }
         delegate?.addEmail(email: email)
-    
-//    guard
-//        self.userCredentials.email != ""
-//    else {
-//        return
-//    }
-        
+            
         registerService.createUser(with: userCredentials, completionHandler: { result in
             switch result {
             case .success:

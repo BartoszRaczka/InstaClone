@@ -14,7 +14,8 @@ final class RegisterView: UIView {
     private let viewModel: RegisterViewModel
     
     private var topLabel: UILabel!
-    private var textField: UITextField!
+    private var emailTextField: UITextField!
+    private var passwordTextField: UITextField!
     private var button: UIButton!
     
     // MARK: - Life Cycle
@@ -35,7 +36,8 @@ final class RegisterView: UIView {
     func setupView() {
         backgroundColor = .black
         
-        setupTextField()
+        setupEmailTextField()
+        setupPasswordTextField()
         setupTopLabel()
         setupButton()
     }
@@ -56,28 +58,49 @@ private extension RegisterView {
         topLabel.textAlignment = .center
         
         topLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(textField.snp.top)
+            make.bottom.equalTo(emailTextField.snp.top)
             make.leading.trailing.equalToSuperview()
         }
     }
     
-    func setupTextField() {
-        textField = UITextField()
-        addSubview(textField)
+    func setupEmailTextField() {
+        emailTextField = UITextField()
+        addSubview(emailTextField)
         
-        textField.borderStyle = .roundedRect
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = .phonePad
-        textField.returnKeyType = .done
-        textField.clearButtonMode = .whileEditing
-        textField.contentVerticalAlignment = .center
-        textField.contentHorizontalAlignment = .leading
-        textField.placeholder = "Enter your E-mail"
-        textField.delegate = self
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.autocorrectionType = UITextAutocorrectionType.no
+        emailTextField.keyboardType = .phonePad
+        emailTextField.returnKeyType = .done
+        emailTextField.clearButtonMode = .whileEditing
+        emailTextField.contentVerticalAlignment = .center
+        emailTextField.contentHorizontalAlignment = .leading
+        emailTextField.placeholder = "Enter your E-mail"
+        emailTextField.delegate = self
         
-        textField.snp.makeConstraints { (make) in
+        emailTextField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
+        }
+    }
+    
+    func setupPasswordTextField() {
+        passwordTextField = UITextField()
+        addSubview(passwordTextField)
+        
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.borderStyle = .roundedRect
+        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
+        passwordTextField.keyboardType = .phonePad
+        passwordTextField.returnKeyType = .done
+        passwordTextField.clearButtonMode = .whileEditing
+        passwordTextField.contentVerticalAlignment = .center
+        passwordTextField.contentHorizontalAlignment = .leading
+        passwordTextField.placeholder = "Enter your password"
+        passwordTextField.delegate = self
+        
+        passwordTextField.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(emailTextField.snp.bottom)
         }
     }
     
@@ -88,7 +111,7 @@ private extension RegisterView {
         button.setTitle("Next", for: .normal)
         
         button.snp.makeConstraints { (make) in
-            make.top.equalTo(textField.snp.bottom)
+            make.top.equalTo(passwordTextField.snp.bottom)
             make.leading.trailing.equalToSuperview()
         }
         
