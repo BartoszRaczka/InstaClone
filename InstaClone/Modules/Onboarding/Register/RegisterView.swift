@@ -19,6 +19,7 @@ final class RegisterView: UIView {
     private var buttonContainer: UIView!
     private var button: UIButton!
     private var stackView: UIStackView!
+    private var errorLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -26,6 +27,7 @@ final class RegisterView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
+        bindActions()
         setupView()
     }
     
@@ -126,8 +128,31 @@ private extension RegisterView {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    @objc func buttonTapped() {
+    func setupErrorLabel() {
+        errorLabel = UILabel()
+        addSubview(errorLabel)
+        
+        errorLabel.text = "Failed to register"
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        errorLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(topLabel.snp.top)
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    
+//    MARK: - Private methods
+    
+    @objc private func buttonTapped() {
         viewModel.buttonTapped()
+    }
+    
+    private func bindActions() {
+        viewModel.onFailedToRegisterAction = {
+            self.setupErrorLabel()
+        }
     }
     
 }
