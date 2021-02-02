@@ -41,6 +41,7 @@ final class RegisterCoordinator: Coordinator {
     func start() {
         let registerViewController = dependencyContainer.makeRegisterViewController(delegate: self, registerService: registerService)
         navigationController.pushViewController(registerViewController, animated: true)
+        navigationController.isNavigationBarHidden = false 
     }
 
 }
