@@ -17,7 +17,7 @@ protocol RegisterServiceProtocol {
 final class RegisterService: RegisterServiceProtocol {
     
     func createUser(with userCredentials: UserCredentials, completionHandler: @escaping (Result<Void, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: userCredentials.email, password: userCredentials.password) { [weak self] authResult, error in
+        Auth.auth().createUser(withEmail: userCredentials.email, password: userCredentials.password) { authResult, error in
             if let error = error {
                 completionHandler(.failure(error))
                 return
