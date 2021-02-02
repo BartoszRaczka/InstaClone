@@ -16,6 +16,7 @@ final class RegisterView: UIView {
     private var topLabel: UILabel!
     private var loginTextField: TextFieldView!
     private var passwordTextField: PasswordTextFieldView!
+    private var buttonContainer: UIView!
     private var button: UIButton!
     private var stackView: UIStackView!
     
@@ -51,7 +52,7 @@ private extension RegisterView {
         addSubview(topLabel)
         
         topLabel.text = "Register by your E-mail"
-        topLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        topLabel.font = UIFont(name: "SnellRoundhand-Bold", size: 30.0)
         topLabel.textColor = .white
         topLabel.textAlignment = .center
         
@@ -75,10 +76,11 @@ private extension RegisterView {
         
         setupPasswordTextField()
         setupLoginTextField()
-        setupButton()
+        setupButtonContainer()
         
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(buttonContainer)
     }
     
     func setupLoginTextField() {
@@ -98,58 +100,27 @@ private extension RegisterView {
         passwordTextField = PasswordTextFieldView(with: passwordTextFieldViewModel)
         addSubview(passwordTextField)
     }
-    
-//
-//    func setupEmailTextField() {
-//        emailTextField = UITextField()
-//        addSubview(emailTextField)
-//
-//        emailTextField.borderStyle = .roundedRect
-//        emailTextField.autocorrectionType = UITextAutocorrectionType.no
-//        emailTextField.keyboardType = .phonePad
-//        emailTextField.returnKeyType = .done
-//        emailTextField.clearButtonMode = .whileEditing
-//        emailTextField.contentVerticalAlignment = .center
-//        emailTextField.contentHorizontalAlignment = .leading
-//        emailTextField.placeholder = "Enter your E-mail"
-//        emailTextField.delegate = self
-//
-//        emailTextField.snp.makeConstraints { (make) in
-//            make.leading.trailing.equalToSuperview()
-//            make.centerY.equalToSuperview()
-//        }
-//    }
-//
-//    func setupPasswordTextField() {
-//        passwordTextField = UITextField()
-//        addSubview(passwordTextField)
-//
-//        passwordTextField.isSecureTextEntry = true
-//        passwordTextField.borderStyle = .roundedRect
-//        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
-//        passwordTextField.keyboardType = .phonePad
-//        passwordTextField.returnKeyType = .done
-//        passwordTextField.clearButtonMode = .whileEditing
-//        passwordTextField.contentVerticalAlignment = .center
-//        passwordTextField.contentHorizontalAlignment = .leading
-//        passwordTextField.placeholder = "Enter your password"
-//        passwordTextField.delegate = self
-//
-//        passwordTextField.snp.makeConstraints { (make) in
-//            make.leading.trailing.equalToSuperview()
-//            make.top.equalTo(emailTextField.snp.bottom)
-//        }
-//    }
+   
+    func setupButtonContainer() {
+        buttonContainer = UIView()
+        addSubview(buttonContainer)
+        
+        setupButton()
+    }
     
     func setupButton() {
-        button = UIButton()
+        button = UIButton(type: .system)
         addSubview(button)
-        button.backgroundColor = .systemBlue
-        button.setTitle("Next", for: .normal)
         
-        button.snp.makeConstraints { (make) in
-            make.top.equalTo(passwordTextField.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.setTitle("Create account", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5.0
+        
+        button.snp.makeConstraints { make in
+            make.top.bottom.equalTo(buttonContainer).inset(6.0)
+            make.leading.trailing.equalTo(buttonContainer).inset(12.0)
         }
         
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
