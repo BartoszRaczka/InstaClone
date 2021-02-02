@@ -163,7 +163,7 @@ private extension OnboardingView {
         registerStackView.axis = .horizontal
         
         registerStackView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
         }
         
         setupNoAccountQuestionLabel()
