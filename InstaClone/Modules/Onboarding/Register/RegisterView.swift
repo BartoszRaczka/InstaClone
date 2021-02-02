@@ -14,9 +14,10 @@ final class RegisterView: UIView {
     private let viewModel: RegisterViewModel
     
     private var topLabel: UILabel!
-    private var emailTextField: UITextField!
-    private var passwordTextField: UITextField!
+    private var loginTextField: TextFieldView!
+    private var passwordTextField: PasswordTextFieldView!
     private var button: UIButton!
+    private var stackView: UIStackView!
     
     // MARK: - Life Cycle
     
@@ -35,11 +36,8 @@ final class RegisterView: UIView {
     
     func setupView() {
         backgroundColor = .black
-        
-        setupEmailTextField()
-        setupPasswordTextField()
+        setupStackView()
         setupTopLabel()
-        setupButton()
     }
     
 }
@@ -58,51 +56,90 @@ private extension RegisterView {
         topLabel.textAlignment = .center
         
         topLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(emailTextField.snp.top)
+            make.bottom.equalTo(stackView.snp.top)
             make.leading.trailing.equalToSuperview()
         }
     }
     
-    func setupEmailTextField() {
-        emailTextField = UITextField()
-        addSubview(emailTextField)
+    func setupStackView() {
+        stackView = UIStackView()
+        addSubview(stackView)
         
-        emailTextField.borderStyle = .roundedRect
-        emailTextField.autocorrectionType = UITextAutocorrectionType.no
-        emailTextField.keyboardType = .phonePad
-        emailTextField.returnKeyType = .done
-        emailTextField.clearButtonMode = .whileEditing
-        emailTextField.contentVerticalAlignment = .center
-        emailTextField.contentHorizontalAlignment = .leading
-        emailTextField.placeholder = "Enter your E-mail"
-        emailTextField.delegate = self
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
         
-        emailTextField.snp.makeConstraints { (make) in
+        stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        setupPasswordTextField()
+        setupLoginTextField()
+        setupButton()
+        
+        stackView.addArrangedSubview(loginTextField)
+        stackView.addArrangedSubview(passwordTextField)
+    }
+    
+    func setupLoginTextField() {
+        viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "e-mail")
+        guard let loginTextFieldViewModel = viewModel.loginTextFieldViewModel else {
+            return
+        }
+        loginTextField = TextFieldView(with: loginTextFieldViewModel)
+        addSubview(loginTextField)
     }
     
     func setupPasswordTextField() {
-        passwordTextField = UITextField()
-        addSubview(passwordTextField)
-        
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.borderStyle = .roundedRect
-        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
-        passwordTextField.keyboardType = .phonePad
-        passwordTextField.returnKeyType = .done
-        passwordTextField.clearButtonMode = .whileEditing
-        passwordTextField.contentVerticalAlignment = .center
-        passwordTextField.contentHorizontalAlignment = .leading
-        passwordTextField.placeholder = "Enter your password"
-        passwordTextField.delegate = self
-        
-        passwordTextField.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(emailTextField.snp.bottom)
+        viewModel.passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
+        guard let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel else {
+            return
         }
+        passwordTextField = PasswordTextFieldView(with: passwordTextFieldViewModel)
+        addSubview(passwordTextField)
     }
+    
+//
+//    func setupEmailTextField() {
+//        emailTextField = UITextField()
+//        addSubview(emailTextField)
+//
+//        emailTextField.borderStyle = .roundedRect
+//        emailTextField.autocorrectionType = UITextAutocorrectionType.no
+//        emailTextField.keyboardType = .phonePad
+//        emailTextField.returnKeyType = .done
+//        emailTextField.clearButtonMode = .whileEditing
+//        emailTextField.contentVerticalAlignment = .center
+//        emailTextField.contentHorizontalAlignment = .leading
+//        emailTextField.placeholder = "Enter your E-mail"
+//        emailTextField.delegate = self
+//
+//        emailTextField.snp.makeConstraints { (make) in
+//            make.leading.trailing.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        }
+//    }
+//
+//    func setupPasswordTextField() {
+//        passwordTextField = UITextField()
+//        addSubview(passwordTextField)
+//
+//        passwordTextField.isSecureTextEntry = true
+//        passwordTextField.borderStyle = .roundedRect
+//        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
+//        passwordTextField.keyboardType = .phonePad
+//        passwordTextField.returnKeyType = .done
+//        passwordTextField.clearButtonMode = .whileEditing
+//        passwordTextField.contentVerticalAlignment = .center
+//        passwordTextField.contentHorizontalAlignment = .leading
+//        passwordTextField.placeholder = "Enter your password"
+//        passwordTextField.delegate = self
+//
+//        passwordTextField.snp.makeConstraints { (make) in
+//            make.leading.trailing.equalToSuperview()
+//            make.top.equalTo(emailTextField.snp.bottom)
+//        }
+//    }
     
     func setupButton() {
         button = UIButton()
@@ -124,18 +161,3 @@ private extension RegisterView {
     
 }
 
-extension RegisterView: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let typedText = textField.text else {
-            return
-        }
-        viewModel.textFieldDidChange(with: typedText)
-    }
-    
-}

@@ -9,6 +9,5 @@ struct UserCredentials {
     
     var login: String = ""
     var password: String = ""
-    var email: String = ""
     
 }

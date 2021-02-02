@@ -18,6 +18,9 @@ final class RegisterViewModel {
     
     //    MARK: - Properties
     
+    var loginTextFieldViewModel: TextFieldViewModel?
+    var passwordTextFieldViewModel: TextFieldViewModel?
+    
     private weak var delegate: RegisterViewModelDelegate?
     let registerService: RegisterServiceProtocol
     private var userCredentials: UserCredentials
@@ -34,11 +37,26 @@ final class RegisterViewModel {
     
     //    MARK: - Public methods
     
+}
+
+extension RegisterViewModel: TextFieldViewModelDelegate {
+    
+    func textFieldDidChange(in textFieldType: TextFieldType, with typedText: String) {
+        switch textFieldType {
+        case .login:
+            self.userCredentials.login = typedText
+        case .password:
+            self.userCredentials.password = typedText
+        }
+    }
+    
     func buttonTapped() {
-        guard let email = self.typedText else {
+        guard
+            self.userCredentials.login != "",
+            self.userCredentials.password != ""
+        else {
             return
         }
-        delegate?.addEmail(email: email)
             
         registerService.createUser(with: userCredentials, completionHandler: { result in
             switch result {
@@ -50,10 +68,4 @@ final class RegisterViewModel {
             }
         })
     }
-    func textFieldDidChange(with typedText: String) {
-        
-        self.typedText = typedText
-        
-    }
-    
 }
