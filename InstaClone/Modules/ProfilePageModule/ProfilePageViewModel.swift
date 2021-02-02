@@ -71,6 +71,15 @@ final class ProfilePageViewModel {
                 print("Failed to fetch user's data")
             }
         }
+        
+        func getPhotoList() {
+            userProfileService.listFiles() { result in
+                print(result)
+            }
+        }
+        
+        //zapytanie do serwisu o pobranie wszystkich zdjęć
+        
     }
     
 }

@@ -8,13 +8,19 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 protocol UserProfileServiceProtocol {
+    
     func getUser(withID id: String, completionHandler: @escaping (Result<UserData, Error>) -> Void)
     func create(user: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func listFiles(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void))
+    
 }
 
 final class UserProfileService: UserProfileServiceProtocol {
+    
+    private let storage = Storage.storage()
     
     func getUser(withID id: String, completionHandler: @escaping (Result<UserData, Error>) -> Void) {
 
@@ -50,6 +56,31 @@ final class UserProfileService: UserProfileServiceProtocol {
             } else {
                 completionHandler(.success(()))
             }
+        }
+    }
+    
+    func listFiles(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void)) {
+        
+        let userID = Auth.auth().currentUser?.uid
+        let reference = storage.reference().child("users/" + String(userID!) + "/photos")
+
+        reference.listAll { (result, error) in
+            if let error = error {
+                completionHandler(.failure(error))
+                print("error")
+            } else {
+//                reference.observeSingleEvent(of: .value) { snapshot in
+//                guard
+//                    JSONSerialization.isValidJSONObject(snapshot.value as Any),
+//                    let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
+//                    let photoList = try? JSONDecoder().decode(PhotoList.self, from: data)
+//                else {
+//                    completionHandler(.failure(ServiceError.failedToFetchUserData))
+//                    return
+//                }
+//                completionHandler(.success(photoList))
+            }
+        
         }
     }
     
