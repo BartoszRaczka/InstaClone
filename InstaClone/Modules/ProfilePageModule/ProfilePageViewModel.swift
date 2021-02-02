@@ -33,6 +33,7 @@ final class ProfilePageViewModel {
         self.delegate = delegate
         self.userProfileService = userProfileService
         setupData()
+        getPhotoList()
     }
     
     func didTapUserProfilePictureButton() {
@@ -72,14 +73,14 @@ final class ProfilePageViewModel {
             }
         }
         
-        func getPhotoList() {
-            userProfileService.listFiles() { result in
-                print(result)
-            }
-        }
-        
-        //zapytanie do serwisu o pobranie wszystkich zdjęć
-        
     }
+    
+    func getPhotoList() {
+        userProfileService.listFiles() { result in
+            print(result)
+        }
+    }
+    
+    //zapytanie do serwisu o pobranie wszystkich zdjęć
     
 }

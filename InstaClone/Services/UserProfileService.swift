@@ -69,19 +69,19 @@ final class UserProfileService: UserProfileServiceProtocol {
                 completionHandler(.failure(error))
                 print("error")
             } else {
-//                reference.observeSingleEvent(of: .value) { snapshot in
-//                guard
-//                    JSONSerialization.isValidJSONObject(snapshot.value as Any),
-//                    let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any),
-//                    let photoList = try? JSONDecoder().decode(PhotoList.self, from: data)
-//                else {
-//                    completionHandler(.failure(ServiceError.failedToFetchUserData))
-//                    return
-//                }
-//                completionHandler(.success(photoList))
+                guard
+                    JSONSerialization.isValidJSONObject(result.items as Any),
+                    let data = try? JSONSerialization.data(withJSONObject: result.items as Any),
+                    let photoList = try? JSONDecoder().decode(PhotoList.self, from: data)
+                else {
+                    completionHandler(.failure(ServiceError.failedToListPhotos))
+                    return
+                }
+                completionHandler(.success(photoList))
             }
         
         }
+        
     }
     
 }
