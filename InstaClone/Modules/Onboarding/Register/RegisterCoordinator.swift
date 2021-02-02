@@ -45,19 +45,10 @@ final class RegisterCoordinator: Coordinator {
 
 }
 
-extension RegisterCoordinator: RegisterViewModelDelegate, PinInputViewModelDelegate {
+extension RegisterCoordinator: RegisterViewModelDelegate {
   
-    func addEmail(email: String) {
-        let pinInputViewController = dependencyContainer.makePinInputViewController(delegate: self)
-        navigationController.pushViewController(pinInputViewController, animated: true)
-    }
-
     func registerButtonTapped() {
         
-    }
-    
-    func pinEntered(pin: String) {
-        print("pin entered")
     }
     
 }

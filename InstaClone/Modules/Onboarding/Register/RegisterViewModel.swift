@@ -9,9 +9,8 @@ import Foundation
 
 protocol RegisterViewModelDelegate: AnyObject{
     
-    func addEmail(email: String)
     func registerButtonTapped()
-    
+
 }
 
 final class RegisterViewModel {
