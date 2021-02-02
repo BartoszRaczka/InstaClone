@@ -30,6 +30,7 @@ class PhotoCoordinator: Coordinator {
     func start() {
         navigationController.tabBarItem = .init(title: "Photo", image: UIImage(systemName: "camera"), tag: 1)
         navigationController.pushViewController(dependencyContainer.makePhotoViewController(delegate: self), animated: true)
+        navigationController.isNavigationBarHidden = false
     }
     
 }
