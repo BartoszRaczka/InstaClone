@@ -82,7 +82,6 @@ final class ProfilePageViewModel {
             case let .failure(error):
                 print(error)
             case let .success(list):
-                print("ddd")
                 self.photoList = list
             }
         }
