@@ -8,7 +8,6 @@ import Foundation
 
 final class PostedPhotoCellViewModel {
    
-    var imageNames: [String] = ["stonoga"]
     var imageData: Data
     
     init(imageData: Data) {
