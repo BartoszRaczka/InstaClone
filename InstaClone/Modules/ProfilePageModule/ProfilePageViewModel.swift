@@ -87,8 +87,4 @@ final class ProfilePageViewModel {
             }
         }
     }
-    
-//    func getPhotos
-    //zapytanie do serwisu o pobranie wszystkich zdjęć
-    
 }

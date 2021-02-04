@@ -74,28 +74,27 @@ final class UserProfileService: UserProfileServiceProtocol {
     }
     
     func downloadPhotos(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void)) {
-        let group = DispatchGroup()
+        let listDispatchGroup = DispatchGroup()
         
         var referenceList: [StorageReference] = []
-        group.enter()
+        listDispatchGroup.enter()
         listFiles() { result in
             switch result {
             case let .failure(error):
                 print(error)
                 completionHandler(.failure(error))
-                group.leave()
             case let .success(list):
                 referenceList = list
-                group.leave()
+                listDispatchGroup.leave()
             }
         }
         
-        group.notify(queue: .main) {
+        listDispatchGroup.notify(queue: .main) {
             var photoList: PhotoList = PhotoList()
-            let group2 = DispatchGroup()
+            let downloadDispatchGroup = DispatchGroup()
             
             for reference in referenceList {
-                group2.enter()
+                downloadDispatchGroup.enter()
                 reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
                     if let error = error {
                         completionHandler(.failure(error))
@@ -105,11 +104,11 @@ final class UserProfileService: UserProfileServiceProtocol {
                             return
                         }
                         (photoList as PhotoList).photos.append(data)
-                        group2.leave()
+                        downloadDispatchGroup.leave()
                     }
                 }
             }
-            group2.notify(queue: .main) {
+            downloadDispatchGroup.notify(queue: .main) {
                 completionHandler(.success(photoList))
             }
         }
