@@ -14,7 +14,8 @@ protocol UserProfileServiceProtocol {
     
     func getUser(withID id: String, completionHandler: @escaping (Result<UserData, Error>) -> Void)
     func create(user: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
-    func listFiles(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void))
+    func listFiles(completionHandler: @escaping ((Result<[StorageReference], Error>) -> Void))
+    func downloadPhotos(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void))
     
 }
 
@@ -59,29 +60,58 @@ final class UserProfileService: UserProfileServiceProtocol {
         }
     }
     
-    func listFiles(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void)) {
-        
+    internal func listFiles(completionHandler: @escaping ((Result<[StorageReference], Error>) -> Void)) {
         let userID = Auth.auth().currentUser?.uid
         let reference = storage.reference().child("users/" + String(userID!) + "/photos")
 
         reference.listAll { (result, error) in
             if let error = error {
                 completionHandler(.failure(error))
-                print("error")
             } else {
-                guard
-                    JSONSerialization.isValidJSONObject(result.items as Any),
-                    let data = try? JSONSerialization.data(withJSONObject: result.items as Any),
-                    let photoList = try? JSONDecoder().decode(PhotoList.self, from: data)
-                else {
-                    completionHandler(.failure(ServiceError.failedToListPhotos))
-                    return
-                }
-                completionHandler(.success(photoList))
+                completionHandler(.success(result.items))
             }
-        
         }
-        
     }
     
+    func downloadPhotos(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void)) {
+        let group = DispatchGroup()
+        
+        var referenceList: [StorageReference] = []
+        group.enter()
+        listFiles() { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                completionHandler(.failure(error))
+                group.leave()
+            case let .success(list):
+                referenceList = list
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            var photoList: PhotoList = PhotoList()
+            let group2 = DispatchGroup()
+            
+            for reference in referenceList {
+                group2.enter()
+                reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                    if let error = error {
+                        completionHandler(.failure(error))
+                    } else {
+                        guard let data = data else {
+                            completionHandler(.failure(ServiceError.failedToUnwrapData))
+                            return
+                        }
+                        (photoList as PhotoList).photos.append(data)
+                        group2.leave()
+                    }
+                }
+            }
+            group2.notify(queue: .main) {
+                completionHandler(.success(photoList))
+            }
+        }
+    }
 }

@@ -14,4 +14,5 @@ enum ServiceError: Error {
     case failedToUploadPhoto
     case failedToDownloadPhoto
     case failedToListPhotos
+    case failedToUnwrapData
 }

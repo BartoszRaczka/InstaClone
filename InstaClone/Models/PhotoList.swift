@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct PhotoList: Identifiable, Codable { //not sure if this file is good
+class PhotoList {
     
-    var id: String
-    var photos: [String]
+    var photos: [Data] = []
     
 }

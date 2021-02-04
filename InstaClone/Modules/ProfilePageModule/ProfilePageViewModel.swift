@@ -26,6 +26,7 @@ final class ProfilePageViewModel {
     var numberOfFollowers: Int = 0
     var numberOfFollowing: Int = 0
     var descriptionLabelText: String = " "
+    var photoList: PhotoList = PhotoList()
     
     var delegate: ProfilePageViewModelDelegate?
     
@@ -33,7 +34,7 @@ final class ProfilePageViewModel {
         self.delegate = delegate
         self.userProfileService = userProfileService
         setupData()
-        getPhotoList()
+        getPhotosData()
     }
     
     func didTapUserProfilePictureButton() {
@@ -75,12 +76,19 @@ final class ProfilePageViewModel {
         
     }
     
-    func getPhotoList() {
-        userProfileService.listFiles() { result in
-            print(result)
+    func getPhotosData() {
+        userProfileService.downloadPhotos { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(list):
+                print("ddd")
+                self.photoList = list
+            }
         }
     }
     
+//    func getPhotos
     //zapytanie do serwisu o pobranie wszystkich zdjęć
     
 }
