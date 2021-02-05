@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 protocol ContentServiceProtocol {
-    func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func uploadData(image: UIImage, completionHandler: @escaping (Result<Void, Error>) -> Void)
     func downloadData(imageID: String, UserID: UserData, completionHandler: @escaping (Result<Data, Error>) -> Void)
 }
 
@@ -19,10 +19,10 @@ final class ContentService: ContentServiceProtocol {
  
     private let storage = Storage.storage()
    
-    func uploadData(imageID: String, image: UIImage, data: Data, userID: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+    func uploadData(image: UIImage, completionHandler: @escaping (Result<Void, Error>) -> Void) {
         let imageID = UUID().uuidString
         guard
-            let image = UIImage(named: "\(image)"),
+            let image = image as UIImage?, //UIImage(named: "\(image)"),
             let data = image.pngData(),
             let userID = Auth.auth().currentUser?.uid
         else {
