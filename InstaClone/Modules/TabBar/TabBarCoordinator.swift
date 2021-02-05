@@ -48,7 +48,8 @@ final class TabBarCoordinator: Coordinator {
         let photoNavigationController = UINavigationController()
         let photoCoordinator = dependencyContainer.makePhotoCoordinator(
             with: photoNavigationController,
-            dependencyContainer: self.dependencyContainer
+            dependencyContainer: self.dependencyContainer,
+            delegate: self
         )
         coordinators.append(photoCoordinator)
         photoCoordinator.start()
@@ -62,4 +63,12 @@ final class TabBarCoordinator: Coordinator {
         navigationController.pushViewController(tabBarViewController, animated: false)
     }
     
+}
+
+extension TabBarCoordinator: PhotoCoordinatorDelegate {
+    
+    func photoCaptured() {
+        print("TabBarCoordinator knows about captured photo")
+    }
+        
 }
