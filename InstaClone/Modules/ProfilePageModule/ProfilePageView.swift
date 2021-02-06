@@ -29,6 +29,7 @@ final class ProfilePageView: UIView {
         setupDescriptionLabel()
         setupEditProfileButton()
         setupPostedPhotosCollectionView()
+        bindActions()
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +56,16 @@ final class ProfilePageView: UIView {
     
     @objc private func didTapEditProfileButton() {
         viewModel.didTapEditProfileButton()
+    }
+    
+    private func bindActions() {
+        viewModel.onRefreshCollectionViewAction = { [weak self] in
+            self?.refreshCollectionView()
+        }
+    }
+    
+    private func refreshCollectionView() {
+        postedPhotosCollectionView.reloadData()
     }
     
 }

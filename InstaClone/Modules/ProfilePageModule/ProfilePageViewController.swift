@@ -35,6 +35,10 @@ final class ProfilePageViewController: UIViewController {
         super.loadView()
         view = ProfilePageView(with: self.viewModel)
     }
+    
+    func refreshCollectionViewData() {
+        self.viewModel.refreshCollectionViewData()
+    }
 
 }
 

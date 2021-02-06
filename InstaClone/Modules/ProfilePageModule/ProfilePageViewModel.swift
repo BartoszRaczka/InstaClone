@@ -27,6 +27,7 @@ final class ProfilePageViewModel {
     var numberOfFollowing: Int = 0
     var descriptionLabelText: String = " "
     var photoList: PhotoList = PhotoList()
+    var onRefreshCollectionViewAction: (() -> Void)?
     
     var delegate: ProfilePageViewModelDelegate?
     
@@ -85,5 +86,10 @@ final class ProfilePageViewModel {
                 self.photoList = list
             }
         }
+    }
+    
+    func refreshCollectionViewData() {
+        self.getPhotosData()
+        self.onRefreshCollectionViewAction?()
     }
 }

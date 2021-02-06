@@ -16,6 +16,8 @@ final class TabBarCoordinator: Coordinator {
     private let dependencyContainer: DependencyContainer
     private var coordinators = [Coordinator]()
     
+    var profilePageNavigationController: UINavigationController
+    var profilePageCoordinator: ProfilePageCoordinator
     // MARK: - Life Cycle
     
     init(
@@ -24,6 +26,12 @@ final class TabBarCoordinator: Coordinator {
     ) {
         self.navigationController = navigationController
         self.dependencyContainer = dependencyContainer
+        
+        self.profilePageNavigationController = UINavigationController()
+        self.profilePageCoordinator = dependencyContainer.makeProfilePageCoordinator(
+            with: profilePageNavigationController,
+            dependencyContainer: self.dependencyContainer
+        )
     }
     
     // MARK: - Public methods
@@ -37,11 +45,11 @@ final class TabBarCoordinator: Coordinator {
         coordinators.append(homeFeedCoordinator)
         homeFeedCoordinator.start()
         
-        let profilePageNavigationController = UINavigationController()
-        let profilePageCoordinator = dependencyContainer.makeProfilePageCoordinator(
-            with: profilePageNavigationController,
-            dependencyContainer: self.dependencyContainer
-        )
+//        let profilePageNavigationController = UINavigationController()
+//        let profilePageCoordinator = dependencyContainer.makeProfilePageCoordinator(
+//            with: profilePageNavigationController,
+//            dependencyContainer: self.dependencyContainer
+//        )
         coordinators.append(profilePageCoordinator)
         profilePageCoordinator.start()
         
@@ -68,7 +76,7 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: PhotoCoordinatorDelegate {
     
     func photoCaptured() {
-        print("TabBarCoordinator knows about captured photo")
+        profilePageCoordinator.refreshCollectionViewData()
     }
         
 }
