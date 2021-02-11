@@ -8,13 +8,20 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 protocol UserProfileServiceProtocol {
+    
     func getUser(withID id: String, completionHandler: @escaping (Result<UserData, Error>) -> Void)
     func create(user: UserData, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func listFiles(completionHandler: @escaping ((Result<[StorageReference], Error>) -> Void))
+    func downloadPhotos(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void))
+    
 }
 
 final class UserProfileService: UserProfileServiceProtocol {
+    
+    private let storage = Storage.storage()
     
     func getUser(withID id: String, completionHandler: @escaping (Result<UserData, Error>) -> Void) {
 
@@ -53,4 +60,57 @@ final class UserProfileService: UserProfileServiceProtocol {
         }
     }
     
+    internal func listFiles(completionHandler: @escaping ((Result<[StorageReference], Error>) -> Void)) {
+        let userID = Auth.auth().currentUser?.uid
+        let reference = storage.reference().child("users/" + String(userID!) + "/photos")
+
+        reference.listAll { (result, error) in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else {
+                completionHandler(.success(result.items))
+            }
+        }
+    }
+    
+    func downloadPhotos(completionHandler: @escaping ((Result<PhotoList, Error>) -> Void)) {
+        let listDispatchGroup = DispatchGroup()
+        
+        var referenceList: [StorageReference] = []
+        listDispatchGroup.enter()
+        listFiles() { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+                completionHandler(.failure(error))
+            case let .success(list):
+                referenceList = list
+                listDispatchGroup.leave()
+            }
+        }
+        
+        listDispatchGroup.notify(queue: .main) {
+            var photoList: PhotoList = PhotoList()
+            let downloadDispatchGroup = DispatchGroup()
+            
+            for reference in referenceList {
+                downloadDispatchGroup.enter()
+                reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                    if let error = error {
+                        completionHandler(.failure(error))
+                    } else {
+                        guard let data = data else {
+                            completionHandler(.failure(ServiceError.failedToUnwrapData))
+                            return
+                        }
+                        (photoList as PhotoList).photos.append(data)
+                        downloadDispatchGroup.leave()
+                    }
+                }
+            }
+            downloadDispatchGroup.notify(queue: .main) {
+                completionHandler(.success(photoList))
+            }
+        }
+    }
 }

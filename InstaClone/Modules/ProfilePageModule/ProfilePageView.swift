@@ -29,6 +29,7 @@ final class ProfilePageView: UIView {
         setupDescriptionLabel()
         setupEditProfileButton()
         setupPostedPhotosCollectionView()
+        bindActions()
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +56,16 @@ final class ProfilePageView: UIView {
     
     @objc private func didTapEditProfileButton() {
         viewModel.didTapEditProfileButton()
+    }
+    
+    private func bindActions() {
+        viewModel.onRefreshCollectionViewAction = { [weak self] in
+            self?.refreshCollectionView()
+        }
+    }
+    
+    private func refreshCollectionView() {
+        postedPhotosCollectionView.reloadData()
     }
     
 }
@@ -239,12 +250,13 @@ extension ProfilePageView: UICollectionViewDelegateFlowLayout, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfPosts
+        return viewModel.photoList.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = postedPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "PostedPhotoCell", for: indexPath)
-        (cell as? PostedPhotoCell)?.viewModel = PostedPhotoCellViewModel()
+        let imageData = viewModel.photoList.photos[indexPath.row]
+        (cell as? PostedPhotoCell)?.viewModel = PostedPhotoCellViewModel(imageData: imageData)
         return cell
     }
     

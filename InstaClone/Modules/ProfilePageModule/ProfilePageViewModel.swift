@@ -26,6 +26,8 @@ final class ProfilePageViewModel {
     var numberOfFollowers: Int = 0
     var numberOfFollowing: Int = 0
     var descriptionLabelText: String = " "
+    var photoList: PhotoList = PhotoList()
+    var onRefreshCollectionViewAction: (() -> Void)?
     
     var delegate: ProfilePageViewModelDelegate?
     
@@ -33,6 +35,7 @@ final class ProfilePageViewModel {
         self.delegate = delegate
         self.userProfileService = userProfileService
         setupData()
+        getPhotosData()
     }
     
     func didTapUserProfilePictureButton() {
@@ -71,6 +74,22 @@ final class ProfilePageViewModel {
                 print("Failed to fetch user's data")
             }
         }
+        
     }
     
+    func getPhotosData() {
+        userProfileService.downloadPhotos { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(list):
+                self.photoList = list
+            }
+        }
+    }
+    
+    func refreshCollectionViewData() {
+        self.getPhotosData()
+        self.onRefreshCollectionViewAction?()
+    }
 }

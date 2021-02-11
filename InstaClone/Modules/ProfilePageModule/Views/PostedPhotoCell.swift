@@ -37,7 +37,7 @@ class PostedPhotoCell: UICollectionViewCell {
     }
     
     private func updateCellData() {
-        postedPhoto.image = UIImage(named: viewModel.imageNames.first!)
+        postedPhoto.image = UIImage(data: viewModel.imageData)
     }
     
 }

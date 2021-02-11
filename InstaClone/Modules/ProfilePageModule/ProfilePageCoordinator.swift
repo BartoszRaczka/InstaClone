@@ -15,6 +15,7 @@ final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     private let dependencyContainer: DependencyContainer
     private let coordinators = [Coordinator]()
     private let userProfileService: UserProfileServiceProtocol
+    private var profilePageViewController: ProfilePageViewController?
     
     //MARK: - Life Cycle
     
@@ -31,9 +32,16 @@ final class ProfilePageCoordinator: Coordinator, ProfilePageViewModelDelegate {
     //MARK: - Public methods
     
     func start() {
-        let profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self, userProfileService: userProfileService)
+        self.profilePageViewController = dependencyContainer.makeProfilePageViewController(delegate: self, userProfileService: userProfileService)
         navigationController.tabBarItem = .init(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
-        navigationController.pushViewController(profilePageViewController, animated: true)
+        navigationController.pushViewController(profilePageViewController!, animated: true)
+    }
+    
+    func refreshCollectionViewData() {
+        guard let profilePageViewController = self.profilePageViewController else {
+            return
+        }
+        profilePageViewController.refreshCollectionViewData()
     }
     
 }
