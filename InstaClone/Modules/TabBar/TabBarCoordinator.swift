@@ -53,10 +53,19 @@ final class TabBarCoordinator: Coordinator {
         coordinators.append(photoCoordinator)
         photoCoordinator.start()
         
+        let searchNavigationController = UINavigationController()
+        let searchCoordinator = dependencyContainer.makeSearchCoordinator(
+            with: searchNavigationController,
+            dependencyContainer: self.dependencyContainer
+        )
+        coordinators.append(searchCoordinator)
+        searchCoordinator.start()
+        
         let tabBarViewController = TabBarViewController()
         tabBarViewController.viewControllers = [
             homeFeedNavigationController,
             photoNavigationController,
+            searchNavigationController,
             profilePageNavigationController
         ]
         navigationController.pushViewController(tabBarViewController, animated: false)
