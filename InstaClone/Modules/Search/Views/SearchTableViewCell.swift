@@ -11,7 +11,7 @@ final class SearchTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var viewModel: SearchTableViewCellViewModel!
+    var viewModel: SearchTableViewCellViewModel?
     
     // MARK: - UI Properties
     
@@ -30,10 +30,17 @@ final class SearchTableViewCell: UITableViewCell {
         nil
     }
     
+    // MARK: - Public methods
+    
+    func update(with viewModel: SearchTableViewCellViewModel) {
+        self.viewModel = viewModel
+        nameLabel.text = viewModel.username
+    }
+    
     // MARK: - Objective C functions for buttons
     
     @objc private func followButtonTapped() {
-        viewModel.followButtonTapped()
+        viewModel?.followButtonTapped()
     }
 
 }
@@ -45,8 +52,6 @@ private extension SearchTableViewCell {
     func setupNameLabel() {
         nameLabel = UILabel()
         addSubview(nameLabel)
-        
-        nameLabel.text = viewModel.username
         
         nameLabel.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()

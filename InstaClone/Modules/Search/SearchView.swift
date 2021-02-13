@@ -80,10 +80,7 @@ extension SearchView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath)
-        (cell as? SearchTableViewCell)?.viewModel.delegate = self.viewModel
-        (cell as? SearchTableViewCell)?.viewModel.numberOfCellsRow = indexPath.row
-        (cell as? SearchTableViewCell)?.viewModel.username = viewModel.searchedPropositions[indexPath.row]
-        //TODO: add logic to display searched propositions
+        (cell as? SearchTableViewCell)?.update(with: viewModel.cellViewModels[indexPath.row])
         return cell
     }
 }

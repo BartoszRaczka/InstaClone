@@ -16,9 +16,16 @@ class SearchViewModel {
     var delegate: SearchViewModelDelegate?
     var searchedPropositions: [String] = ["username 1", "username 2", "username 3"] //When the SearchService will be done we will override this array with proper data
     var onReloadDataInTableViewAction: (() -> Void)?
+    var cellViewModels = [SearchTableViewCellViewModel]()
     
     init(delegate: SearchViewModelDelegate) {
         self.delegate = delegate
+        
+        cellViewModels = searchedPropositions.map { proposition in
+            let viewModel = SearchTableViewCellViewModel()
+            viewModel.username = proposition
+            return viewModel
+        }
     }
     
 }
