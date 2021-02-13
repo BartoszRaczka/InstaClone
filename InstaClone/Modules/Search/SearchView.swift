@@ -21,7 +21,7 @@ class SearchView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        viewModel.askForPropositions()
+        bindActions()
         setupTableView()
     }
     
@@ -55,19 +55,34 @@ extension SearchView {
     
 }
 
+// MARK: - Private Methods
+
+private extension SearchView {
+    
+    func bindActions() {
+        viewModel.onReloadDataInTableViewAction = { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+}
+
+// MARK: - TableView Setup
+
 extension SearchView: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.searchedPropositions.count
-        return 2 // This is for now to test tableView
+        return viewModel.searchedPropositions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath)
         (cell as? SearchTableViewCell)?.viewModel.delegate = self.viewModel
+        (cell as? SearchTableViewCell)?.viewModel.numberOfCellsRow = indexPath.row
+        (cell as? SearchTableViewCell)?.viewModel.username = viewModel.searchedPropositions[indexPath.row]
         //TODO: add logic to display searched propositions
         return cell
     }

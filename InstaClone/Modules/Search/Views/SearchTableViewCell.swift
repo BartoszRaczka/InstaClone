@@ -46,7 +46,7 @@ private extension SearchTableViewCell {
         nameLabel = UILabel()
         addSubview(nameLabel)
         
-        nameLabel.text = "Username"
+        nameLabel.text = viewModel.username
         
         nameLabel.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()

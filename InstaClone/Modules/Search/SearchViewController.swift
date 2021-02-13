@@ -14,9 +14,6 @@ final class SearchViewController: UIViewController {
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.placeholder?.isEmpty ?? true
     }
-    var isFiltering: Bool {
-        return searchController.isActive && !isSearchBarEmpty
-    }
     
     init(with viewModel: SearchViewModel) {
         self.viewModel = viewModel
@@ -53,10 +50,7 @@ private extension SearchViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        // TODO: powiedzenie viewModelowi żeby zapytał się serwisu o to co ma wyświetlać
-        
-//        (view as? AddNewCardView)?.isFiltering = isFiltering
-//        (view as? AddNewCardView)?.tableView.reloadData()
+        viewModel.askForPropositions(with: searchText)
     }
     
 }

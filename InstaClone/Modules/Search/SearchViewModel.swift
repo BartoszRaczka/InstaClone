@@ -14,7 +14,8 @@ protocol SearchViewModelDelegate: AnyObject {
 class SearchViewModel {
     
     var delegate: SearchViewModelDelegate?
-    var searchedPropositions: [String] = [String]()
+    var searchedPropositions: [String] = ["username 1", "username 2", "username 3"] //When the SearchService will be done we will override this array with proper data
+    var onReloadDataInTableViewAction: (() -> Void)?
     
     init(delegate: SearchViewModelDelegate) {
         self.delegate = delegate
@@ -26,17 +27,18 @@ class SearchViewModel {
 
 extension SearchViewModel {
     
-    func askForPropositions() {
+    func askForPropositions(with text: String) {
         // TODO: Ask service for propositons to show
+        self.onReloadDataInTableViewAction?()
     }
     
 }
 
 extension SearchViewModel: SearchTableViewCellViewModelDelegate {
     
-    func followButtonTapped() {
-        print("We have to give information to Firebase that logged user wants to follow another user!")
-        // TODO: Give information to Firebase that logged user wants to follow another user
+    func followButtonTapped(row: Int) {
+        print("We have to give information to Firebase that logged user wants to follow another user shown in row number \(row)")
+        // TODO: Give information to Firebase that logged user wants to follow another user shown in row number \(row)
     }
     
 }
