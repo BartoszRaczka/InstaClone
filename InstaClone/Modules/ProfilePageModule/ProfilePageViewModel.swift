@@ -84,12 +84,12 @@ final class ProfilePageViewModel {
                 print(error)
             case let .success(list):
                 self.photoList = list
+                self.onRefreshCollectionViewAction?()
             }
         }
     }
     
     func refreshCollectionViewData() {
         self.getPhotosData()
-        self.onRefreshCollectionViewAction?()
     }
 }
