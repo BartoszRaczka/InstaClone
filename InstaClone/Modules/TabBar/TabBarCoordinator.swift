@@ -76,7 +76,7 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: PhotoCoordinatorDelegate {
     
     func photoCaptured() {
-//        profilePageCoordinator.refreshCollectionViewData()
+        profilePageCoordinator.refreshCollectionViewData()
     }
         
 }
