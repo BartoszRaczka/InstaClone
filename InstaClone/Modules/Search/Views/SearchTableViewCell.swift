@@ -20,7 +20,8 @@ final class SearchTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.viewModel = SearchTableViewCellViewModel()
+        selectionStyle = .none
+        isUserInteractionEnabled = true
         
         setupNameLabel()
         setupFollowButton()
@@ -51,7 +52,7 @@ private extension SearchTableViewCell {
     
     func setupNameLabel() {
         nameLabel = UILabel()
-        addSubview(nameLabel)
+        contentView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
@@ -60,7 +61,7 @@ private extension SearchTableViewCell {
     
     func setupFollowButton() {
         followButton = UIButton(type: .system)
-        addSubview(followButton)
+        contentView.addSubview(followButton)
         
         followButton.setTitle("Follow", for: .normal)
         followButton.contentHorizontalAlignment = .center

@@ -40,7 +40,6 @@ extension SearchView {
         addSubview(tableView)
         
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         
         tableView.dataSource = self
