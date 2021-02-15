@@ -36,6 +36,11 @@ final class ProfilePageViewController: UIViewController {
         view = ProfilePageView(with: self.viewModel)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        refreshCollectionViewData()
+    }
+    
     func refreshCollectionViewData() {
         self.viewModel.refreshCollectionViewData()
     }

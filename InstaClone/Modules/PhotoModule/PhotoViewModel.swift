@@ -11,7 +11,6 @@ import UIKit
 protocol PhotoViewModelDelegate {
     
     func capturePhotoButtonTapped()
-    func photoCaptured()
     
 }
 
@@ -42,7 +41,6 @@ extension PhotoViewModel {
             switch result {
             case .success:
                 self.onPhotoCapturedAction?(self.capturedPhoto)
-                self.delegate?.photoCaptured()
             case .failure:
                 print("Failed to upload image.")
             }

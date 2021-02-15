@@ -43,8 +43,7 @@ protocol CoordinatorFactory {
   
     func makePhotoCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer,
-        delegate: PhotoCoordinatorDelegate
+        dependencyContainer: DependencyContainer
     ) -> PhotoCoordinator
 
     func makeRegisterCoordinator(
@@ -144,13 +143,11 @@ extension DependencyContainer: CoordinatorFactory {
     
     func makePhotoCoordinator(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer,
-        delegate: PhotoCoordinatorDelegate
+        dependencyContainer: DependencyContainer
     ) -> PhotoCoordinator {
         PhotoCoordinator(
             with: navigationController,
-            dependencyContainer: dependencyContainer,
-            delegate: delegate
+            dependencyContainer: dependencyContainer
         )
     }
         
