@@ -15,10 +15,16 @@ class SearchViewModel {
     
     var delegate: SearchViewModelDelegate?
     var searchedPropositions: [String] = ["username 1", "username 2", "username 3"] //When the SearchService will be done we will override this array with proper data
+    var cellViewModels: [SearchTableViewCellViewModel]
     var onReloadDataInTableViewAction: (() -> Void)?
     
     init(delegate: SearchViewModelDelegate) {
         self.delegate = delegate
+        
+        cellViewModels = searchedPropositions.map { proposition in
+            let viewModel = SearchTableViewCellViewModel(username: proposition)
+            return viewModel
+        }
     }
     
 }
@@ -36,9 +42,9 @@ extension SearchViewModel {
 
 extension SearchViewModel: SearchTableViewCellViewModelDelegate {
     
-    func followButtonTapped(row: Int) {
-        print("We have to give information to Firebase that logged user wants to follow another user shown in row number \(row)")
-        // TODO: Give information to Firebase that logged user wants to follow another user shown in row number \(row)
+    func followButtonTapped(cellViewModel: SearchTableViewCellViewModel) {
+        print("We have to give information to Firebase that logged user wants to follow \(cellViewModel.username)")
+        // TODO: Give information to Firebase that logged user wants to follow another user
     }
     
 }

@@ -11,7 +11,7 @@ final class SearchTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var viewModel: SearchTableViewCellViewModel!
+    var viewModel: SearchTableViewCellViewModel?
     
     // MARK: - UI Properties
     
@@ -20,7 +20,9 @@ final class SearchTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.viewModel = SearchTableViewCellViewModel()
+//        self.viewModel = SearchTableViewCellViewModel(username: "username")
+        selectionStyle = .none
+        isUserInteractionEnabled = true
         
         setupNameLabel()
         setupFollowButton()
@@ -33,9 +35,16 @@ final class SearchTableViewCell: UITableViewCell {
     // MARK: - Objective C functions for buttons
     
     @objc private func followButtonTapped() {
-        viewModel.followButtonTapped()
+        viewModel?.followButtonTapped()
     }
-
+    
+    // MARK: - Public Functions
+    
+    func update(with viewModel: SearchTableViewCellViewModel) {
+        self.viewModel = viewModel
+        nameLabel.text = viewModel.username
+    }
+    
 }
 
 // MARK: - View setup
@@ -44,9 +53,7 @@ private extension SearchTableViewCell {
     
     func setupNameLabel() {
         nameLabel = UILabel()
-        addSubview(nameLabel)
-        
-        nameLabel.text = viewModel.username
+        contentView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
@@ -55,7 +62,7 @@ private extension SearchTableViewCell {
     
     func setupFollowButton() {
         followButton = UIButton(type: .system)
-        addSubview(followButton)
+        contentView.addSubview(followButton)
         
         followButton.setTitle("Follow", for: .normal)
         followButton.contentHorizontalAlignment = .center

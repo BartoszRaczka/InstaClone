@@ -9,21 +9,21 @@ import Foundation
 
 protocol SearchTableViewCellViewModelDelegate: AnyObject {
     
-    func followButtonTapped(row: Int)
+    func followButtonTapped(cellViewModel: SearchTableViewCellViewModel)
     
 }
 
 final class SearchTableViewCellViewModel {
     
     var delegate: SearchTableViewCellViewModelDelegate?
-    var numberOfCellsRow: Int?
-    var username: String = "username"
+    var username: String
+    
+    init(username: String) {
+        self.username = username
+    }
     
     func followButtonTapped() {
-        guard let row = numberOfCellsRow else {
-            return
-        }
-        delegate?.followButtonTapped(row: row)
+        delegate?.followButtonTapped(cellViewModel: self)
     }
     
 }

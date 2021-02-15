@@ -40,7 +40,6 @@ extension SearchView {
         addSubview(tableView)
         
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         
         tableView.dataSource = self
@@ -80,10 +79,9 @@ extension SearchView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath)
-        (cell as? SearchTableViewCell)?.viewModel.delegate = self.viewModel
-        (cell as? SearchTableViewCell)?.viewModel.numberOfCellsRow = indexPath.row
-        (cell as? SearchTableViewCell)?.viewModel.username = viewModel.searchedPropositions[indexPath.row]
-        //TODO: add logic to display searched propositions
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        (cell as? SearchTableViewCell)?.update(with: cellViewModel)
+        (cell as? SearchTableViewCell)?.viewModel?.delegate = self.viewModel
         return cell
     }
 }
