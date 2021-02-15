@@ -9,13 +9,15 @@ import Foundation
 
 protocol RegisterViewModelFactory {
     
-    func makeRegisterViewModel(delegate: RegisterViewModelDelegate) -> RegisterViewModel
+    func makeRegisterViewModel(delegate: RegisterViewModelDelegate, registerService: RegisterServiceProtocol) -> RegisterViewModel
     
 }
 
 extension DependencyContainer: RegisterViewModelFactory {
     
-    func makeRegisterViewModel(delegate: RegisterViewModelDelegate) -> RegisterViewModel {
-        RegisterViewModel(delegate: delegate)
+    func makeRegisterViewModel(delegate: RegisterViewModelDelegate, registerService: RegisterServiceProtocol) -> RegisterViewModel {
+        RegisterViewModel(
+            delegate: delegate,
+            registerService: registerService)
     }
 }

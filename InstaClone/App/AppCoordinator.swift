@@ -30,11 +30,9 @@ final class AppCoordinator: Coordinator {
     // MARK: - Public methods
     
     func start() {
-        if Auth.auth().currentUser != nil {
-            self.startFromTabBar()
-        } else {
+         
             self.startFromOnboarding()
-        }
+    
     }
     
     // MARK: - Private methods

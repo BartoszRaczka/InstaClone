@@ -14,8 +14,12 @@ final class RegisterView: UIView {
     private let viewModel: RegisterViewModel
     
     private var topLabel: UILabel!
-    private var textField: UITextField!
+    private var loginTextField: TextFieldView!
+    private var passwordTextField: PasswordTextFieldView!
+    private var buttonContainer: UIView!
     private var button: UIButton!
+    private var stackView: UIStackView!
+    private var errorLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -23,6 +27,7 @@ final class RegisterView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
+        bindActions()
         setupView()
     }
     
@@ -34,10 +39,8 @@ final class RegisterView: UIView {
     
     func setupView() {
         backgroundColor = .black
-        
-        setupTextField()
+        setupStackView()
         setupTopLabel()
-        setupButton()
     }
     
 }
@@ -50,69 +53,107 @@ private extension RegisterView {
         topLabel = UILabel()
         addSubview(topLabel)
         
-        topLabel.text = "Register by your phone number"
-        topLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        topLabel.text = "Register by your E-mail"
+        topLabel.font = UIFont(name: "SnellRoundhand-Bold", size: 30.0)
         topLabel.textColor = .white
         topLabel.textAlignment = .center
         
         topLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(textField.snp.top)
+            make.bottom.equalTo(stackView.snp.top)
             make.leading.trailing.equalToSuperview()
         }
     }
     
-    func setupTextField() {
-        textField = UITextField()
-        addSubview(textField)
+    func setupStackView() {
+        stackView = UIStackView()
+        addSubview(stackView)
         
-        textField.borderStyle = .roundedRect
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = .phonePad
-        textField.returnKeyType = .done
-        textField.clearButtonMode = .whileEditing
-        textField.contentVerticalAlignment = .center
-        textField.contentHorizontalAlignment = .leading
-        textField.placeholder = "Enter your phone number"
-        textField.delegate = self
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
         
-        textField.snp.makeConstraints { (make) in
+        stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        setupPasswordTextField()
+        setupLoginTextField()
+        setupButtonContainer()
+        
+        stackView.addArrangedSubview(loginTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(buttonContainer)
+    }
+    
+    func setupLoginTextField() {
+        viewModel.loginTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .login, placeholderText: "e-mail")
+        guard let loginTextFieldViewModel = viewModel.loginTextFieldViewModel else {
+            return
+        }
+        loginTextField = TextFieldView(with: loginTextFieldViewModel)
+        addSubview(loginTextField)
+    }
+    
+    func setupPasswordTextField() {
+        viewModel.passwordTextFieldViewModel = TextFieldViewModel(delegate: self.viewModel, textFieldType: .password, placeholderText: "Password")
+        guard let passwordTextFieldViewModel = viewModel.passwordTextFieldViewModel else {
+            return
+        }
+        passwordTextField = PasswordTextFieldView(with: passwordTextFieldViewModel)
+        addSubview(passwordTextField)
+    }
+   
+    func setupButtonContainer() {
+        buttonContainer = UIView()
+        addSubview(buttonContainer)
+        
+        setupButton()
     }
     
     func setupButton() {
-        button = UIButton()
+        button = UIButton(type: .system)
         addSubview(button)
-        button.backgroundColor = .systemBlue
-        button.setTitle("Next", for: .normal)
         
-        button.snp.makeConstraints { (make) in
-            make.top.equalTo(textField.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.setTitle("Create account", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5.0
+        
+        button.snp.makeConstraints { make in
+            make.top.bottom.equalTo(buttonContainer).inset(6.0)
+            make.leading.trailing.equalTo(buttonContainer).inset(12.0)
         }
         
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    @objc func buttonTapped() {
+    func setupErrorLabel() {
+        errorLabel = UILabel()
+        addSubview(errorLabel)
+        
+        errorLabel.text = "Failed to register"
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        errorLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(topLabel.snp.top)
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    
+//    MARK: - Private methods
+    
+    @objc private func buttonTapped() {
         viewModel.buttonTapped()
+    }
+    
+    private func bindActions() {
+        viewModel.onFailedToRegisterAction = {
+            self.setupErrorLabel()
+        }
     }
     
 }
 
-extension RegisterView: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let typedText = textField.text else {
-            return
-        }
-        viewModel.textFieldDidChange(with: typedText)
-    }
-    
-}

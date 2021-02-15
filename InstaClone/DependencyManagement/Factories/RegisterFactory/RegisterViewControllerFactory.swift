@@ -9,13 +9,13 @@ import SnapKit
 
 protocol RegisterViewControllerFactory {
     
-    func makeRegisterViewController(delegate: RegisterViewModelDelegate) -> RegisterViewController
+    func makeRegisterViewController(delegate: RegisterViewModelDelegate, registerService: RegisterServiceProtocol) -> RegisterViewController
     
 }
 
 extension DependencyContainer: RegisterViewControllerFactory {
     
-    func makeRegisterViewController(delegate: RegisterViewModelDelegate) -> RegisterViewController {
-        RegisterViewController(with: makeRegisterViewModel(delegate: delegate))
+    func makeRegisterViewController(delegate: RegisterViewModelDelegate, registerService: RegisterServiceProtocol) -> RegisterViewController {
+        RegisterViewController(with: makeRegisterViewModel(delegate: delegate, registerService: registerService))
     }
 }
