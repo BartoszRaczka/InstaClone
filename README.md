@@ -17,4 +17,5 @@ Project is created with:
 
 ## Credits
 [Bartosz Rączka](https://github.com/BartoszRaczka)
+
 [Piotr Rybka](https://github.com/Smalllfish)
