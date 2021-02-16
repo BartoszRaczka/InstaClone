@@ -19,3 +19,5 @@ Project is created with:
 [Bartosz Rączka](https://github.com/BartoszRaczka)
 
 [Piotr Rybka](https://github.com/Smalllfish)
+
+[Rafał Małczyński](https://github.com/RMalczynski)
