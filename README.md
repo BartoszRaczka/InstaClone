@@ -14,3 +14,7 @@ Project is created with:
 * Install CocoaPods
 * Clone the repository 
 * Run ``` pod install ``` at the root of the project
+
+## Credits
+[Bartosz Rączka](https://github.com/BartoszRaczka)
+[Piotr Rybka](https://github.com/Smalllfish)
