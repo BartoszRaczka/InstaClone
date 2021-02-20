@@ -128,7 +128,7 @@ private extension PhotoPostCell {
         posterNameButton.addTarget(self, action: #selector(didTapPosterNameButton), for: .touchUpInside)
             
         posterNameButton.snp.makeConstraints { make in
-            make.leading.equalTo(posterPhoto.snp.trailing)
+            make.leading.equalTo(posterPhoto.snp.trailing).offset(8.0)
             make.top.bottom.equalTo(headContainer)
             make.trailing.equalTo(moreOptionsButton.snp.leading)
         }
