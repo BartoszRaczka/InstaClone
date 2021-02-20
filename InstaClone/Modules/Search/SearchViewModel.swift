@@ -48,5 +48,3 @@ extension SearchViewModel: SearchTableViewCellViewModelDelegate {
     }
     
 }
-
-//wpisuje text -> wysyłam requesta z textem (litery lowercased) o propozycje do wyświetlania -> dostaje około 20 propozycji do wyświetlenia w tableview -> wyświetlam te propozycje -> klikam follow -> wysyłam requesta do serwisu z informacją że followuje osobę XYZ -> zmieniam label na unfollow

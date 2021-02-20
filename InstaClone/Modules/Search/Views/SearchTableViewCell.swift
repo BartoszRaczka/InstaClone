@@ -20,7 +20,6 @@ final class SearchTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.viewModel = SearchTableViewCellViewModel(username: "username")
         selectionStyle = .none
         isUserInteractionEnabled = true
         
@@ -56,7 +55,7 @@ private extension SearchTableViewCell {
         contentView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.top.bottom.equalToSuperview()
+            make.leading.top.bottom.equalToSuperview().inset(8.0)
         }
     }
     
@@ -67,10 +66,16 @@ private extension SearchTableViewCell {
         followButton.setTitle("Follow", for: .normal)
         followButton.contentHorizontalAlignment = .center
         followButton.addTarget(self, action: #selector(followButtonTapped), for: .touchUpInside)
+        followButton.layer.cornerRadius = 6.0
+        followButton.backgroundColor = .systemBlue
+        followButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        followButton.setTitleColor(.white, for: .normal)
         
         followButton.snp.makeConstraints { make in
+            make.height.equalTo(32.0)
+            make.width.equalTo(88.0)
             make.leading.equalTo(nameLabel.snp.trailing)
-            make.top.bottom.trailing.equalToSuperview()
+            make.top.bottom.trailing.equalToSuperview().inset(8.0)
         }
     }
     
