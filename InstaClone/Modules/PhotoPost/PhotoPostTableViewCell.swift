@@ -30,7 +30,6 @@ final class PhotoPostCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.viewModel = PhotoPostCellViewModel()
         
         setupHeadContainer()
         setupPostedPhoto()
@@ -39,6 +38,16 @@ final class PhotoPostCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         nil
+    }
+    
+    //MARK: - Public Methods
+    
+    func update(with viewModel: PhotoPostCellViewModel) {
+        self.viewModel = viewModel
+        posterNameButton.setTitle(viewModel.posterName, for: .normal)
+        numberOfLikesButton.setTitle(viewModel.numberOfLikes, for: .normal)
+        postDescription.text = viewModel.description
+        timeWhenPosted.text = viewModel.timeOfPosting
     }
     
     // MARK: - Objective C functions for buttons

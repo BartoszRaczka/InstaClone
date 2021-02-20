@@ -23,6 +23,24 @@ protocol PhotoPostCellViewModelDelegate: AnyObject {
 final class PhotoPostCellViewModel {
     
     var delegate: PhotoPostCellViewModelDelegate?
+    var posterName: String
+    var numberOfLikes: String
+    var description: String
+    var timeOfPosting: String
+    
+    init(
+        posterName: String,
+        numberOfLikes: String,
+        description: String,
+        timeOfPosting: String
+    ) {
+        self.posterName = posterName
+        self.numberOfLikes = numberOfLikes
+        self.description = description
+        self.timeOfPosting = timeOfPosting
+    }
+    
+    // MARK: - Public Methods
     
     func didTapPosterNameButton() {
         delegate?.didTapPosterNameButton()

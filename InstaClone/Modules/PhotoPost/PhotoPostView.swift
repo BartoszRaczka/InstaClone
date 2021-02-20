@@ -49,13 +49,14 @@ extension PhotoPostView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfPosts.count
+        return viewModel.cellViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostCell", for: indexPath)
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        (cell as? PhotoPostCell)?.update(with: cellViewModel)
         (cell as? PhotoPostCell)?.viewModel.delegate = self.viewModel
-        //TODO: add logic to display proper data for each post
         return cell
     }
 }

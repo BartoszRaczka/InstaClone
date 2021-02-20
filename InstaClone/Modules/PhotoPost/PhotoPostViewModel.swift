@@ -23,6 +23,11 @@ protocol PhotoPostViewModelDelegate {
 class PhotoPostViewModel {
     
     let numberOfPosts = ["uno", "due", "tre"] //I don't know how to make infinity scroll system so for now I add only this array to let tableView show anything
+    var cellViewModels: [PhotoPostCellViewModel] = [
+        PhotoPostCellViewModel(posterName: "Piter", numberOfLikes: "5", description: "photo", timeOfPosting: "12.01.2021"),
+        PhotoPostCellViewModel(posterName: "Bartosz", numberOfLikes: "10", description: "my photo", timeOfPosting: "11.02.2021"),
+        PhotoPostCellViewModel(posterName: "Raphael", numberOfLikes: "15", description: "the photo of mine", timeOfPosting: "01.02.2021")
+    ]
     let delegate: PhotoPostViewModelDelegate?
     
     init(delegate: PhotoPostViewModelDelegate) {
