@@ -10,7 +10,8 @@ import Foundation
 
 protocol HomeFeedViewModelDelegate: AnyObject {
     
-    func selectedButton()
+    func photoButtonTapped()
+    func logOutButtonTapped()
     
 }
 
@@ -28,8 +29,12 @@ final class HomeFeedViewModel {
     
     //    MARK: - Public methods
     
-    func selectedButton(at indexPath: IndexPath) {
-        delegate?.selectedButton()
+    func didTapPhotoButton() {
+        delegate?.photoButtonTapped()
+    }
+        
+    func didTapLogOutButton() {
+        delegate?.logOutButtonTapped()
     }
     
 }

@@ -8,7 +8,10 @@
 
 import UIKit
 
-protocol HomeFeedCoordinatorProtocol {
+protocol HomeFeedCoordinatorDelegate {
+    
+    func photoButtonTapped()
+    func logOutButtonTapped()
     
 }
 
@@ -19,13 +22,16 @@ final class HomeFeedCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let dependencyContainer: DependencyContainer
     private var coordinators = [Coordinator]()
+    private var delegate: HomeFeedCoordinatorDelegate?
     
     // MARK: - Life Cycle
     
     init(
         with navigationController: UINavigationController,
-        dependencyContainer: DependencyContainer
+        dependencyContainer: DependencyContainer,
+        delegate: HomeFeedCoordinatorDelegate
     ){
+        self.delegate = delegate
         self.navigationController = navigationController
         self.dependencyContainer = dependencyContainer
     }
@@ -60,8 +66,12 @@ final class HomeFeedCoordinator: Coordinator {
 
 extension HomeFeedCoordinator: HomeFeedViewModelDelegate {
     
-    func selectedButton() {
-        
+    func photoButtonTapped() {
+        delegate?.photoButtonTapped()
     }
     
+    func logOutButtonTapped() {
+        delegate?.logOutButtonTapped()
+    }
+
 }

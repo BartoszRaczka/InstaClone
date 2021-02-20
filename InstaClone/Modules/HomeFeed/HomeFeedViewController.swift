@@ -60,16 +60,16 @@ final class HomeFeedViewController: UIViewController {
 private extension HomeFeedViewController {
     
     func setupBarButtons() {
-        let dmButton = UIButton(type: .system)
-        dmButton.setBackgroundImage(UIImage(named: "dm"), for: .normal)
-        dmButton.addTarget(self, action: #selector(didTapDMButton), for: .touchUpInside)
-        dmButton.snp.makeConstraints { make in
+        let logOutButton = UIButton(type: .system)
+        logOutButton.setBackgroundImage(UIImage(named: "logOut"), for: .normal)
+        logOutButton.addTarget(self, action: #selector(didTapLogOutButton), for: .touchUpInside)
+        logOutButton.snp.makeConstraints { make in
             make.height.width.equalTo(28.0)
         }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dmButton)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logOutButton)
         
         let photoButton = UIButton(type: .system)
-        photoButton.setBackgroundImage(UIImage(named: "defaultPhoto"), for: .normal)
+        photoButton.setBackgroundImage(UIImage(named: "camera"), for: .normal)
         photoButton.addTarget(self, action: #selector(didTapPhotoButton), for: .touchUpInside)
         photoButton.snp.makeConstraints { make in
             make.height.width.equalTo(28.0)
@@ -83,11 +83,11 @@ private extension HomeFeedViewController {
     }
     
     @objc func didTapPhotoButton() {
-        print("photoButton tapped")
+        viewModel.didTapPhotoButton()
     }
         
-    @objc func didTapDMButton() {
-        print("dmButton tapped")
+    @objc func didTapLogOutButton() {
+        viewModel.didTapLogOutButton()
     }
     
 }
