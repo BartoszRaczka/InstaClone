@@ -54,9 +54,24 @@ protocol CoordinatorFactory {
         delegate: RegisterCoordinatorDelegate
     ) -> RegisterCoordinator
 
+    func makeSearchCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> SearchCoordinator
+    
 }
 
 extension DependencyContainer: CoordinatorFactory {
+    
+    func makeSearchCoordinator(
+        with navigationController: UINavigationController,
+        dependencyContainer: DependencyContainer
+    ) -> SearchCoordinator {
+        SearchCoordinator(
+            with: navigationController,
+            dependencyContainer: dependencyContainer
+        )
+    }
     
     func makeProfilePageCoordinator(
         with navigationController: UINavigationController,
