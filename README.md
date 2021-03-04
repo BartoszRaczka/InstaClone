@@ -1,5 +1,6 @@
 # InstaClone
 Co-work application project which is very basic Instagram clone, made for educational purposes.
+Current version is on ```feature/FixesModule``` branch.
 
 ## Technologies 
 Project is created with: 
