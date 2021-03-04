@@ -13,7 +13,7 @@ Project is created with:
 * Install the latest Xcode developer tools from Apple
 * Install CocoaPods
 * Clone the repository 
-* Run ``` pod install ``` at the root of the project
+* Run ``` pod install ``` and ``` xcodegen ``` at the root of the project
 
 ## Credits
 [Bartosz Rączka](https://github.com/BartoszRaczka)
